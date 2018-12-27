@@ -2,4 +2,6 @@
 ## Current prograss : `quarter`
 Desktop applications developed using the Java programming language ~
 
-Look forward to your contribution ~ :coffee:
+:coffee: Look forward to your contribution !
+
+:man_student: If you need any help, please contact me ~ QQ : 3083968068
