@@ -15,9 +15,9 @@ public interface Administrator_Dao
 {
 	/**
 	 * 
-	 * @Title The login function.
-	 * @Description Get information from MySQL database
-	 * @param The information of user of administrator
+	 * @Title Check
+	 * @Description Select information from MySQL database
+	 * @param The information of administrator
 	 * @return Table_Administrator
 	 * @date Dec 26, 2018-7:27:41 PM
 	 * @throws no
@@ -27,9 +27,9 @@ public interface Administrator_Dao
 	
 	/**
 	 * 
-	 * @Title The function of modifying password.
-	 * @Description Change user pasword by update the information of MySQL database.
-	 * @param  The information of administrator and new password
+	 * @Title Update
+	 * @Description Update user information from database.
+	 * @param  The information of administrator
 	 * @return String
 	 * @date Dec 26, 2018-7:31:07 PM
 	 * @throws no

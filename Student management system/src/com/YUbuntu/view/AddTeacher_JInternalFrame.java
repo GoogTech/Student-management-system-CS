@@ -19,8 +19,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import com.YUbuntu.dao.impl.Class_Dao;
-import com.YUbuntu.dao.impl.Teacher_Dao;
+import com.YUbuntu.dao.impl.Class_DaoImpl;
+import com.YUbuntu.dao.impl.Teacher_DaoImpl;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.util.StringUtil;
@@ -300,7 +300,7 @@ public class AddTeacher_JInternalFrame extends JInternalFrame
 		table_Teacher.setTeacher_telephone(teacherTelephone);
 		
 		//The second step :  stores the student information into the MySQL database.
-		Teacher_Dao teacher_Dao = new Teacher_Dao();
+		Teacher_DaoImpl teacher_Dao = new Teacher_DaoImpl();
 		if(teacher_Dao.addTeacher(table_Teacher))
 		{
 			JOptionPane.showMessageDialog(this,"Success to add teacher !");
@@ -327,7 +327,7 @@ public class AddTeacher_JInternalFrame extends JInternalFrame
 	 */
 	private void Initialize_InitializeClassName()
 	{
-		Class_Dao class_Dao = new Class_Dao();
+		Class_DaoImpl class_Dao = new Class_DaoImpl();
 		List<Table_Class> list = class_Dao.getClassList(new Table_Class());
 			
 		for (Table_Class table : list)

@@ -26,8 +26,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.YUbuntu.dao.impl.Class_Dao;
-import com.YUbuntu.dao.impl.Teacher_Dao;
+import com.YUbuntu.dao.impl.Class_DaoImpl;
+import com.YUbuntu.dao.impl.Teacher_DaoImpl;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.util.StringUtil;
@@ -449,7 +449,7 @@ public class TeacherList_JInternalFrame extends JInternalFrame
 			table_Teacher.setTeacher_ClassName(table_Class.get_CLASS_NAME());
 			
 			//Prompt the user: whether the teacher information has been modified successfully.
-			Teacher_Dao teacher_Dao = new Teacher_Dao();
+			Teacher_DaoImpl teacher_Dao = new Teacher_DaoImpl();
 			if(teacher_Dao.Update_TeacherInformation(table_Teacher))
 			{
 				JOptionPane.showMessageDialog(this, "Update the teacher information successfully !");
@@ -522,7 +522,7 @@ public class TeacherList_JInternalFrame extends JInternalFrame
 		 */
 		if(JOptionPane.showConfirmDialog(this, "Are you sure to delete it ?")==JOptionPane.YES_OPTION)//Sensitive operation prompt.
 		{
-			Teacher_Dao teacher_Dao = new Teacher_Dao();
+			Teacher_DaoImpl teacher_Dao = new Teacher_DaoImpl();
 			if(teacher_Dao.Delete_TeacherInformation(TeacherList_Table.getValueAt(Row_index, 0).toString()))
 			{
 				JOptionPane.showMessageDialog(this, "Delete successfully !");
@@ -617,7 +617,7 @@ public class TeacherList_JInternalFrame extends JInternalFrame
 		defaultTableModel.setRowCount(0);
 			  
 		//Obtain teacher information
-		Teacher_Dao teacher_Dao = new Teacher_Dao();
+		Teacher_DaoImpl teacher_Dao = new Teacher_DaoImpl();
 		
 		/*-------------------------------------------------------------------------------------------------------------------------
 		 * getTeacherList(table_Teacher) : The 'table_Teacher' come from 'Function_InitializedTeacherTable(new Table_Teacher))'   |
@@ -661,7 +661,7 @@ public class TeacherList_JInternalFrame extends JInternalFrame
 	 */
 	private void Initialize_InitializeClassName()
 	{
-		Class_Dao class_Dao = new Class_Dao();
+		Class_DaoImpl class_Dao = new Class_DaoImpl();
 		List<Table_Class> list = class_Dao.getClassList(new Table_Class());
 				
 		for (Table_Class table : list)

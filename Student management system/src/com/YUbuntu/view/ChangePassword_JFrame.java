@@ -20,8 +20,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.YUbuntu.dao.impl.Administrator_DaoImpl;
-import com.YUbuntu.dao.impl.Student_Dao;
-import com.YUbuntu.dao.impl.Teacher_Dao;
+import com.YUbuntu.dao.impl.Student_DaoImpl;
+import com.YUbuntu.dao.impl.Teacher_DaoImpl;
 import com.YUbuntu.model.Table_Administrator;
 import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.model.Table_Teacher;
@@ -340,7 +340,7 @@ public class ChangePassword_JFrame extends JInternalFrame /* JFrame */
 			table_Student_temp.setStudent_password(oldPassword);
 			try
 			{
-				Student_Dao student_Dao = new Student_Dao();
+				Student_DaoImpl student_Dao = new Student_DaoImpl();
 				JOptionPane.showMessageDialog(this,
 						student_Dao.ChangePassword(table_Student_temp, newPassword), "TIP",
 								JOptionPane.WARNING_MESSAGE);
@@ -369,7 +369,7 @@ public class ChangePassword_JFrame extends JInternalFrame /* JFrame */
 			table_Teacher_temp.setTeacher_password(oldPassword);
 			try
 			{
-				Teacher_Dao teacher_Dao = new Teacher_Dao();
+				Teacher_DaoImpl teacher_Dao = new Teacher_DaoImpl();
 				JOptionPane.showMessageDialog(this,
 						teacher_Dao.ChangePassword(table_Teacher_temp, newPassword), "TIP",
 								JOptionPane.WARNING_MESSAGE);

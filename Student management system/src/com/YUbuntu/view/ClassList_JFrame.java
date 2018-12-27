@@ -25,7 +25,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.YUbuntu.dao.impl.Class_Dao;
+import com.YUbuntu.dao.impl.Class_DaoImpl;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.util.StringUtil;
 
@@ -284,7 +284,7 @@ public class ClassList_JFrame extends /*JFrame */ JInternalFrame
 		//Prompt the user to delete class information whether the operation is successful.
 		if(JOptionPane.showConfirmDialog(this, "Are you sure to delete it ?")==JOptionPane.YES_OPTION)//Sensitive operation prompt.
 		{
-			Class_Dao class_Dao = new Class_Dao();
+			Class_DaoImpl class_Dao = new Class_DaoImpl();
 			if(class_Dao.Delete_ClassInformation(ClASS_ID))
 			{
 				JOptionPane.showMessageDialog(this, "Delete successfully !");
@@ -360,7 +360,7 @@ public class ClassList_JFrame extends /*JFrame */ JInternalFrame
 			table_Class.set_CLASS_Introduce(Update_ClassIntroduce);
 			
 			//Prompt the user: whether the class information has been modified successfully.
-			Class_Dao class_Dao = new Class_Dao();
+			Class_DaoImpl class_Dao = new Class_DaoImpl();
 			if(class_Dao.Update_ClassInformation(table_Class))
 			{
 				JOptionPane.showMessageDialog(this, "Update successfully !");
@@ -425,7 +425,7 @@ public class ClassList_JFrame extends /*JFrame */ JInternalFrame
 		defaultTableModel.setRowCount(0);
 		 
 		//Obtain class information
-		Class_Dao class_Dao = new Class_Dao();
+		Class_DaoImpl class_Dao = new Class_DaoImpl();
 		
 		/*---------------------------------------------------------------------------------------------------------------------
 		 * getClassList(table_Class) : The 'table_Class' come from 'Function_InitializeClassTable(new Table_Class())'    	  |

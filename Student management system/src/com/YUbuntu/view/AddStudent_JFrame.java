@@ -21,8 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import com.YUbuntu.dao.impl.Class_Dao;
-import com.YUbuntu.dao.impl.Student_Dao;
+import com.YUbuntu.dao.impl.Class_DaoImpl;
+import com.YUbuntu.dao.impl.Student_DaoImpl;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.util.StringUtil;
@@ -276,7 +276,7 @@ public class AddStudent_JFrame extends /*JFrame*/ JInternalFrame
 		table_Student.setStudent_sex(sex);
 		
 		//The second step :  stores the student information into the MySQL database.
-		Student_Dao student_Dao = new Student_Dao();
+		Student_DaoImpl student_Dao = new Student_DaoImpl();
 		if(student_Dao.addStudent(table_Student))
 		{
 			JOptionPane.showMessageDialog(this,"Success to add student !");
@@ -302,7 +302,7 @@ public class AddStudent_JFrame extends /*JFrame*/ JInternalFrame
 	 */
 	private void Initialize_InitializeClassName()
 	{
-		Class_Dao class_Dao = new Class_Dao();
+		Class_DaoImpl class_Dao = new Class_DaoImpl();
 		List<Table_Class> list = class_Dao.getClassList(new Table_Class());
 			
 		for (Table_Class table : list)

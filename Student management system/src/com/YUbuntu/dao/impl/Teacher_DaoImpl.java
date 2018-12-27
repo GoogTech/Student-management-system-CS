@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.YUbuntu.basicDao.BasicDao;
+import com.YUbuntu.dao.Teacher_Dao;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.util.JDBCUtil;
 import com.YUbuntu.util.StringUtil;
@@ -20,7 +21,7 @@ import com.YUbuntu.util.StringUtil;
  * @Date Dec 16, 2018-9:10:20 AM
  * @version 1.0
  */
-public class Teacher_Dao extends BasicDao
+public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 {
 
 	/**
@@ -70,7 +71,7 @@ public class Teacher_Dao extends BasicDao
 	 * @Description Search for information about the specified teacher based on the information(Teacher name) entered by the user.
 	 * @param The teacher information(Attention : It's null now !)
 	 * @return List<Table_Teacher>
-	 * @date Dec 16, 20189:40:38 PM
+	 * @date Dec 16, 2018-9:40:38 PM
 	 * @throws
 	 *
 	 */
@@ -219,7 +220,7 @@ public class Teacher_Dao extends BasicDao
 	 * @throws
 	 *
 	 */
-	public Table_Teacher Login_Student(Table_Teacher Table_Teacher)
+	public Table_Teacher Login_Teacher(Table_Teacher Table_Teacher)
 	{
 		String SQL_TEACHER_LOGIN = "SELECT * FROM TABLE_TEACHER WHERE TEACHER_NAME = ? AND TEACHER_PASSWORD = ?";
 		/*

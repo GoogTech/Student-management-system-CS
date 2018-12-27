@@ -23,8 +23,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
-import com.YUbuntu.dao.impl.Class_Dao;
-import com.YUbuntu.dao.impl.Student_Dao;
+import com.YUbuntu.dao.impl.Class_DaoImpl;
+import com.YUbuntu.dao.impl.Student_DaoImpl;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.util.StringUtil;
@@ -358,7 +358,7 @@ public class StudentList_JInternalFrame extends JInternalFrame
 			
 					
 			//Prompt the user: whether the class information has been modified successfully.
-			Student_Dao class_Dao = new Student_Dao();
+			Student_DaoImpl class_Dao = new Student_DaoImpl();
 			if(class_Dao.Update_StudentInformation(table_Student))
 			{
 				JOptionPane.showMessageDialog(this, "Update the student information successfully !");
@@ -478,7 +478,7 @@ public class StudentList_JInternalFrame extends JInternalFrame
 		 */
 		if(JOptionPane.showConfirmDialog(this, "Are you sure to delete it ?")==JOptionPane.YES_OPTION)//Sensitive operation prompt.
 		{
-			Student_Dao student_Dao = new Student_Dao();
+			Student_DaoImpl student_Dao = new Student_DaoImpl();
 			if(student_Dao.Delete_StudentInformation(StudentList_Table.getValueAt(Row_index, 0).toString()))
 			{
 				JOptionPane.showMessageDialog(this, "Delete successfully !");
@@ -552,7 +552,7 @@ public class StudentList_JInternalFrame extends JInternalFrame
 		defaultTableModel.setRowCount(0);
 			  
 		//Obtain class information
-		Student_Dao student_Dao = new Student_Dao();
+		Student_DaoImpl student_Dao = new Student_DaoImpl();
 		
 		/*-------------------------------------------------------------------------------
 		 * If user permissions are not set in the above, 'table_Student' is empty !!!	|
@@ -589,7 +589,7 @@ public class StudentList_JInternalFrame extends JInternalFrame
 	 */
 	private void Initialize_InitializeClassName()
 	{
-		Class_Dao class_Dao = new Class_Dao();
+		Class_DaoImpl class_Dao = new Class_DaoImpl();
 		List<Table_Class> list = class_Dao.getClassList(new Table_Class());
 				
 		for (Table_Class table : list)

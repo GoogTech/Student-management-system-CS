@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.YUbuntu.dao.impl.Class_Dao;
+import com.YUbuntu.dao.impl.Class_DaoImpl;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.util.StringUtil;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -195,7 +195,7 @@ public class AddClass_JFrame extends /*JFrame*/ JInternalFrame
 		}
 		//Determine whether the class information has been added successfully
 		Table_Class table_Class = new Table_Class();
-		Class_Dao class_Dao = new Class_Dao();
+		Class_DaoImpl class_Dao = new Class_DaoImpl();
 		
 		table_Class.set_CLASS_ID(classID);
 		table_Class.set_CLASS_NAME(className);

@@ -26,8 +26,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.YUbuntu.dao.impl.Administrator_DaoImpl;
-import com.YUbuntu.dao.impl.Student_Dao;
-import com.YUbuntu.dao.impl.Teacher_Dao;
+import com.YUbuntu.dao.impl.Student_DaoImpl;
+import com.YUbuntu.dao.impl.Teacher_DaoImpl;
 import com.YUbuntu.model.Table_Administrator;
 import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.model.Table_Teacher;
@@ -309,7 +309,7 @@ public class Login_JFrame extends JFrame
 			table_Student_temp.setStudent_password(userPassword);
 			
 			//Verify that login data entered by the user is correct
-			Student_Dao student_Dao = new Student_Dao();
+			Student_DaoImpl student_Dao = new Student_DaoImpl();
 			Table_Student table_Student = student_Dao.Login_Student(table_Student_temp);
 			
 			//Friendly tip
@@ -342,8 +342,8 @@ public class Login_JFrame extends JFrame
 			table_Teacher_temp.setTeacher_password(userPassword);
 			
 			//Verify that login data entered by the user is correct
-			Teacher_Dao teacher_Dao = new Teacher_Dao();
-			Table_Teacher table_Teacher = teacher_Dao.Login_Student(table_Teacher_temp);
+			Teacher_DaoImpl teacher_Dao = new Teacher_DaoImpl();
+			Table_Teacher table_Teacher = teacher_Dao.Login_Teacher(table_Teacher_temp);
 			
 			//Friendly tip
 			if(table_Teacher == null)

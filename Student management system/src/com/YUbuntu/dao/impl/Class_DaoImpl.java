@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.YUbuntu.basicDao.BasicDao;
+import com.YUbuntu.dao.Class_Dao;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.util.JDBCUtil;
 import com.YUbuntu.util.StringUtil;
@@ -20,7 +21,7 @@ import com.YUbuntu.util.StringUtil;
  * @Date December 2,2018
  * @version 1.0
  */
-public class Class_Dao extends BasicDao
+public class Class_DaoImpl extends BasicDao implements Class_Dao
 {
 	/**
 	 * 

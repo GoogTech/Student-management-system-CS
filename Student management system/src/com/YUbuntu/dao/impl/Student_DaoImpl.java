@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.YUbuntu.basicDao.BasicDao;
+import com.YUbuntu.dao.Student_Dao;
 import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.util.JDBCUtil;
 import com.YUbuntu.util.StringUtil;
@@ -20,7 +21,7 @@ import com.YUbuntu.util.StringUtil;
  * @Date December 5,2018
  * @version 1.0
  */
-public class Student_Dao extends BasicDao
+public class Student_DaoImpl extends BasicDao implements Student_Dao
 {
 	/**
 	 * @Description Add the new student information to the database of MySQL
