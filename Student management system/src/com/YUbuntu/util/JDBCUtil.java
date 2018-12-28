@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * Tools for connecting MySQL databaseL ¡ª¡ª 18/11/30
+ * Tools for connecting MySQL databaseL Â¡ÂªÂ¡Âª 18/11/30
  * @author #YUbuntu
  * @version 1.0
  *
@@ -20,9 +20,9 @@ import javax.swing.JOptionPane;
  */
 public class JDBCUtil extends JFrame
 {
-	private static String URL = "jdbc:mysql://localhost/Student_management_system?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-	private static String USER = "root";
-	private static String PASSWORD = "GoodTime";
+	private static String URL = "jdbc:mysql://**********/**********?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+	private static String USER = "**********";
+	private static String PASSWORD = "**********";
 	private static String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 	
 	//public JDBCUtil() {}
@@ -68,28 +68,28 @@ public class JDBCUtil extends JFrame
 		if(resultSet!=null)
 		{
 			try {
-					resultSet.close();
-				} catch (Exception e) {
-					System.err.println("ERROR : Fail to close the resultSet of MySQL ~\n");
-				}
+				resultSet.close();
+			    } catch (Exception e) {
+				System.err.println("ERROR : Fail to close the resultSet of MySQL ~\n");
+			    }
 			resultSet = null;
 		}
 		if(preparedStatement!=null)
 		{
 			try {		
-					preparedStatement.close();
-				} catch (Exception e2) {
+				preparedStatement.close();
+			    } catch (Exception e2) {
 				System.err.println("ERROR : Fail to close the statement of MySQL ~\n");
-				}
+			    }
 			preparedStatement = null;			
 		}
 		if(connection!=null)
 		{
 			try{
-					connection.close();	
-				} catch (SQLException e3) {
-					System.err.println("ERROR : Fail to close the connection of MySQL ~\n");
-				}
+				connection.close();	
+			   } catch (SQLException e3) {
+				System.err.println("ERROR : Fail to close the connection of MySQL ~\n");
+			   }
 			connection = null;
 		}
 	}		
