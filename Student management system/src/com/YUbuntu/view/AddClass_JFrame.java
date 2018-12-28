@@ -19,6 +19,8 @@ import javax.swing.border.EmptyBorder;
 import com.YUbuntu.dao.impl.Class_DaoImpl;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.util.StringUtil;
+import com.YUbuntu.view.function.AddClass_JFrame_function;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
@@ -30,7 +32,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
  * @Date December 2,2018
  * @version 1.0
  */
-public class AddClass_JFrame extends /*JFrame*/ JInternalFrame
+public class AddClass_JFrame extends /*JFrame*/ JInternalFrame implements AddClass_JFrame_function
 {
 
 	private JPanel contentPane;
@@ -171,7 +173,7 @@ public class AddClass_JFrame extends /*JFrame*/ JInternalFrame
 	 * @return void
 	 *
 	 */
-	protected void Function_AddClass(ActionEvent e) 
+	public void Function_AddClass(ActionEvent e) 
 	{
 		String classID = ClassID_textField.getText();
 		String className = ClassName_textField.getText();
@@ -219,7 +221,7 @@ public class AddClass_JFrame extends /*JFrame*/ JInternalFrame
 	 * @return void
 	 *
 	 */
-	protected void Function_ResetInformation(ActionEvent e)
+	public void Function_ResetInformation(ActionEvent e)
 	{
 		ClassID_textField.setText("");
 		ClassName_textField.setText("");

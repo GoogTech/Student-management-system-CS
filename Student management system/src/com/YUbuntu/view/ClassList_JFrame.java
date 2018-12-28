@@ -11,7 +11,6 @@ import java.util.Vector;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -21,13 +20,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.YUbuntu.dao.impl.Class_DaoImpl;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.util.StringUtil;
+import com.YUbuntu.view.function.ClassList_JFrame_function;
 
 
 /**
@@ -43,7 +42,7 @@ import com.YUbuntu.util.StringUtil;
  *  Note: the inherited object is JInternalJrame |
  * -----------------------------------------------
  */
-public class ClassList_JFrame extends /*JFrame */ JInternalFrame
+public class ClassList_JFrame extends /*JFrame */ JInternalFrame implements ClassList_JFrame_function
 {
 	private JPanel contentPane;
 	private JTextField ClassName_textField;
@@ -264,7 +263,7 @@ public class ClassList_JFrame extends /*JFrame */ JInternalFrame
 	 * @return void
 	 *
 	 */
-	protected void Function_ConfirmDelete(ActionEvent e)
+	public void Function_ConfirmDelete(ActionEvent e)
 	{
 		
 		//Determine whether the user has clicked on the class information they want to delete.
@@ -316,7 +315,7 @@ public class ClassList_JFrame extends /*JFrame */ JInternalFrame
 	 * @date December 6,2018
 	 *
 	 */
-	protected void Function_ConfirmChange(ActionEvent e) 
+	public void Function_ConfirmChange(ActionEvent e) 
 	{
 		
 		//Determine whether the user has clicked on the class information they want to delete.
@@ -393,7 +392,7 @@ public class ClassList_JFrame extends /*JFrame */ JInternalFrame
 	 * @date December 5,2018
 	 *
 	 */
-	protected void Initialize_SelectClassTableRow(MouseEvent e)
+	public void Initialize_SelectClassTableRow(MouseEvent e)
 	{
 		//Get the model object for the table
 		DefaultTableModel defaultTableModel = (DefaultTableModel) ClassList_table.getModel();
@@ -417,7 +416,7 @@ public class ClassList_JFrame extends /*JFrame */ JInternalFrame
 	 * @date December 5,2018
 	 *
 	 */
-	private void Function_InitializeClassTable(Table_Class table_Class)
+	public void Function_InitializeClassTable(Table_Class table_Class)
 	{
 		//Gets the model object for the table
 		DefaultTableModel defaultTableModel = (DefaultTableModel) ClassList_table.getModel();
@@ -462,7 +461,7 @@ public class ClassList_JFrame extends /*JFrame */ JInternalFrame
 	 * @date December 5,2018
 	 *
 	 */
-	private void Function_ClearData()
+	public void Function_ClearData()
 	{
 		ClassName_textField.setText("");
 		ChangeClassName_textField.setText("");

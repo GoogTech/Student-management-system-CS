@@ -28,6 +28,7 @@ import com.YUbuntu.dao.impl.Student_DaoImpl;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.util.StringUtil;
+import com.YUbuntu.view.function.StudentList_JFrame_function;
 
 /**
  * 
@@ -38,7 +39,7 @@ import com.YUbuntu.util.StringUtil;
  * @Date December 8,2018
  * @version 1.0
  */
-public class StudentList_JInternalFrame extends JInternalFrame
+public class StudentList_JInternalFrame extends JInternalFrame implements StudentList_JFrame_function
 {
 	//Extract objects for easy operation
 	private JComboBox Search_ClassName_ComboBox;
@@ -308,7 +309,7 @@ public class StudentList_JInternalFrame extends JInternalFrame
 	 * @date December 11,2018-7:55:47
 	 *
 	 */
-	protected void Function_ConfirmModify(ActionEvent e)
+	public void Function_ConfirmModify(ActionEvent e)
 	{
 		//Determine whether the user has clicked on the class information they want to delete.
 		int Row_index = StudentList_Table.getSelectedRow();
@@ -392,7 +393,7 @@ public class StudentList_JInternalFrame extends JInternalFrame
 	 * @date December 11,2018-9:18:48
 	 *
 	 */
-	private void Function_ClearData()
+	public void Function_ClearData()
 	{
 		Seacher_StudentName_TextField.setText("");
 		Search_ClassName_ComboBox.setSelectedIndex(0);
@@ -413,7 +414,7 @@ public class StudentList_JInternalFrame extends JInternalFrame
 	 * @date December 11,2018-12:54:29
 	 *
 	 */
-	protected void Initialize_SelectStudentTableRow(MouseEvent e)
+	public void Initialize_SelectStudentTableRow(MouseEvent e)
 	{
 		//Get the model object for the table
 		DefaultTableModel defaultTableModel = (DefaultTableModel) StudentList_Table.getModel();
@@ -462,7 +463,7 @@ public class StudentList_JInternalFrame extends JInternalFrame
 	 * @date December 11,2018-11:31:03
 	 *
 	 */
-	protected void Function_DeleteStudent(ActionEvent e)
+	public void Function_DeleteStudent(ActionEvent e)
 	{
 		//First step : GetSelectRow : Returns the index of the first selected row, -1 if no row is selected.
 		int Row_index = StudentList_Table.getSelectedRow();
@@ -508,7 +509,7 @@ public class StudentList_JInternalFrame extends JInternalFrame
 	 * @date Decemebr 11,2018-9:22:55
 	 *
 	 */
-	protected void Function_SearchStudent(ActionEvent e)
+	public void Function_SearchStudent(ActionEvent e)
 	{
 		//Create an object that stores student information.
 		Table_Student table_Student = new Table_Student();
@@ -530,9 +531,9 @@ public class StudentList_JInternalFrame extends JInternalFrame
 	 * @Description Initializes the information in the student table
 	 * @param The information of student
 	 * @date December 8,2018
-	 * @throws
+	 * @throws ..
 	 */
-	private void Function_InitializedStudentTable(Table_Student table_Student)
+	public void Function_InitializedStudentTable(Table_Student table_Student)
 	{
 		/*
 		 * Set user permissions
@@ -587,7 +588,7 @@ public class StudentList_JInternalFrame extends JInternalFrame
 	 * @date December 8,2018
 	 *
 	 */
-	private void Initialize_InitializeClassName()
+	public void Initialize_InitializeClassName()
 	{
 		Class_DaoImpl class_Dao = new Class_DaoImpl();
 		List<Table_Class> list = class_Dao.getClassList(new Table_Class());
@@ -615,7 +616,7 @@ public class StudentList_JInternalFrame extends JInternalFrame
 	 * @throws
 	 *
 	 */
-	private void Initialize_SetUserPermissions()
+	public void Initialize_SetUserPermissions()
 	{
 		/*
 		 * Set user permissions

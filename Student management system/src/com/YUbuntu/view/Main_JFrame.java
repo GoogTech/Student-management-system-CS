@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.YUbuntu.model.UserType;
+import com.YUbuntu.view.function.Main_JFrame_function;
 
 /**
  * 
@@ -33,7 +34,7 @@ import com.YUbuntu.model.UserType;
  * @Date December 1,2018
  * @version 1.0
  */
-public class Main_JFrame extends JFrame
+public class Main_JFrame extends JFrame implements Main_JFrame_function
 {
 
 	private JPanel contentPane;
@@ -102,7 +103,9 @@ public class Main_JFrame extends JFrame
 		mnSystemSettings.setIcon(new ImageIcon(Main_JFrame.class.getResource("/icon/System setup.png")));
 		menuBar.add(mnSystemSettings);
 
-		// ########## INTERFACE : User interface for changing passwords ##########
+		/*
+		 * INTERFACE : User interface for changing passwords
+		 */
 		JMenuItem mntmChangeThePassword = new JMenuItem("Change the password");
 		mntmChangeThePassword.addActionListener(new ActionListener()
 		{
@@ -116,7 +119,9 @@ public class Main_JFrame extends JFrame
 				.setIcon(null);
 		mnSystemSettings.add(mntmChangeThePassword);
 
-		// ########## INTERFACE : Exit system interface ##########
+		/*
+		 * INTERFACE : Exit system interface
+		 */
 		JMenuItem mntmLogOut = new JMenuItem("Log out");
 		mntmLogOut.addActionListener(new ActionListener()
 		{
@@ -134,7 +139,9 @@ public class Main_JFrame extends JFrame
 		TeacherManagement_JMenu.setFont(new Font("Consolas", Font.BOLD, 13));
 		menuBar.add(TeacherManagement_JMenu);
 		
-		// ########## INTERFACE : Add teacher interface ##########
+		/*
+		 * INTERFACE : Add teacher interface 
+		 */
 		AddTeacher_JMenuItem = new JMenuItem("Add teacher");
 		AddTeacher_JMenuItem.addActionListener(new ActionListener() 
 		{
@@ -147,7 +154,9 @@ public class Main_JFrame extends JFrame
 		AddTeacher_JMenuItem.setIcon(null);
 		TeacherManagement_JMenu.add(AddTeacher_JMenuItem);
 		
-		// ########## INTERFACE : teacher information management interface ##########
+		/*
+		 * INTERFACE : teacher information management interface 
+		 */
 		JMenuItem mntmTeacherList = new JMenuItem("Teacher list");
 		mntmTeacherList.addActionListener(new ActionListener() 
 		{
@@ -166,7 +175,9 @@ public class Main_JFrame extends JFrame
 				.setIcon(new ImageIcon(Main_JFrame.class.getResource("/icon/Studnet management.png")));
 		menuBar.add(StudentManagement_JMenu);
 
-		// ########## INTERFACE : Add student interface ##########
+		/*
+		 * INTERFACE : Add student interface
+		 */
 		AddStudent_JMenultem = new JMenuItem("Add student");
 		AddStudent_JMenultem.addActionListener(new ActionListener()
 		{
@@ -179,8 +190,10 @@ public class Main_JFrame extends JFrame
 		AddStudent_JMenultem.setFont(new Font("Consolas", Font.BOLD, 13));
 		StudentManagement_JMenu.add(AddStudent_JMenultem);
 
-		// ########## INTERFACE : student information management interface ##########
-		JMenuItem mntmStudentList = new JMenuItem("Student list");
+		/*
+		 * INTERFACE : student information management interface
+		 */
+		JMenuItem mntmStudentList= new JMenuItem("Student list");
 		mntmStudentList.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -200,7 +213,9 @@ public class Main_JFrame extends JFrame
 		ClassManagement_JMenu.setFont(new Font("Consolas", Font.BOLD, 13));
 		menuBar.add(ClassManagement_JMenu);
 
-		// ########## INTERFACE : Add class information interface ##########
+		/*
+		 * INTERFACE : Add class information interface
+		 */
 		JMenuItem mntmAddClass = new JMenuItem("Add class");
 		mntmAddClass.addActionListener(new ActionListener()
 		{
@@ -213,7 +228,9 @@ public class Main_JFrame extends JFrame
 		mntmAddClass.setFont(new Font("Consolas", Font.BOLD, 13));
 		ClassManagement_JMenu.add(mntmAddClass);
 
-		// ########## INTERFACE : Class management interface ##########
+		/*
+		 * INTERFACE : Class management interface
+		 */
 		JMenuItem mntmClassList = new JMenuItem("Class list");
 		mntmClassList.addActionListener(new ActionListener()
 		{
@@ -231,7 +248,9 @@ public class Main_JFrame extends JFrame
 		mnHelping.setFont(new Font("Consolas", Font.BOLD, 13));
 		menuBar.add(mnHelping);
 
-		// ########## INTERFACE : Author information interface ##########
+		/*
+		 * INTERFACE : Author information interface
+		 */
 		JMenuItem mntmCreator = new JMenuItem("Creator");
 		mntmCreator.addActionListener(new ActionListener()
 		{
@@ -252,7 +271,6 @@ public class Main_JFrame extends JFrame
 				}
 			}
 		});
-		mntmCreator.setIcon(null);
 		mntmCreator.setFont(new Font("Consolas", Font.BOLD, 13));
 		mnHelping.add(mntmCreator);
 		contentPane = new JPanel();
@@ -287,7 +305,7 @@ public class Main_JFrame extends JFrame
 	 * @throws
 	 *
 	 */
-	protected void Interface_TeacherListManagement(ActionEvent e)
+	public void Interface_TeacherListManagement(ActionEvent e)
 	{
 		TeacherList_JInternalFrame teacherList_JInternalFrame = new TeacherList_JInternalFrame();
 		teacherList_JInternalFrame.setVisible(true);
@@ -305,7 +323,7 @@ public class Main_JFrame extends JFrame
 	 * @throws
 	 *
 	 */
-	protected void Interface_AddTeacher(ActionEvent e)
+	public void Interface_AddTeacher(ActionEvent e)
 	{
 		AddTeacher_JInternalFrame addTeacher_JInternalFrame = new AddTeacher_JInternalFrame();
 		addTeacher_JInternalFrame.setVisible(true);
@@ -323,7 +341,7 @@ public class Main_JFrame extends JFrame
 	 * @return void
 	 *
 	 */
-	protected void Interface_StudentListManagement(ActionEvent e)
+	public void Interface_StudentListManagement(ActionEvent e)
 	{
 		StudentList_JInternalFrame studentList_JInternalFrame = new StudentList_JInternalFrame();
 		studentList_JInternalFrame.setVisible(true);
@@ -341,7 +359,7 @@ public class Main_JFrame extends JFrame
 	 * @return void
 	 *
 	 */
-	protected void Interface_AddStudent(ActionEvent e)
+	public void Interface_AddStudent(ActionEvent e)
 	{
 		AddStudent_JFrame addStudent_JFrame = new AddStudent_JFrame();
 		addStudent_JFrame.setVisible(true);
@@ -360,7 +378,7 @@ public class Main_JFrame extends JFrame
 	 * @date December 5,2018
 	 *
 	 */
-	protected void Interface_ClassManagement(ActionEvent e)
+	public void Interface_ClassManagement(ActionEvent e)
 	{
 		ClassList_JFrame classList_JFrame = new ClassList_JFrame();
 		classList_JFrame.setVisible(true);
@@ -378,7 +396,7 @@ public class Main_JFrame extends JFrame
 	 * @date December 5,2018
 	 *
 	 */
-	protected void Interface_AddClass(ActionEvent e)
+	public void Interface_AddClass(ActionEvent e)
 	{
 		AddClass_JFrame addClass_JFrame = new AddClass_JFrame();
 		addClass_JFrame.setVisible(true);
@@ -396,7 +414,7 @@ public class Main_JFrame extends JFrame
 	 * @date December 1,2018
 	 *
 	 */
-	protected void Interface_Login_Out(ActionEvent e)
+	public void Interface_Login_Out(ActionEvent e)
 	{
 		if (JOptionPane.showConfirmDialog(Main_JFrame.this, "You don't love me anymore ?", "Exit the system",
 				JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION)
@@ -414,7 +432,7 @@ public class Main_JFrame extends JFrame
 	 * @date December 1,2018
 	 *
 	 */
-	protected void Interface_ChangePassword(ActionEvent e)
+	public void Interface_ChangePassword(ActionEvent e)
 	{
 		ChangePassword_JFrame changePassword_JFrame = new ChangePassword_JFrame();
 		changePassword_JFrame.setVisible(true);
@@ -432,7 +450,7 @@ public class Main_JFrame extends JFrame
 	 * @date December 1,2018
 	 *
 	 */
-	protected void About_YUbuntu(ActionEvent e) throws IOException, URISyntaxException
+	public void About_YUbuntu(ActionEvent e) throws IOException, URISyntaxException
 	{
 
 		String message = "(My personal website)Study hungry Study foolish ~";
@@ -473,7 +491,7 @@ public class Main_JFrame extends JFrame
 	 * @throws
 	 *
 	 */
-	private void Initialize_SetUserPermissions()
+	public void Initialize_SetUserPermissions()
 	{
 		if("Student".equals(userType.getName()))
 		{

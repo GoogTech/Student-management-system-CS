@@ -26,6 +26,7 @@ import com.YUbuntu.dao.impl.Student_DaoImpl;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.util.StringUtil;
+import com.YUbuntu.view.function.AddStudent_JFrame_function;
 
 /**
  * @Project Student management system
@@ -36,7 +37,7 @@ import com.YUbuntu.util.StringUtil;
  * @version 1.0
  * 
  */
-public class AddStudent_JFrame extends /*JFrame*/ JInternalFrame
+public class AddStudent_JFrame extends /*JFrame*/ JInternalFrame implements AddStudent_JFrame_function
 {
 
 	//Extract objects for easy operation
@@ -236,7 +237,7 @@ public class AddStudent_JFrame extends /*JFrame*/ JInternalFrame
 	 * @date December 5,2018
 	 *
 	 */
-	protected void Function_AddStudent(ActionEvent e) 
+	public void Function_AddStudent(ActionEvent e) 
 	{
 		String studentName = StudentName_textField.getText().toString();
 		String studentID = StudentID_textField.getText().toString();
@@ -300,7 +301,7 @@ public class AddStudent_JFrame extends /*JFrame*/ JInternalFrame
 	 * @date December 5,2018
 	 *
 	 */
-	private void Initialize_InitializeClassName()
+	public void Initialize_InitializeClassName()
 	{
 		Class_DaoImpl class_Dao = new Class_DaoImpl();
 		List<Table_Class> list = class_Dao.getClassList(new Table_Class());
@@ -337,7 +338,7 @@ public class AddStudent_JFrame extends /*JFrame*/ JInternalFrame
 	 * @date December 5,2018
 	 *
 	 */
-	protected void Function_ResetInformation(ActionEvent e) 
+	public void Function_ResetInformation(ActionEvent e) 
 	{
 		StudentName_textField.setText("");
 		StudentID_textField.setText("");

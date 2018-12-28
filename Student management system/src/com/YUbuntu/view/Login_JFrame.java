@@ -33,6 +33,7 @@ import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.model.UserType;
 import com.YUbuntu.util.StringUtil;
+import com.YUbuntu.view.function.Login_JFrame_function;
 
 /**
  * 
@@ -43,7 +44,7 @@ import com.YUbuntu.util.StringUtil;
  * @Date November 29,2018
  * @version 1.0
  */
-public class Login_JFrame extends JFrame
+public class Login_JFrame extends JFrame implements Login_JFrame_function
 {
 
 	private JPanel contentPane;
@@ -60,7 +61,7 @@ public class Login_JFrame extends JFrame
 	public static void main(String[] args)
 	{
 		/*
-		 *  Java swing UI and come from the jar of JTattoo
+		 *  Design for UI. 
 		 */
 		try
 		{
@@ -79,6 +80,9 @@ public class Login_JFrame extends JFrame
 			e.printStackTrace();
 		}
 		
+		/*
+		 * The entry to the program.
+		 */
 		EventQueue.invokeLater(new Runnable()
 		{
 			public void run()
@@ -144,14 +148,7 @@ public class Login_JFrame extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				try
-				{
-					LoginEvent(e);
-				} catch (SQLException e1)
-				{
-					System.err.println("ERROR : Unable to handle login events !\n");
-					e1.printStackTrace();
-				}
+				LoginEvent(e);
 			}
 		});
 		LoginIn_JButton.setIcon(new ImageIcon(Login_JFrame.class.getResource("")));
@@ -234,8 +231,9 @@ public class Login_JFrame extends JFrame
 	 * @Description Handing login events
 	 * @param event
 	 * @date November 29,2018
+	 * @exception no
 	 */
-	protected void LoginEvent(ActionEvent e) throws SQLException
+	public void LoginEvent(ActionEvent e)
 	{
 
 		// Get the information entered by the user
@@ -371,7 +369,7 @@ public class Login_JFrame extends JFrame
 	 * @param event 
 	 * @date November 29,2018
 	 */
-	protected void Function_ResetInformation(ActionEvent e)
+	public void Function_ResetInformation(ActionEvent e)
 	{
 
 		UserName_TextField.setText("");

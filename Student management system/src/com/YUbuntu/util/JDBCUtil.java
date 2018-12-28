@@ -10,24 +10,30 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * Tools for connecting MySQL databaseL ¡ª¡ª 18/11/30
- * @author #YUbuntu
+ * 
+ * @Project Student management system
+ * @Package com.YUbuntu.util
+ * @Description Tools for connecting MySQL databaseL
+ * @Author #YUbuntu
+ * @Date Dec 28, 2018-3:49:03 PM
  * @version 1.0
- *
  */
+
 /*
  * Extends JFrame : In order to use the dialog box to prompt the user !
  */
 public class JDBCUtil extends JFrame
 {
-	private static String URL = "jdbc:mysql://**********/**********?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-	private static String USER = "**********";
-	private static String PASSWORD = "**********";
+	private static String URL = "jdbc:mysql://localhost/Student_management_system?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+	private static String USER = "root";
+	private static String PASSWORD = "GoodTime";
 	private static String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 	
 	//public JDBCUtil() {}
 	
-	//########## Ensure that the registered driver code is only executed once ##########
+	/*
+	 * Ensure that the registered driver code is only executed once
+	 */
 	static 
 	{
 		try {
@@ -38,7 +44,9 @@ public class JDBCUtil extends JFrame
 			}
 	}
 	
-	// ########## Return a database connection object ##########
+	/*
+	 * Return a database connection object
+	 */
 	public Connection getConnection()
 	{
 		Connection connection = null;

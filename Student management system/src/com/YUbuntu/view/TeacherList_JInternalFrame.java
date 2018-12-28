@@ -31,6 +31,7 @@ import com.YUbuntu.dao.impl.Teacher_DaoImpl;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.util.StringUtil;
+import com.YUbuntu.view.function.TeacherList_JFrame_function;
 
 /**
  * 
@@ -41,7 +42,7 @@ import com.YUbuntu.util.StringUtil;
  * @Date Dec 16, 2018-11:08:41 AM
  * @version 1.0
  */
-public class TeacherList_JInternalFrame extends JInternalFrame
+public class TeacherList_JInternalFrame extends JInternalFrame implements TeacherList_JFrame_function
 {
 	private JTable TeacherList_Table;
 	private JTextField Search_TeacherName_TextField;
@@ -358,10 +359,10 @@ public class TeacherList_JInternalFrame extends JInternalFrame
 	 * @param ActionEvent e
 	 * @return void
 	 * @date Dec 17, 2018-7:21:06 PM
-	 * @throws
+	 * @throws ..
 	 *
 	 */
-	protected void Function_SearchTeacher(ActionEvent e)
+	public void Function_SearchTeacher(ActionEvent e)
 	{
 		//Create an object that stores teacher information.
 		Table_Teacher table_Teacher = new Table_Teacher();
@@ -388,7 +389,7 @@ public class TeacherList_JInternalFrame extends JInternalFrame
 	 * @throws
 	 *
 	 */
-	protected void Function_ModifyTeacherInformation(ActionEvent e)
+	public void Function_ModifyTeacherInformation(ActionEvent e)
 	{
 		//Determine whether the user has clicked on the teacher information they want to delete.
 		int Row_index = TeacherList_Table.getSelectedRow();
@@ -503,10 +504,10 @@ public class TeacherList_JInternalFrame extends JInternalFrame
 	 * @param ActionEvent e
 	 * @return void
 	 * @date Dec 17, 2018-5:41:22 PM
-	 * @throws
+	 * @throws ..
 	 *
 	 */
-	protected void Function_DeleteTeacher(ActionEvent e)
+	public void Function_DeleteTeacher(ActionEvent e)
 	{
 		//First step : GetSelectRow : Returns the index of the first selected row, -1 if no row is selected.
 		int Row_index = TeacherList_Table.getSelectedRow();
@@ -553,10 +554,10 @@ public class TeacherList_JInternalFrame extends JInternalFrame
 	 * @param MouseEvent e
 	 * @return void
 	 * @date Dec 16, 2018-11:03:43 PM
-	 * @throws
+	 * @throws ..
 	 *
 	 */
-	protected void Initialize_SelectTeacherTableRow(MouseEvent e)
+	public void Initialize_SelectTeacherTableRow(MouseEvent e)
 	{
 		//Get the model object for the table
 		DefaultTableModel defaultTableModel = (DefaultTableModel) TeacherList_Table.getModel();
@@ -597,7 +598,7 @@ public class TeacherList_JInternalFrame extends JInternalFrame
 	 * @throws
 	 *
 	 */
-	private void Function_InitializedTeacherTable(Table_Teacher table_Teacher)
+	public void Function_InitializedTeacherTable(Table_Teacher table_Teacher)
 	{
 		/*
 		 * Set user permissions
@@ -651,15 +652,15 @@ public class TeacherList_JInternalFrame extends JInternalFrame
 	
 	/**
 	 * 
-	 * @Title 
-	 * @Description TODO
-	 * @param 
+	 * @Title Function
+	 * @Description Get class name.
+	 * @param no
 	 * @return void
 	 * @date Dec 16, 2018-10:46:09 PM
-	 * @throws
+	 * @throws ..
 	 *
 	 */
-	private void Initialize_InitializeClassName()
+	public void Initialize_InitializeClassName()
 	{
 		Class_DaoImpl class_Dao = new Class_DaoImpl();
 		List<Table_Class> list = class_Dao.getClassList(new Table_Class());
@@ -680,15 +681,15 @@ public class TeacherList_JInternalFrame extends JInternalFrame
 	
 	/**
 	 * 
-	 * @Title 
+	 * @Title Initialize
 	 * @Description TODO
-	 * @param 
+	 * @param no
 	 * @return void
-	 * @date Dec 19, 201811:33:35 PM
-	 * @throws
+	 * @date Dec 19, 2018-11:33:35 PM
+	 * @throws ..
 	 *
 	 */
-	private void Initialize_SetUserPermissions()
+	public void Initialize_SetUserPermissions()
 	{
 		/*
 		 * Set user permissions

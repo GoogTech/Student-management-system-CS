@@ -26,6 +26,7 @@ import com.YUbuntu.model.Table_Administrator;
 import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.util.StringUtil;
+import com.YUbuntu.view.function.ChangePassword_JFrame_function;
 
 /**
  * 
@@ -42,7 +43,7 @@ import com.YUbuntu.util.StringUtil;
  * userObject  == The object of Table_Adminstrator(The information entered by the user when logging in) |
  * ------------------------------------------------------------------------------------------------------
  */
-public class ChangePassword_JFrame extends JInternalFrame /* JFrame */
+public class ChangePassword_JFrame extends JInternalFrame /* JFrame */ implements ChangePassword_JFrame_function
 {
 
 	private JPanel contentPane;
@@ -221,11 +222,27 @@ public class ChangePassword_JFrame extends JInternalFrame /* JFrame */
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
-
-		/*-----------------------------------------------------------
-		 * Initialize : Displays the user name of the current login |
-		 *-----------------------------------------------------------
+		
+		/*------------------------------------------------------------------
+		 * Initialize : Displays the user information of the current login |
+		 *------------------------------------------------------------------
 		 */
+		Function_DisplayUserInformation();
+		
+	}
+	
+	/**
+	 * 
+	 * @Title Funciton
+	 * @Description If success to Login,display the user information.
+	 * @param no
+	 * @return void
+	 * @date Dec 28, 2018-4:43:24 PM
+	 * @throws ..
+	 *
+	 */
+	public void Function_DisplayUserInformation()
+	{		
 		if ("Administrator".equals(Main_JFrame.userType.getName()))
 		{
 			Table_Administrator table_Administrator = (Table_Administrator) Main_JFrame.userObject;
@@ -242,6 +259,7 @@ public class ChangePassword_JFrame extends JInternalFrame /* JFrame */
 			CurrentUser_JLabel.setText("[ " + Main_JFrame.userType.getName() + " ] : " + table_Teacher.getTeacher_name());
 		}
 	}
+	
 
 	/**
 	 * 
@@ -252,7 +270,7 @@ public class ChangePassword_JFrame extends JInternalFrame /* JFrame */
 	 * @return void
 	 *
 	 */
-	protected void Confirm_ChangePassword(ActionEvent e)
+	public void Confirm_ChangePassword(ActionEvent e)
 	{
 		String oldPassword = OriginalPassword_Field.getText();
 		String newPassword = NewPassword_Field.getText();
@@ -385,7 +403,6 @@ public class ChangePassword_JFrame extends JInternalFrame /* JFrame */
 	}
 	
 	
-	
 	/**
 	 * 
 	 * @Title Function
@@ -395,7 +412,7 @@ public class ChangePassword_JFrame extends JInternalFrame /* JFrame */
 	 * @return void
 	 *
 	 */
-	protected void Reset_Information(ActionEvent e)
+	public void Reset_Information(ActionEvent e)
 	{
 		OriginalPassword_Field.setText("");
 		NewPassword_Field.setText("");
