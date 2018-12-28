@@ -24,9 +24,9 @@ import javax.swing.JOptionPane;
  */
 public class JDBCUtil extends JFrame
 {
-	private static String URL = "jdbc:mysql://localhost/Student_management_system?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-	private static String USER = "root";
-	private static String PASSWORD = "GoodTime";
+	private static String URL = "jdbc:mysql://******/******?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+	private static String USER = "******";
+	private static String PASSWORD = "******";
 	private static String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 	
 	//public JDBCUtil() {}
