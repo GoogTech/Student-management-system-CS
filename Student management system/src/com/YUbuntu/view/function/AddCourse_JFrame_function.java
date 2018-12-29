@@ -8,34 +8,35 @@ import java.awt.event.ActionEvent;
  * @Package com.YUbuntu.view.function
  * @Description Extract panel functionality into the interface.
  * @Author #YUbuntu
- * @Date Dec 28, 2018-5:28:24 PM
- * @version 1.0
+ * @Date Dec 29, 2018-7:23:39 PM
+ * @version 2.0
  */
-public interface AddTeacher_JFrame_function
+public interface AddCourse_JFrame_function
 {
+	
 	/**
 	 * 
-	 * @Title Function
-	 * @Description Add a new teacher.
-	 * @param Performed action
+	 * @Title Initialize
+	 * @Description Initialize the teacher name
+	 * @param no
 	 * @return void
-	 * @date Dec 28, 2018-5:30:23 PM
-	 * @throws ..
+	 * @date Dec 29, 2018-8:19:29 PM
+	 * @throws no
 	 *
 	 */
-	void Function_AddTeacher(ActionEvent e);
+	void Initialize_InitializeTeacherName();
 	
 	/**
 	 * 
 	 * @Title Function
-	 * @Description Get the class name.
+	 * @Description Add a new course.
 	 * @param Performed action
 	 * @return void
-	 * @date Dec 28, 2018-5:31:44 PM
-	 * @throws ..
+	 * @date Dec 29, 2018-7:31:28 PM
+	 * @throws no
 	 *
 	 */
-	void Initialize_InitializeClassName();
+	void Function_ConfirmAddCourse(ActionEvent e);
 	
 	/**
 	 * 
@@ -43,8 +44,8 @@ public interface AddTeacher_JFrame_function
 	 * @Description Reset the information.
 	 * @param Performed action
 	 * @return void
-	 * @date Dec 28, 2018-5:32:33 PM
-	 * @throws ..
+	 * @date Dec 29, 2018-7:32:16 PM
+	 * @throws no
 	 *
 	 */
 	void Function_ResetInformation(ActionEvent e);

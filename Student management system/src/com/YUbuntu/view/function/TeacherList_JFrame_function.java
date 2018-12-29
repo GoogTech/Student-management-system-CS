@@ -9,7 +9,7 @@ import com.YUbuntu.model.Table_Teacher;
  * 
  * @Project Student management system
  * @Package com.YUbuntu.view.function
- * @Description Abstract the system function to the interface.
+ * @Description Extract panel functionality into the interface.
  * @Author #YUbuntu
  * @Date Dec 28, 2018-6:42:55 PM
  * @version 1.0

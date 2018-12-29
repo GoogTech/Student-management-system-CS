@@ -18,6 +18,19 @@ public interface Main_JFrame_function
 	/**
 	 * 
 	 * @Title Interface
+	 * @Description Add a new course.
+	 * @param Performed action
+	 * @return void
+	 * @date Dec 29, 2018-7:20:39 PM
+	 * @version 2.0
+	 * @throws no
+	 *
+	 */
+	void Interface_AddCourse(ActionEvent e);
+	
+	/**
+	 * 
+	 * @Title Interface
 	 * @Description manage the teacher information.
 	 * @param Performed action
 	 * @return void

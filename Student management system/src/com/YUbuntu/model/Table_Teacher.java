@@ -94,4 +94,16 @@ public class Table_Teacher
 	{
 		Teacher_telephone = teacher_telephone;
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 * 
+	 * AddItem : A workaround is to add new objects instead of Stringobjects and make sure that the toString() method is defined !
+	 */
+	@Override
+	public String toString()
+	{
+		return this.Teacher_name;
+	}
 }

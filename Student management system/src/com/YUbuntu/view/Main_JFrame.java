@@ -242,6 +242,25 @@ public class Main_JFrame extends JFrame implements Main_JFrame_function
 		mntmClassList.setIcon(null);
 		mntmClassList.setFont(new Font("Consolas", Font.BOLD, 13));
 		ClassManagement_JMenu.add(mntmClassList);
+		
+		JMenu mnCourseManagement = new JMenu("Course management");
+		mnCourseManagement.setIcon(new ImageIcon(Main_JFrame.class.getResource("/icon/Course  management.png")));
+		mnCourseManagement.setFont(new Font("Consolas", Font.BOLD, 13));
+		menuBar.add(mnCourseManagement);
+		
+		JMenuItem mntmAddCourse = new JMenuItem("Add course");
+		mntmAddCourse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				Interface_AddCourse(e);
+			}
+		});
+		mntmAddCourse.setFont(new Font("Consolas", Font.BOLD, 13));
+		mnCourseManagement.add(mntmAddCourse);
+		
+		JMenuItem mntmCourseList = new JMenuItem("Course list");
+		mntmCourseList.setFont(new Font("Consolas", Font.BOLD, 13));
+		mnCourseManagement.add(mntmCourseList);
 
 		JMenu mnHelping = new JMenu("Helping");
 		mnHelping.setIcon(new ImageIcon(Main_JFrame.class.getResource("/icon/Help.png")));
@@ -294,7 +313,24 @@ public class Main_JFrame extends JFrame implements Main_JFrame_function
 	}
 
 	
-	
+	/**
+	 * 
+	 * @Title Interface
+	 * @Description Add a the new course information.
+	 * @param Performed action
+	 * @return void
+	 * @date Dec 29, 2018-7:17:26 PM
+	 * @throws ..
+	 *
+	 */
+	public void Interface_AddCourse(ActionEvent e)
+	{
+		AddCourse_JFrame addCourse_JFrame = new AddCourse_JFrame();
+		addCourse_JFrame.setVisible(true);
+		
+		desktopPane.add(addCourse_JFrame);
+	}
+
 	/**
 	 * 
 	 * @Title Interface

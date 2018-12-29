@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
  * 
  * @Project Student management system
  * @Package com.YUbuntu.view.function
- * @Description  
+ * @Description Extract panel functionality into the interface.
  * @Author #YUbuntu
  * @Date Dec 28, 2018-5:06:32 PM
  * @version 1.0

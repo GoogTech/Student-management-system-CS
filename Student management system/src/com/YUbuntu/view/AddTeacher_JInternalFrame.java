@@ -24,6 +24,15 @@ import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.util.StringUtil;
 
+/**
+ * 
+ * @Project Student management system
+ * @Package com.YUbuntu.view
+ * @Description The interface of adding new teacher information
+ * @Author #YUbuntu
+ * @Date Dec 29, 20182:36:57 PM
+ * @version
+ */
 public class AddTeacher_JInternalFrame extends JInternalFrame
 {
 	private JTextField TeacherName_TextField;
