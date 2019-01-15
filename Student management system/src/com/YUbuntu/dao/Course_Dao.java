@@ -16,6 +16,18 @@ import com.YUbuntu.model.Table_Teacher;
  */
 public interface Course_Dao
 {
+	
+	/**
+	 * 
+	 * @Title Select
+	 * @Description Get the course information from the database.
+	 * @param no
+	 * @return List<Table_Course>
+	 * @date Jan 15, 2019-4:05:31 PM
+	 *
+	 */
+	List<Table_Course> getCourseList(Table_Course table_Course);
+	
 	/**
 	 * 
 	 * @Title Select

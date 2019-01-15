@@ -72,7 +72,7 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 	 * @param The teacher information(Attention : It's null now !)
 	 * @return List<Table_Teacher>
 	 * @date Dec 16, 2018-9:40:38 PM
-	 * @throws
+	 * @throws no
 	 *
 	 */
 	public List<Table_Teacher> getTeacherList(Table_Teacher table_Teacher)
@@ -99,7 +99,7 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 		if (!StringUtil.IsEmpty(table_Teacher.getTeacher_ClassName()))
 		{
 			//Or Change 'getTeacher_ClassName' into 'Student_ClassID'
-			SQL_GetTeacherInformation.append(" AND Teacher_ClassName = '" + table_Teacher.getTeacher_ClassName() + "' ");
+			SQL_GetTeacherInformation.append(" AND Course_name = '" + table_Teacher.getTeacher_ClassName() + "' ");
 		}
 	
 		
@@ -271,11 +271,11 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 	/**
 	 * 
 	 * @Title Update
-	 * @Description Change the user's password
-	 * @param The teacher information and new password
+	 * @Description Change the user's password.
+	 * @param The teacher information and new password.
 	 * @return String (The result of changing)
 	 * @date Dec 18, 2018-12:11:31 PM
-	 * @throws
+	 * @throws no
 	 *
 	 */
 	public String ChangePassword(Table_Teacher table_Teacher,String newPassword)

@@ -11,6 +11,7 @@ import com.YUbuntu.dao.Course_Dao;
 import com.YUbuntu.model.Table_Course;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.util.JDBCUtil;
+import com.YUbuntu.util.StringUtil;
 
 /**
  * 
@@ -61,6 +62,8 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 		}
 		return list;
 	}
+	
+		
 
 	/**
 	 * 
@@ -75,7 +78,10 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 	public boolean addCourse(Table_Course table_Course)
 	{
 		PreparedStatement preparedStatement = null;
-		String SQL_addCourse = "INSERT INTO TABLE_COURSE VALUES (?,?,?,?,?,?)";
+		/*
+		 * The selected number of student is zero in default case.
+		 */
+		String SQL_addCourse = "INSERT INTO TABLE_COURSE VALUES (?,?,?,?,?,0,?)";
 		try
 		{
 			preparedStatement = connection.prepareStatement(SQL_addCourse);
@@ -83,7 +89,7 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 			preparedStatement.setString(2, table_Course.getCourse_name());
 			preparedStatement.setString(3, table_Course.getTeacher_ID());
 			preparedStatement.setString(4, table_Course.getTeacher_name());
-			preparedStatement.setString(5, table_Course.getCourse_MaxStudentNumber());
+			preparedStatement.setInt(5, table_Course.getCourse_MaxStudentNumber());
 			preparedStatement.setString(6, table_Course.getCourse_Introduction());
 
 			if (preparedStatement.executeUpdate() > 0)
@@ -98,5 +104,70 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 		}			
 		JDBCUtil.freeResource(null, preparedStatement, connection);
 		return false;
+	}
+
+	
+	
+	/**
+	 * 
+	 * @Title Initialize
+	 * @Description Initialize the information in the course table.
+	 * @param The object of course information.
+	 * @return boolean
+	 * @date Dec 29, 2018-9:38:35 PM
+	 * @throws no
+	 *
+	 */
+	public List<Table_Course> getCourseList(Table_Course table_Course)
+	{
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		List<Table_Course> list = new ArrayList<Table_Course>();
+
+		/*
+		 * Default: displays all student information.
+		 */
+		StringBuffer SQL_GetCourseInformation = new StringBuffer("SELECT * FROM TABLE_COURSE");
+
+		/*----------------------------------------------
+		 * For : Function_SearchTeacher(ActionEvent e) |
+		 *----------------------------------------------
+		 */
+		if (!StringUtil.IsEmpty(table_Course.getCourse_name()))
+		{
+			SQL_GetCourseInformation.append(" AND Course_name LIKE '%" + table_Course.getCourse_name() + "%' ");
+		}
+		if (!StringUtil.IsEmpty(table_Course.getTeacher_name()))
+		{
+			SQL_GetCourseInformation.append(" AND Teacher_name = '" + table_Course.getTeacher_name() + "' ");
+		}	
+		
+		try
+		{	//Note the logical relationship.
+			preparedStatement = connection.prepareStatement(SQL_GetCourseInformation.toString().replaceFirst("AND", "WHERE"));
+			
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next())
+			{
+				Table_Course table_Course_temp = new Table_Course();
+				table_Course_temp.setCourse_ID(resultSet.getString("Course_ID"));
+				table_Course_temp.setCourse_name(resultSet.getString("Course_name"));
+				table_Course_temp.setTeacher_ID(resultSet.getString("Teacher_ID"));
+				table_Course_temp.setTeacher_name(resultSet.getString("Teacher_name"));
+				table_Course_temp.setCourse_MaxStudentNumber(resultSet.getInt("Course_MaxStudentNumber"));
+				table_Course_temp.setSelected_StudentNumber(resultSet.getInt("Selected_StudentNumber"));		
+				table_Course_temp.setCourse_Introduction(resultSet.getString("Course_Introduction"));
+				
+				list.add(table_Course_temp);
+			}
+		} catch (SQLException e)
+		{
+			System.err.println("ERROR : FAIL TO READ COURSE INFORMATION !\n");
+			e.printStackTrace();
+		}
+		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		return list;
+
 	}
 }

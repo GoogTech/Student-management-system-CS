@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -20,9 +19,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.YUbuntu.dao.impl.Administrator_DaoImpl;
@@ -60,8 +59,9 @@ public class Login_JFrame extends JFrame implements Login_JFrame_function
 	 */
 	public static void main(String[] args)
 	{
-		/*
-		 *  Design for UI. 
+		/*------------------
+		 *  Design for UI  |
+		 *------------------
 		 */
 		try
 		{

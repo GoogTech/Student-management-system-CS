@@ -259,6 +259,13 @@ public class Main_JFrame extends JFrame implements Main_JFrame_function
 		mnCourseManagement.add(mntmAddCourse);
 		
 		JMenuItem mntmCourseList = new JMenuItem("Course list");
+		mntmCourseList.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				Interface_CourseListManagement(e);
+			}
+		});
 		mntmCourseList.setFont(new Font("Consolas", Font.BOLD, 13));
 		mnCourseManagement.add(mntmCourseList);
 
@@ -313,6 +320,24 @@ public class Main_JFrame extends JFrame implements Main_JFrame_function
 	}
 
 	
+	/**
+	 * 
+	 * @Title Interface
+	 * @Description manage the course inforamtion.
+	 * @param Performed action
+	 * @return void
+	 * @date Jan 15, 2019-2:24:11 PM
+	 *
+	 */
+	public void Interface_CourseListManagement(ActionEvent e)
+	{
+		CourseList_JInternalFrame courseList_JInternalFrame = new CourseList_JInternalFrame();
+		courseList_JInternalFrame.setVisible(true);
+		
+		desktopPane.add(courseList_JInternalFrame);
+	}
+
+
 	/**
 	 * 
 	 * @Title Interface
@@ -524,7 +549,7 @@ public class Main_JFrame extends JFrame implements Main_JFrame_function
 	 * @param no
 	 * @return void
 	 * @date Dec 19, 2018-3:24:37 PM
-	 * @throws
+	 * @throws no
 	 *
 	 */
 	public void Initialize_SetUserPermissions()

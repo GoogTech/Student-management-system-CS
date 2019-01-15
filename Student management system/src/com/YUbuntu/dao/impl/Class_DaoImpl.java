@@ -59,7 +59,7 @@ public class Class_DaoImpl extends BasicDao implements Class_Dao
 	/**
 	 * 
 	 * @Title Select specified data from MySQL database
-	 * @Description Operate class information
+	 * @Description Operate class information.
 	 * @param The class information
 	 * @return List<Table_Class> (A collection object that stores class information)
 	 * @date December 3,2018

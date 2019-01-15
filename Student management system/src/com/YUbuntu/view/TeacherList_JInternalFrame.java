@@ -353,13 +353,12 @@ public class TeacherList_JInternalFrame extends JInternalFrame implements Teache
 	
 	
 	/**
-	 * 
 	 * @Title Function
-	 * @Description Search the specified teacher information
+	 * @Description Search the specified teacher information.
 	 * @param ActionEvent e
 	 * @return void
 	 * @date Dec 17, 2018-7:21:06 PM
-	 * @throws ..
+	 * @throws no
 	 *
 	 */
 	public void Function_SearchTeacher(ActionEvent e)
@@ -380,13 +379,12 @@ public class TeacherList_JInternalFrame extends JInternalFrame implements Teache
 
 
 	/**
-	 * 
 	 * @Title Function
 	 * @Description Modify the specified teacher information
 	 * @param 
 	 * @return void
 	 * @date Dec 17, 2018-5:56:49 PM
-	 * @throws
+	 * @throws no
 	 *
 	 */
 	public void Function_ModifyTeacherInformation(ActionEvent e)
@@ -550,7 +548,7 @@ public class TeacherList_JInternalFrame extends JInternalFrame implements Teache
 	/**
 	 * 
 	 * @Title Initialize
-	 * @Description Adds the selected student information to the pointing location.
+	 * @Description Adds the selected teacher information to the pointing location.
 	 * @param MouseEvent e
 	 * @return void
 	 * @date Dec 16, 2018-11:03:43 PM
@@ -574,7 +572,7 @@ public class TeacherList_JInternalFrame extends JInternalFrame implements Teache
 		Modify_TeacherTelephone_TextField.setText(defaultTableModel.getValueAt(TeacherList_Table.getSelectedRow(), 8).toString());
 		
 		/*
-		 * Initialize the teacher name. So simple !  (っ•̀ω•́)っ✎⁾⁾  ~
+		 * Initialize the class name. So simple !  (っ•̀ω•́)っ✎⁾⁾  ~
 		 */
 		String ClassName = (String) defaultTableModel.getValueAt(TeacherList_Table.getSelectedRow(), 7);
 		for(int i=0;i<Modify_ClassName_ComboBox.getItemCount();i++)
@@ -657,7 +655,7 @@ public class TeacherList_JInternalFrame extends JInternalFrame implements Teache
 	 * @param no
 	 * @return void
 	 * @date Dec 16, 2018-10:46:09 PM
-	 * @throws ..
+	 * @throws no
 	 *
 	 */
 	public void Initialize_InitializeClassName()

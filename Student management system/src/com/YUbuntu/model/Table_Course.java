@@ -15,7 +15,8 @@ public class Table_Course
 	private String Course_name;
 	private String Teacher_ID;
 	private String Teacher_name;
-	private String Course_MaxStudentNumber;
+	private int Course_MaxStudentNumber;
+	private int Selected_StudentNumber;
 	private String Course_Introduction;
 	
 	public String getCourse_ID()
@@ -50,13 +51,21 @@ public class Table_Course
 	{
 		Teacher_name = teacher_name;
 	}
-	public String getCourse_MaxStudentNumber()
+	public int getCourse_MaxStudentNumber()
 	{
 		return Course_MaxStudentNumber;
 	}
-	public void setCourse_MaxStudentNumber(String course_MaxStudentNumber)
+	public void setCourse_MaxStudentNumber(int course_MaxStudentNumber)
 	{
 		Course_MaxStudentNumber = course_MaxStudentNumber;
+	}
+	public int getSelected_StudentNumber()
+	{
+		return Selected_StudentNumber;
+	}
+	public void setSelected_StudentNumber(int selected_StudentNumber)
+	{
+		Selected_StudentNumber = selected_StudentNumber;
 	}
 	public String getCourse_Introduction()
 	{
@@ -65,5 +74,5 @@ public class Table_Course
 	public void setCourse_Introduction(String course_Introduction)
 	{
 		Course_Introduction = course_Introduction;
-	}	
+	}
 }

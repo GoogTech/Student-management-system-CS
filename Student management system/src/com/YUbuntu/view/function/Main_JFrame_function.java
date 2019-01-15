@@ -15,6 +15,18 @@ import java.net.URISyntaxException;
  */
 public interface Main_JFrame_function
 {
+	
+	/**
+	 * 
+	 * @Title Interface
+	 * @Description Manage the course information.
+	 * @param Performed action
+	 * @return void
+	 * @date Jan 15, 2019-2:29:49 PM
+	 *
+	 */
+	void Interface_CourseListManagement(ActionEvent e);
+	
 	/**
 	 * 
 	 * @Title Interface

@@ -18,9 +18,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager;
 
 import com.YUbuntu.dao.impl.Course_DaoImpl;
-import com.YUbuntu.dao.impl.Course_DaoImpl;
-import com.YUbuntu.model.Table_Class;
-import com.YUbuntu.model.Table_Course;
 import com.YUbuntu.model.Table_Course;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.util.StringUtil;
@@ -207,15 +204,30 @@ public class AddCourse_JFrame extends JInternalFrame implements AddCourse_JFrame
 	 * @param Performed action.
 	 * @return void
 	 * @date Dec 29, 2018-4:05:21 PM
-	 * @throws ..
+	 * @throws no
 	 *
 	 */
 	public void Function_ConfirmAddCourse(ActionEvent e)
 	{
 		String courseID = CourseID_TextField.getText();
 		String courseName = CourseName_TextField.getText();
-		String studentMaxNumber = StudentMaxNumber_TextField.getText();
+		int studentMaxNumber = 0;
 		String courseIntroduce = CourseIntroduce_TextArea.getText();
+		
+		//Give the tip when error data inputed by the user.
+		try
+		{
+			studentMaxNumber = Integer.parseInt(StudentMaxNumber_TextField.getText());		
+			if(studentMaxNumber<0||studentMaxNumber>150)
+			{
+				JOptionPane.showMessageDialog(this, "The range is : 0 < student <= 150", "warning",JOptionPane.WARNING_MESSAGE );
+			}
+		} catch (NumberFormatException e_)
+		{
+			JOptionPane.showMessageDialog(this, "Please enter the number !","warning",JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		
 		if(StringUtil.IsEmpty(courseID))
 		{
 			JOptionPane.showMessageDialog(this, "Please enter the course ID !","warning",JOptionPane.WARNING_MESSAGE);
@@ -226,11 +238,6 @@ public class AddCourse_JFrame extends JInternalFrame implements AddCourse_JFrame
 			JOptionPane.showMessageDialog(this, "Please enter the course name !","warning",JOptionPane.WARNING_MESSAGE);
 			return;
 		}
-		if(StringUtil.IsEmpty(studentMaxNumber))
-		{
-			JOptionPane.showMessageDialog(this, "Please enter the Max number of student !","warning",JOptionPane.WARNING_MESSAGE);
-			return;
-		}
 		if(StringUtil.IsEmpty(courseIntroduce))
 		{
 			JOptionPane.showMessageDialog(this, "Please enter the introduction of student !","warning",JOptionPane.WARNING_MESSAGE);
@@ -238,7 +245,7 @@ public class AddCourse_JFrame extends JInternalFrame implements AddCourse_JFrame
 		}
 		
 		/*
-		 * Stores the teacher information.Including : teacher ID and name.
+		 * Stores the teacher information. Including : teacher ID and name.
 		 * For details, please refer to : List<Table_Teacher> com.YUbuntu.dao.impl.Course_DaoImpl.getTeacherName()
 		 */
 		Table_Teacher table_Teacher = (Table_Teacher) TeacherNameList_ComboBox.getSelectedItem();		
