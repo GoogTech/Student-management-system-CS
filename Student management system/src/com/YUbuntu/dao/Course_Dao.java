@@ -19,6 +19,17 @@ public interface Course_Dao
 	
 	/**
 	 * 
+	 * @Title Update
+	 * @Description Update the course information.
+	 * @param Table_Course
+	 * @return boolean
+	 * @date Jan 16, 2019-9:44:59 PM
+	 *
+	 */
+	boolean Update_CourseInformation(Table_Course table_Course);
+	
+	/**
+	 * 
 	 * @Title Select
 	 * @Description Get the course information from the database.
 	 * @param no

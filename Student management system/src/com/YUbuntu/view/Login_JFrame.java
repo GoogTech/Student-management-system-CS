@@ -47,12 +47,10 @@ public class Login_JFrame extends JFrame implements Login_JFrame_function
 {
 
 	private JPanel contentPane;
-	private final JLabel lblNewLabel = new JLabel("New label");
-
-	// ---------- the information entered by the user ----------
+	private JComboBox UserType_ComboBox;
 	private JTextField UserName_TextField;
 	private JPasswordField User_PasswordField;
-	private JComboBox UserType_ComboBox;
+	private final JLabel lblNewLabel = new JLabel("New label");
 
 	/**
 	 * Launch the application.

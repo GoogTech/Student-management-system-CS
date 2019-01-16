@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -28,16 +29,17 @@ import com.YUbuntu.dao.impl.Course_DaoImpl;
 import com.YUbuntu.dao.impl.Teacher_DaoImpl;
 import com.YUbuntu.model.Table_Course;
 import com.YUbuntu.model.Table_Teacher;
+import com.YUbuntu.util.StringUtil;
 import com.YUbuntu.view.function.CourseList_JInternalFrame_function;
 
-/**
- * 
+/** 
  * @Project Student management system
  * @Package com.YUbuntu.view
  * @Description The interface of management course information.
  * @Author HuangYuhui
  * @Date Jan 15, 2019-1:05:11 PM
  * @version 2.0
+ * 
  */
 public class CourseList_JInternalFrame extends JInternalFrame implements CourseList_JInternalFrame_function
 {
@@ -166,6 +168,13 @@ public class CourseList_JInternalFrame extends JInternalFrame implements CourseL
 		lblCourseIntroduce.setFont(new Font("Consolas", Font.PLAIN, 12));
 		
 		JButton ConfirmModify_JButton = new JButton("Modify");
+		ConfirmModify_JButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				Function_ModifyCourseInfo(e);
+			}
+		});
 		ConfirmModify_JButton.setFont(new Font("Consolas", Font.PLAIN, 12));
 		
 		JButton ConfirmDelete_JButton = new JButton("Delete");
@@ -276,6 +285,105 @@ public class CourseList_JInternalFrame extends JInternalFrame implements CourseL
 	}
 	
 	
+	/**
+	 * @Title Function
+	 * @Description Modify the course information.
+	 * @param ActionEvent e
+	 * @return void
+	 * @date Jan 16, 2019-9:11:04 PM
+	 *
+	 */
+	public void Function_ModifyCourseInfo(ActionEvent e)
+	{
+		//Determine whether the user has clicked on the course information they want to delete.
+		int Row_index = CourseList_JTable.getSelectedRow();
+		if(Row_index==-1)
+		{
+			JOptionPane.showMessageDialog(this, "Please click on the course information you want to update !", "Warning",JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		//Get the model object for the table
+		DefaultTableModel defaultTableModel = (DefaultTableModel) CourseList_JTable.getModel();
+		//Get the data of the course information clicked by the user.
+		String courseID = defaultTableModel.getValueAt(CourseList_JTable.getSelectedRow(), 0).toString();
+		String courseName = defaultTableModel.getValueAt(CourseList_JTable.getSelectedRow(), 1).toString();
+		String maxStudentNumber = defaultTableModel.getValueAt(CourseList_JTable.getSelectedRow(), 4).toString();
+		String courseIntroduce = defaultTableModel.getValueAt(CourseList_JTable.getSelectedRow(), 6).toString();
+		//Get the data of the course information that the user wants to modify.
+		String Update_CourseName = ModifyCourseName_TextField.getText().toString();
+		int Update_MaxStudentNumber = Integer.parseInt(ModifyMaxNumber_TextField.getText().toString());
+		String Update_CourseIntroduce = ModifyCourseIntroduce_JTextArea.getText().toString();
+				
+		//Give the friendly tips to user.
+		if(StringUtil.IsEmpty(Update_CourseName)||StringUtil.IsEmpty(Update_CourseIntroduce))
+		{
+			JOptionPane.showMessageDialog(this, "Please add the course information you need to modify completely !", "Warning",JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		if(courseName.equals(Update_CourseName)&&maxStudentNumber.equals(Update_MaxStudentNumber)&&courseIntroduce.equals(Update_CourseIntroduce))
+		{
+			JOptionPane.showMessageDialog(this, "You did not make any changes to the course information !", "Warning", JOptionPane.WARNING_MESSAGE);
+			return;
+		}		
+						
+		//Prompt the user to update course information whether the operation is successful.
+		if(JOptionPane.showConfirmDialog(this, "Are you sure to update it ?")==JOptionPane.YES_OPTION)//Sensitive operation prompt.
+		{
+			//Create an object to store course information.
+			Table_Course table_Course = new Table_Course();
+			table_Course.setCourse_ID(courseID);//Attention : The where conditions in the SQL statement.
+			table_Course.setCourse_name(Update_CourseName);
+			table_Course.setCourse_MaxStudentNumber(Update_MaxStudentNumber);
+			table_Course.setCourse_Introduction(Update_CourseIntroduce);
+					
+			/*
+			 * Store teacher information.
+			 */
+			Table_Teacher table_Teacher_ = (Table_Teacher) ModifyTeacherName_JComboBox.getSelectedItem();
+			table_Course.setTeacher_ID(table_Teacher_.getTeacher_id());
+			table_Course.setTeacher_name(table_Teacher_.getTeacher_name());
+					
+			//Prompt the user: whether the course information has been modified successfully.
+			Course_DaoImpl course_DaoImpl = new Course_DaoImpl();
+			if(course_DaoImpl.Update_CourseInformation(table_Course))
+			{
+				JOptionPane.showMessageDialog(this, "Update the course information successfully !");
+			}
+			else 
+			{
+				JOptionPane.showMessageDialog(this, "Fail to update the teacher information !");
+				return;
+			}
+		}
+		else 
+		{
+			return;
+		}
+						
+		//Refresh the data in the course information table.
+		Function_InitializedCourseTable(new Table_Course());
+		//Clears the data in the specified location.
+		Function_ClearData();
+	}
+
+	
+	
+	/**
+	 * @Title Function
+	 * @Description Clear the data of specified position.
+	 * @param empty
+	 * @return void
+	 * @date Jan 16, 2019-9:38:39 PM
+	 *
+	 */
+	private void Function_ClearData()
+	{
+		ModifyMaxNumber_TextField.setText("");
+		ModifyCourseName_TextField.setText("");
+		ModifyCourseIntroduce_JTextArea.setText("");
+		ModifyTeacherName_JComboBox.setSelectedIndex(0);	
+	}
+
 	/** 
 	 * @Title Function
 	 * @Description Search the specified course information.

@@ -398,13 +398,13 @@ public class TeacherList_JInternalFrame extends JInternalFrame implements Teache
 		}
 		//Get the model object for the table
 		DefaultTableModel defaultTableModel = (DefaultTableModel) TeacherList_Table.getModel();
-		//Get the data of the student information clicked by the user.
+		//Get the data of the teacher information clicked by the user.
 		String teacherID = defaultTableModel.getValueAt(TeacherList_Table.getSelectedRow(), 0).toString();
 		String teacherName = defaultTableModel.getValueAt(TeacherList_Table.getSelectedRow(), 1).toString();
 		String teacherPassword = defaultTableModel.getValueAt(TeacherList_Table.getSelectedRow(), 2).toString();
 		String teacherAge = defaultTableModel.getValueAt(TeacherList_Table.getSelectedRow(), 4).toString();
 		String teacherTelephone = defaultTableModel.getValueAt(TeacherList_Table.getSelectedRow(), 8).toString();
-		//Get the data of the student information that the user wants to modify.
+		//Get the data of the teacher information that the user wants to modify.
 		String Update_TeacherID = Modify_TeacherID_TextField.getText().toString();
 		String Update_TeacherName = Modify_TeacherName_TextField.getText().toString();
 		String Update_TeacherPassword = Modify_TeacherPassword_TextField.getText().toString();
@@ -415,7 +415,7 @@ public class TeacherList_JInternalFrame extends JInternalFrame implements Teache
 		if(StringUtil.IsEmpty(Update_TeacherID)||StringUtil.IsEmpty(Update_TeacherName)||StringUtil.IsEmpty(Update_TeacherPassword)
 				||StringUtil.IsEmpty(Modify_TeacherAge_TextField.getText().toString())||StringUtil.IsEmpty(Update_TeacherTelephone))
 		{
-			JOptionPane.showMessageDialog(this, "Please add the student information you need to modify completely !", "Warning",JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Please add the teacher information you need to modify completely !", "Warning",JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 		if(!teacherID.equals(Update_TeacherID))
@@ -427,14 +427,14 @@ public class TeacherList_JInternalFrame extends JInternalFrame implements Teache
 		if(teacherName.equals(Update_TeacherName)
 				&&teacherPassword.equals(Update_TeacherPassword)&&teacherAge.equals(Update_TeacherAge)&&teacherTelephone.equals(Update_TeacherTelephone))
 		{
-			JOptionPane.showMessageDialog(this, "You did not make any changes to the student information !", "Warning", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "You did not make any changes to the teacher information !", "Warning", JOptionPane.WARNING_MESSAGE);
 			return;
 		}		
 				
 		//Prompt the user to update teacher information whether the operation is successful.
 		if(JOptionPane.showConfirmDialog(this, "Are you sure to update it ?")==JOptionPane.YES_OPTION)//Sensitive operation prompt.
 		{
-			//Create an object to store student information.
+			//Create an object to store teacher information.
 			Table_Teacher table_Teacher = new Table_Teacher();
 			table_Teacher.setTeacher_id(teacherID);
 			table_Teacher.setTeacher_name(Update_TeacherName);
@@ -442,7 +442,9 @@ public class TeacherList_JInternalFrame extends JInternalFrame implements Teache
 			table_Teacher.setTeacher_age(Update_TeacherAge);
 			table_Teacher.setTeacher_telephone(Update_TeacherTelephone);
 			
-			//Store teacher name information
+			/*
+			 * Store teacher information.
+			 */
 			Table_Class table_Class = (Table_Class) Modify_ClassName_ComboBox.getSelectedItem();
 			table_Teacher.setTeacher_ClassID(table_Class.get_CLASS_ID());
 			table_Teacher.setTeacher_ClassName(table_Class.get_CLASS_NAME());
@@ -464,7 +466,7 @@ public class TeacherList_JInternalFrame extends JInternalFrame implements Teache
 			return;
 		}
 				
-		//Refresh the data in the student information table.
+		//Refresh the data in the teacher information table.
 		Function_InitializedTeacherTable(new Table_Teacher());
 		//Clears the data in the specified location.
 		Function_ClearData();

@@ -16,8 +16,19 @@ import com.YUbuntu.model.Table_Course;
  */
 public interface CourseList_JInternalFrame_function
 {
+	
+	/**
+	 * @Title Update
+	 * @Description Update the course information.
+	 * @param ActionEvent e
+	 * @return void
+	 * @date Jan 16, 2019-9:12:09 PM
+	 *
+	 */
+	void Function_ModifyCourseInfo(ActionEvent e);
+	
 	/** 
-	 * @Title Function
+	 * @Title Select
 	 * @Description Select the specified course information.
 	 * @param Performed action
 	 * @return void

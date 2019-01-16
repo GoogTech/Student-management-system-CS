@@ -170,4 +170,42 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 		return list;
 
 	}
+
+
+	
+	/**
+	 * @Title Update
+	 * @Description Update the course information.
+	 * @param Table_Course
+	 * @return boolean
+	 * @date Jan 16, 2019-9:43:22 PM
+	 *
+	 */
+	public boolean Update_CourseInformation(Table_Course table_Course)
+	{
+		PreparedStatement preparedStatement = null;
+		String SQL_Update_TeacherInformation = "UPDATE TABLE_COURSE SET COURSE_NAME = ? , TEACHER_ID = ? , TEACHER_NAME = ? ,"
+															+ "COURSE_MAXSTUDENTNUMBER = ?, COURSE_INTRODUCTION = ? WHERE COURSE_ID = ?";
+		try
+		{
+			preparedStatement = connection.prepareStatement(SQL_Update_TeacherInformation);
+			preparedStatement.setString(1, table_Course.getCourse_name());
+			preparedStatement.setString(2, table_Course.getTeacher_ID());
+			preparedStatement.setString(3, table_Course.getTeacher_name());
+			preparedStatement.setInt(4, table_Course.getCourse_MaxStudentNumber());
+			preparedStatement.setString(5, table_Course.getCourse_Introduction());
+			preparedStatement.setString(6,table_Course.getCourse_ID());
+			if (preparedStatement.executeUpdate() > 0)
+			{
+				JDBCUtil.freeResource(null, preparedStatement, connection);
+				return true;
+			}
+		} catch (SQLException e)
+		{
+			System.err.println("ERROR : FAIL TO UPDATE COURSE INFORMATION WITH THE SPECIFIED TEACHER' ID !\n");
+			e.printStackTrace();
+		}
+		JDBCUtil.freeResource(null, preparedStatement, connection);
+		return false;
+	}
 }
