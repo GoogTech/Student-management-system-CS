@@ -4,7 +4,7 @@ package com.YUbuntu.model;
  * 
  * @Project Student management system
  * @Package com.YUbuntu.model
- * @Description The teacher information
+ * @Description The teacher information.
  * @Author #YUbuntu
  * @Date December 15, 2018-7:37:47 PM
  * @version 1.0

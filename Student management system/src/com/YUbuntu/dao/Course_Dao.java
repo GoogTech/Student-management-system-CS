@@ -3,6 +3,7 @@ package com.YUbuntu.dao;
 import java.util.List;
 
 import com.YUbuntu.model.Table_Course;
+import com.YUbuntu.model.Table_SelectCourse;
 import com.YUbuntu.model.Table_Teacher;
 
 /**
@@ -16,6 +17,28 @@ import com.YUbuntu.model.Table_Teacher;
  */
 public interface Course_Dao
 {
+	
+	/**
+	 * 
+	 * @Title Select 
+	 * @Description Get the information about course selection.
+	 * @param Table_SelectCourse
+	 * @return List<Table_SelectCourse>
+	 * @date Jan 17, 2019-5:02:25 PM
+	 *
+	 */
+	List<Table_SelectCourse> getChooseCourseList(Table_SelectCourse table_SelectCourse);
+	
+	/**
+	 * 
+	 * @Title Delete 
+	 * @Description Delete the specified course.
+	 * @param String(Course'ID)
+	 * @return boolean
+	 * @date Jan 17, 2019-12:22:46 PM
+	 *
+	 */
+	boolean Delete_CourseInformation(String string);
 	
 	/**
 	 * 

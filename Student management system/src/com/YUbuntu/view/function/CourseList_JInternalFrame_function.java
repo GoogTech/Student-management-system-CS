@@ -17,6 +17,16 @@ import com.YUbuntu.model.Table_Course;
 public interface CourseList_JInternalFrame_function
 {
 	
+	/**s
+	 * @Title Delete
+	 * @Description Delete the specified course.
+	 * @param ActionEvent e
+	 * @return void
+	 * @date Jan 17, 2019-12:34:30 PM
+	 *
+	 */
+	void Function_ConfirmDeleteCourseInfo(ActionEvent e);
+	
 	/**
 	 * @Title Update
 	 * @Description Update the course information.

@@ -178,6 +178,13 @@ public class CourseList_JInternalFrame extends JInternalFrame implements CourseL
 		ConfirmModify_JButton.setFont(new Font("Consolas", Font.PLAIN, 12));
 		
 		JButton ConfirmDelete_JButton = new JButton("Delete");
+		ConfirmDelete_JButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				Function_ConfirmDeleteCourseInfo(e);
+			}
+		});
 		ConfirmDelete_JButton.setFont(new Font("Consolas", Font.PLAIN, 12));
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -283,6 +290,54 @@ public class CourseList_JInternalFrame extends JInternalFrame implements CourseL
 		 */
 		Initialize_InitializeTeacherName();
 	}
+	
+	
+	/**
+	 * @Title Function 
+	 * @Description Confirm delete the specified course information.
+	 * @param ActionEvent e
+	 * @return void
+	 * @date Jan 17, 2019-12:13:32 PM
+	 *
+	 */
+	public void Function_ConfirmDeleteCourseInfo(ActionEvent e)
+	{
+		//First step : GetSelectRow : Returns the index of the first selected row, -1 if no row is selected.
+		int Row_index = CourseList_JTable.getSelectedRow();
+		if(Row_index==-1)
+		{
+			JOptionPane.showMessageDialog(this, "Please click on the course information you want to delete !", "Warning",JOptionPane.WARNING_MESSAGE);
+			return;
+		}	
+
+		//Second step : Prompt the user to delete course information whether the operation is successful.
+		/*
+		 * getValueAt : Returns the cell value at row and column. (0 == Course' ID)
+		 */
+		if(JOptionPane.showConfirmDialog(this, "Are you sure to delete it ?")==JOptionPane.YES_OPTION)//Sensitive operation prompt.
+		{
+			Course_DaoImpl course_DaoImpl = new Course_DaoImpl();
+			if(course_DaoImpl.Delete_CourseInformation(CourseList_JTable.getValueAt(Row_index, 0).toString()))
+			{
+				JOptionPane.showMessageDialog(this, "Delete successfully !");
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(this, "Deletion failed !");
+				return;
+			}
+		}
+		else
+		{
+			return;
+		}
+		//The third step : Refresh the data in the course information table.
+		Function_InitializedCourseTable(new Table_Course());
+				
+		//Clears the data in the specified location.
+		Function_ClearData();
+	}
+
 	
 	
 	/**

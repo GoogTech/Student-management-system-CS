@@ -75,4 +75,13 @@ public class Table_Course
 	{
 		Course_Introduction = course_Introduction;
 	}
+	
+	/*
+	 * AddItem : A workaround is to add new objects instead of Stringobjects and make sure that the toString() method is defined !
+	 */
+	@Override
+	public String toString()
+	{
+		return Course_name.toString();
+	}
 }

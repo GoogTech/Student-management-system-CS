@@ -149,10 +149,10 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 	public boolean Delete_TeacherInformation(String teacher_ID)
 	{
 		PreparedStatement preparedStatement = null;
-		String SQL_Delete_StudentInformation = "DELETE FROM TABLE_TEACHER WHERE TEACHER_ID = ?";
+		String SQL_DeleteTeacherInfo = "DELETE FROM TABLE_TEACHER WHERE TEACHER_ID = ?";
 		try
 		{
-			preparedStatement = connection.prepareStatement(SQL_Delete_StudentInformation);
+			preparedStatement = connection.prepareStatement(SQL_DeleteTeacherInfo);
 			preparedStatement.setString(1, teacher_ID);
 
 			if (preparedStatement.executeUpdate() > 0)

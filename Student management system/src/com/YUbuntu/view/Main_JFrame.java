@@ -99,7 +99,7 @@ public class Main_JFrame extends JFrame implements Main_JFrame_function
 		menuBar.add(menu);
 
 		JMenu mnSystemSettings = new JMenu("System Settings ");
-		mnSystemSettings.setFont(new Font("Consolas", Font.BOLD, 13));
+		mnSystemSettings.setFont(new Font("Consolas", Font.BOLD, 11));
 		mnSystemSettings.setIcon(new ImageIcon(Main_JFrame.class.getResource("/icon/System setup.png")));
 		menuBar.add(mnSystemSettings);
 
@@ -136,7 +136,7 @@ public class Main_JFrame extends JFrame implements Main_JFrame_function
 		
 		TeacherManagement_JMenu = new JMenu("Teacher management ");
 		TeacherManagement_JMenu.setIcon(new ImageIcon(Main_JFrame.class.getResource("/icon/Teacher management.png")));
-		TeacherManagement_JMenu.setFont(new Font("Consolas", Font.BOLD, 13));
+		TeacherManagement_JMenu.setFont(new Font("Consolas", Font.BOLD, 11));
 		menuBar.add(TeacherManagement_JMenu);
 		
 		/*
@@ -170,7 +170,7 @@ public class Main_JFrame extends JFrame implements Main_JFrame_function
 		TeacherManagement_JMenu.add(mntmTeacherList);
 
 		StudentManagement_JMenu = new JMenu("Student management");
-		StudentManagement_JMenu.setFont(new Font("Consolas", Font.BOLD, 13));
+		StudentManagement_JMenu.setFont(new Font("Consolas", Font.BOLD, 11));
 		StudentManagement_JMenu
 				.setIcon(new ImageIcon(Main_JFrame.class.getResource("/icon/Studnet management.png")));
 		menuBar.add(StudentManagement_JMenu);
@@ -210,7 +210,7 @@ public class Main_JFrame extends JFrame implements Main_JFrame_function
 
 		ClassManagement_JMenu = new JMenu("Class management");
 		ClassManagement_JMenu.setIcon(new ImageIcon(Main_JFrame.class.getResource("/icon/Class management.png")));
-		ClassManagement_JMenu.setFont(new Font("Consolas", Font.BOLD, 13));
+		ClassManagement_JMenu.setFont(new Font("Consolas", Font.BOLD, 11));
 		menuBar.add(ClassManagement_JMenu);
 
 		/*
@@ -245,7 +245,7 @@ public class Main_JFrame extends JFrame implements Main_JFrame_function
 		
 		JMenu mnCourseManagement = new JMenu("Course management");
 		mnCourseManagement.setIcon(new ImageIcon(Main_JFrame.class.getResource("/icon/Course  management.png")));
-		mnCourseManagement.setFont(new Font("Consolas", Font.BOLD, 13));
+		mnCourseManagement.setFont(new Font("Consolas", Font.BOLD, 11));
 		menuBar.add(mnCourseManagement);
 		
 		JMenuItem mntmAddCourse = new JMenuItem("Add course");
@@ -268,10 +268,26 @@ public class Main_JFrame extends JFrame implements Main_JFrame_function
 		});
 		mntmCourseList.setFont(new Font("Consolas", Font.BOLD, 13));
 		mnCourseManagement.add(mntmCourseList);
+		
+		JMenu mnSelectCourseManagement = new JMenu("Choose course management");
+		mnSelectCourseManagement.setIcon(new ImageIcon(Main_JFrame.class.getResource("/icon/ChooseCourseJMenu.png")));
+		mnSelectCourseManagement.setFont(new Font("Consolas", Font.BOLD, 11));
+		menuBar.add(mnSelectCourseManagement);
+		
+		JMenuItem mntmCourseManagement = new JMenuItem("Choose course list");
+		mntmCourseManagement.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				Interface_ChooseCourseManagement(e);
+			}
+		});
+		mntmCourseManagement.setFont(new Font("Consolas", Font.PLAIN, 13));
+		mnSelectCourseManagement.add(mntmCourseManagement);
 
 		JMenu mnHelping = new JMenu("Helping");
 		mnHelping.setIcon(new ImageIcon(Main_JFrame.class.getResource("/icon/Help.png")));
-		mnHelping.setFont(new Font("Consolas", Font.BOLD, 13));
+		mnHelping.setFont(new Font("Consolas", Font.BOLD, 11));
 		menuBar.add(mnHelping);
 
 		/*
@@ -320,6 +336,24 @@ public class Main_JFrame extends JFrame implements Main_JFrame_function
 	}
 
 	
+	/**
+	 * 
+	 * @Title Interface
+	 * @Description Course selection management.
+	 * @param ActionEvent e
+	 * @return void
+	 * @date Jan 17, 2019-4:00:28 PM
+	 *
+	 */
+	public void Interface_ChooseCourseManagement(ActionEvent e)
+	{
+		ChooseCourse_JInternalFrame chooseCourse_JInternalFrame = new ChooseCourse_JInternalFrame();
+		chooseCourse_JInternalFrame.setVisible(true);
+		
+		desktopPane.add(chooseCourse_JInternalFrame);
+	}
+
+
 	/**
 	 * 
 	 * @Title Interface

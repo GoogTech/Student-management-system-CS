@@ -9,6 +9,7 @@ import java.util.List;
 import com.YUbuntu.basicDao.BasicDao;
 import com.YUbuntu.dao.Course_Dao;
 import com.YUbuntu.model.Table_Course;
+import com.YUbuntu.model.Table_SelectCourse;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.util.JDBCUtil;
 import com.YUbuntu.util.StringUtil;
@@ -207,5 +208,53 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 		}
 		JDBCUtil.freeResource(null, preparedStatement, connection);
 		return false;
+	}
+	
+	
+	
+	/**
+	 * @Title Delete
+	 * @Description Delete the specified course information.
+	 * @param String(Course'ID)
+	 * @return boolean
+	 * @date Jan 17, 2019-12:20:23 PM
+	 *
+	 */
+	public boolean Delete_CourseInformation(String courseID)
+	{
+		PreparedStatement preparedStatement = null;
+		String SQL_DeleteCourseInfo = "DELETE FROM TABLE_COURSE WHERE COURSE_ID = ?";
+		try
+		{
+			preparedStatement = connection.prepareStatement(SQL_DeleteCourseInfo);
+			preparedStatement.setString(1, courseID);
+
+			if (preparedStatement.executeUpdate() > 0)
+			{
+				JDBCUtil.freeResource(null, preparedStatement, connection);
+				return true;
+			}
+		} catch (SQLException e)
+		{
+			System.err.println("ERROR :FAIL TO DELETE THE SPECIFIED COURSE WITH THE SPECIFIED COURSE' ID !\n");
+			e.printStackTrace();
+		}
+		JDBCUtil.freeResource(null, preparedStatement, connection);
+		return false;
+	}
+
+
+	/**
+	 * @Title Select
+	 * @Description Get the table information of 'Table_SelectCourse'.
+	 * @param Table_SelectCourse
+	 * @return List<Table_SelectCourse>
+	 * @date Jan 17, 2019-4:59:22 PM
+	 *
+	 */
+	public List<Table_SelectCourse> getChooseCourseList(Table_SelectCourse table_SelectCourse)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

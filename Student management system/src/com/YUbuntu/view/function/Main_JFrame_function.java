@@ -18,6 +18,17 @@ public interface Main_JFrame_function
 	
 	/**
 	 * 
+	 * @Title Interface 
+	 * @Description Course selection management.
+	 * @param ActionEvent e
+	 * @return void
+	 * @date Jan 17, 2019-4:03:40 PM
+	 *
+	 */
+	void Interface_ChooseCourseManagement(ActionEvent e);
+	
+	/**
+	 * 
 	 * @Title Interface
 	 * @Description Manage the course information.
 	 * @param Performed action

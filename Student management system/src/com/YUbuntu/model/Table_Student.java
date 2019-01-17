@@ -90,7 +90,9 @@ public class Table_Student
 	@Override
 	public String toString()
 	{
-		return this.Student_ClassName;
+		//return this.Student_ClassName 
+
+		return this.Student_name;		
 	}
 
 }

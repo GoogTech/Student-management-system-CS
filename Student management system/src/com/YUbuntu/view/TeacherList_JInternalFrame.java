@@ -500,11 +500,11 @@ public class TeacherList_JInternalFrame extends JInternalFrame implements Teache
 	/**
 	 * 
 	 * @Title Function
-	 * @Description Delete specified teacher
+	 * @Description Delete the specified teacher information.
 	 * @param ActionEvent e
 	 * @return void
 	 * @date Dec 17, 2018-5:41:22 PM
-	 * @throws ..
+	 * @throws no
 	 *
 	 */
 	public void Function_DeleteTeacher(ActionEvent e)
@@ -536,7 +536,7 @@ public class TeacherList_JInternalFrame extends JInternalFrame implements Teache
 		}
 		else
 		{
-				return;
+			return;
 		}
 		//The third step : Refresh the data in the teacher information table.
 		Function_InitializedTeacherTable(new Table_Teacher());
