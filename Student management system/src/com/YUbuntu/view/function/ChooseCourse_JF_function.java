@@ -1,6 +1,7 @@
 package com.YUbuntu.view.function;
 
-import com.YUbuntu.model.Table_SelectCourse;
+import com.YUbuntu.model.Table_ChoosedCourse;
+import com.YUbuntu.model.Table_Class;
 
 /**
  * 
@@ -14,29 +15,28 @@ import com.YUbuntu.model.Table_SelectCourse;
 public interface ChooseCourse_JF_function
 {
 	
-	
 	/**
 	 * 
 	 * @Title Initialize
 	 * @Description Initialize the table of course selection.
-	 * @param Table_SelectCourse
+	 * @param Table_ChoosedCourse
 	 * @return void
 	 * @date Jan 17, 2019-4:55:32 PM
 	 *
 	 */
-	void Initialize_CourseInfoTable(Table_SelectCourse table_SelectCourse);
+	void Initialize_ChoosedCourseInfoTable(Table_ChoosedCourse table_SelectCourse);
 	
 	
 	/**
 	 * 
 	 * @Title Initialize
-	 * @Description Initialize the student name.
+	 * @Description Initialize the class name.
 	 * @param empty
 	 * @return void
-	 * @date Jan 17, 2019-3:55:13 PM
+	 * @date Jan 18, 2019-5:16:40 PM
 	 *
 	 */
-	void Initialize_InitializeStudentName();
+	void Initialize_InitializeClassName();
 	
 	
 	/**

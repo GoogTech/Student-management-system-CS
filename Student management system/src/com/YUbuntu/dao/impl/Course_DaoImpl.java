@@ -9,7 +9,6 @@ import java.util.List;
 import com.YUbuntu.basicDao.BasicDao;
 import com.YUbuntu.dao.Course_Dao;
 import com.YUbuntu.model.Table_Course;
-import com.YUbuntu.model.Table_SelectCourse;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.util.JDBCUtil;
 import com.YUbuntu.util.StringUtil;
@@ -18,7 +17,7 @@ import com.YUbuntu.util.StringUtil;
  * 
  * @Project Student management system
  * @Package com.YUbuntu.dao.impl
- * @Description TODO
+ * @Description Operation of course information in the database.
  * @Author #YUbuntu
  * @Date Dec 29, 2018-7:51:04 PM
  * @version 2.0
@@ -86,6 +85,7 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 		try
 		{
 			preparedStatement = connection.prepareStatement(SQL_addCourse);
+			
 			preparedStatement.setString(1, table_Course.getCourse_ID());
 			preparedStatement.setString(2, table_Course.getCourse_name());
 			preparedStatement.setString(3, table_Course.getTeacher_ID());
@@ -243,18 +243,43 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 		return false;
 	}
 
-
+	
 	/**
+	 * 
 	 * @Title Select
-	 * @Description Get the table information of 'Table_SelectCourse'.
-	 * @param Table_SelectCourse
-	 * @return List<Table_SelectCourse>
-	 * @date Jan 17, 2019-4:59:22 PM
+	 * @Description Get all of course information.
+	 * @param Table_Course
+	 * @return Table_Course
+	 * @date Jan 18, 2019-9:08:49 PM
 	 *
 	 */
-	public List<Table_SelectCourse> getChooseCourseList(Table_SelectCourse table_SelectCourse)
+	public Table_Course getCourseInfo(String courseName)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement preparedStatement = null;
+		Table_Course table_Course_temp = null;
+		ResultSet resultSet = null;
+		try
+		{	
+			preparedStatement = connection.prepareStatement("SELECT * FROM TABLE_COURSE WHERE COURSE_NAME = ?");
+			preparedStatement.setString(1, courseName);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next())
+			{
+				table_Course_temp = new Table_Course();
+				table_Course_temp.setCourse_ID(resultSet.getString("Course_ID"));
+				table_Course_temp.setCourse_name(resultSet.getString("Course_name"));
+				table_Course_temp.setTeacher_ID(resultSet.getString("Teacher_ID"));
+				table_Course_temp.setTeacher_name(resultSet.getString("Teacher_name"));
+				table_Course_temp.setCourse_MaxStudentNumber(resultSet.getInt("Course_MaxStudentNumber"));
+				table_Course_temp.setSelected_StudentNumber(resultSet.getInt("Selected_StudentNumber"));		
+				table_Course_temp.setCourse_Introduction(resultSet.getString("Course_Introduction"));
+			}
+		} catch (SQLException e)
+		{
+			System.err.println("ERROR : FAIL TO READ COURSE INFORMATION !\n");
+			e.printStackTrace();
+		}
+		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		return table_Course_temp;
 	}
 }

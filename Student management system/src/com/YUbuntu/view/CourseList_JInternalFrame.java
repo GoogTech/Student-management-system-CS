@@ -283,7 +283,7 @@ public class CourseList_JInternalFrame extends JInternalFrame implements CourseL
 		/*
 		 * The initialized course information is added to the user interface table and displayed.
 		 */
-		Function_InitializedCourseTable(new Table_Course());
+		Initialize_CourseInfoTable(new Table_Course());
 		
 		/*
 		 * Initializes the teacher name and displays it in the specified place.
@@ -332,7 +332,7 @@ public class CourseList_JInternalFrame extends JInternalFrame implements CourseL
 			return;
 		}
 		//The third step : Refresh the data in the course information table.
-		Function_InitializedCourseTable(new Table_Course());
+		Initialize_CourseInfoTable(new Table_Course());
 				
 		//Clears the data in the specified location.
 		Function_ClearData();
@@ -416,7 +416,7 @@ public class CourseList_JInternalFrame extends JInternalFrame implements CourseL
 		}
 						
 		//Refresh the data in the course information table.
-		Function_InitializedCourseTable(new Table_Course());
+		Initialize_CourseInfoTable(new Table_Course());
 		//Clears the data in the specified location.
 		Function_ClearData();
 	}
@@ -457,7 +457,7 @@ public class CourseList_JInternalFrame extends JInternalFrame implements CourseL
 		table_Course.setTeacher_name(TeacherName_JComboBox.getSelectedItem().toString());
 						
 		//Refresh the data of table.
-		Function_InitializedCourseTable(table_Course);
+		Initialize_CourseInfoTable(table_Course);
 	}
 	
 	
@@ -507,7 +507,7 @@ public class CourseList_JInternalFrame extends JInternalFrame implements CourseL
 	 * @date Jan 15, 2019-4:53:29 PM
 	 *
 	 */
-	public void Function_InitializedCourseTable(Table_Course table_Course)
+	public void Initialize_CourseInfoTable(Table_Course table_Course)
 	{
 		
 		//Gets the model object for the table.

@@ -4,7 +4,7 @@ package com.YUbuntu.model;
  * 
  * @Project Student management system
  * @Package com.YUbuntu.model
- * @Description Implementation of login-in logic
+ * @Description Implementation of login-in logic.
  * @Author #YUbuntu
  * @Date November 30,2018
  * @version 1.0

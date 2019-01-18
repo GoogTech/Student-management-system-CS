@@ -86,7 +86,7 @@ public class Main_JFrame extends JFrame implements Main_JFrame_function
 		this.userType = userType_;
 		this.userObject = userObject_;
 
-		setFont(new Font("Consolas", Font.BOLD, 20));
+		setFont(new Font("Consolas", Font.BOLD, 12));
 		setTitle("Student management system \uFF08Progress : a quarter and The poet : HuangYuhui\uFF09");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1150, 665);

@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.YUbuntu.basicDao.BasicDao;
 import com.YUbuntu.dao.Student_Dao;
+import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.util.JDBCUtil;
 import com.YUbuntu.util.StringUtil;
@@ -302,5 +303,43 @@ public class Student_DaoImpl extends BasicDao implements Student_Dao
 
 		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
 		return result_ChanggePasswrod;
+	}
+
+	
+	/**
+	 * 
+	 * @Title Select
+	 * @Description Get the student name by the class name.
+	 * @param Table_Class(Class ID)
+	 * @return List<Table_Student>
+	 * @date Jan 18, 2019-5:32:41 PM
+	 *
+	 */
+	public List<Table_Student> getStudentName(String className)
+	{
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		List<Table_Student> list = new ArrayList<Table_Student>();
+		
+		try
+		{
+			preparedStatement = connection.prepareStatement("SELECT * FROM TABLE_STUDENT WHERE STUDENT_CLASSNAME = ?");
+			preparedStatement.setString(1,className);
+			
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next())
+			{
+				Table_Student table_Student_temp = new Table_Student();
+				table_Student_temp.setStudent_name(resultSet.getString("STUDENT_NAME"));
+				list.add(table_Student_temp);
+			}
+		} catch (SQLException e)
+		{
+			System.err.println("ERROR : FAIL TO GET THE STUDENT NAME FROM THE DATABASE !\n");
+			e.printStackTrace();
+		}
+		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		return list;
 	}
 }

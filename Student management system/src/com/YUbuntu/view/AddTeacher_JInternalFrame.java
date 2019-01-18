@@ -23,6 +23,7 @@ import com.YUbuntu.dao.impl.Teacher_DaoImpl;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.util.StringUtil;
+import com.YUbuntu.view.function.AddTeacher_JFrame_function;
 
 /**
  * 
@@ -33,7 +34,7 @@ import com.YUbuntu.util.StringUtil;
  * @Date Dec 29, 20182:36:57 PM
  * @version
  */
-public class AddTeacher_JInternalFrame extends JInternalFrame
+public class AddTeacher_JInternalFrame extends JInternalFrame implements AddTeacher_JFrame_function
 {
 	private JTextField TeacherName_TextField;
 	private JTextField TeacherID_TextField;
@@ -222,7 +223,7 @@ public class AddTeacher_JInternalFrame extends JInternalFrame
 	 * @throws
 	 *
 	 */
-	protected void Function_AddTeacher(ActionEvent e)
+	public void Function_AddTeacher(ActionEvent e)
 	{
 		String teacherID = TeacherID_TextField.getText().toString();
 		String teacherName = TeacherName_TextField.getText().toString();
@@ -287,15 +288,14 @@ public class AddTeacher_JInternalFrame extends JInternalFrame
 	}
 
 	/**
-	 * 
-	 * @Title
-	 * @Description TODO 
+	 * @Title Initialize
+	 * @Description Initialize the class name. 
 	 * @param @return void 
-	 * @date Dec 17, 20188:52:17 AM 
-	 * @throws
+	 * @date Dec 17, 2018-8:52:17 AM 
+	 * @throws no
 	 *
 	 */
-	private void Initialize_InitializeClassName()
+	public void Initialize_InitializeClassName()
 	{
 		Class_DaoImpl class_Dao = new Class_DaoImpl();
 		List<Table_Class> list = class_Dao.getClassList(new Table_Class());
@@ -330,7 +330,7 @@ public class AddTeacher_JInternalFrame extends JInternalFrame
 	 * @throws no
 	 *
 	 */
-	protected void Function_ResetInformation(ActionEvent e)
+	public void Function_ResetInformation(ActionEvent e)
 	{
 		TeacherID_TextField.setText("");
 		TeacherName_TextField.setText("");

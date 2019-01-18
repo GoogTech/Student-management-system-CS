@@ -2,6 +2,7 @@ package com.YUbuntu.dao;
 
 import java.util.List;
 
+import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Student;
 
 /**
@@ -15,6 +16,18 @@ import com.YUbuntu.model.Table_Student;
  */
 public interface Student_Dao
 {
+	
+	/**
+	 * 
+	 * @Title Select 
+	 * @Description Get the student name by the class name.
+	 * @param Table_Class(Class ID)
+	 * @return List<Table_Student>
+	 * @date Jan 18, 2019-s6:05:05 PM
+	 *
+	 */
+	List<Table_Student> getStudentName(String className);
+	
 	/**
 	 * 
 	 * @Title Insert

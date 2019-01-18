@@ -3,31 +3,20 @@ package com.YUbuntu.dao;
 import java.util.List;
 
 import com.YUbuntu.model.Table_Course;
-import com.YUbuntu.model.Table_SelectCourse;
+import com.YUbuntu.model.Table_ChoosedCourse;
 import com.YUbuntu.model.Table_Teacher;
 
 /**
  * 
  * @Project Student management system
  * @Package com.YUbuntu.dao
- * @Description The function of the class operation database.
+ * @Description The function of the course operation database.
  * @Author #YUbuntu
  * @Date Dec 29, 2018-7:36:06 PM
  * @version 2.0
  */
 public interface Course_Dao
 {
-	
-	/**
-	 * 
-	 * @Title Select 
-	 * @Description Get the information about course selection.
-	 * @param Table_SelectCourse
-	 * @return List<Table_SelectCourse>
-	 * @date Jan 17, 2019-5:02:25 PM
-	 *
-	 */
-	List<Table_SelectCourse> getChooseCourseList(Table_SelectCourse table_SelectCourse);
 	
 	/**
 	 * 

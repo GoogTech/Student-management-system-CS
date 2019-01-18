@@ -75,5 +75,5 @@ public interface CourseList_JInternalFrame_function
 	 * @date Jan 15, 2019-4:54:53 PM
 	 *
 	 */
-	void Function_InitializedCourseTable(Table_Course table_Course);
+	void Initialize_CourseInfoTable(Table_Course table_Course);
 }
