@@ -17,6 +17,28 @@ public interface ChooseCourse_Dao
 {
 	
 	/**
+	 * 
+	 * @Title Insert
+	 * @Description Add the information of course selection.
+	 * @param table_ChoosedCourse.
+	 * @return boolean
+	 * @date Jan 20, 2019-8:02:06 PM
+	 *
+	 */
+	boolean AddCourseSelectionInfo(Table_ChoosedCourse table_ChoosedCourse);
+	
+	/**
+	 * 
+	 * @Title Select
+	 * @Description Get the specified student ID by the student name.
+	 * @param student name.
+	 * @return String
+	 * @date Jan 20, 2019-8:00:58 PM
+	 *
+	 */
+	String getStudentID(String studentName);
+	
+	/**
 	 *
 	 * @Title Select 
 	 * @Description Get the information about course selection.

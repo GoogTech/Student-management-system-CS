@@ -279,30 +279,41 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 	 */
 	protected void Function_ChooseCourse(ActionEvent e)
 	{
+		ChooseCourse_DaoImpl chooseCourse_DaoImpl = new ChooseCourse_DaoImpl();
+		Table_ChoosedCourse table_ChoosedCourse = new Table_ChoosedCourse();
+		
 		/*
 		 * Get the specified student information by the student name.
 		 */
 		String studentName = StudentName_JComboBox.getSelectedItem().toString();
-		ChooseCourse_DaoImpl chooseCourse_DaoImpl = new ChooseCourse_DaoImpl();
 		String studentID = chooseCourse_DaoImpl.getStudentID(studentName);
 		 
 		
 		/*
 		 * Get the all of course information by the course name.
 		 */
-		String courseName = ModifyCourseName_JComboBox.getSelectedItem().toString();
+		String courseName = CourseName_JComboBox.getSelectedItem().toString();	
 		Course_DaoImpl course_DaoImpl = new Course_DaoImpl();
 		Table_Course table_Course = course_DaoImpl.getCourseInfo(courseName);
 		
 		/*
 		 * Store the information about the course selection.
 		 */
-		Table_ChoosedCourse table_ChoosedCourse = new Table_ChoosedCourse();
 		table_ChoosedCourse.setStudent_ID(studentID);
 		table_ChoosedCourse.setStudent_Name(studentName);
-		
-		//Determine whether the operation is successful.
-		if(chooseCourse_DaoImpl.AddCourseSelectionInfo(table_Course,table_ChoosedCourse))
+
+		table_ChoosedCourse.setTeacher_ID(table_Course.getTeacher_ID());
+		table_ChoosedCourse.setTeacher_Name(table_Course.getTeacher_name());
+		table_ChoosedCourse.setCourse_ID(table_Course.getCourse_ID());
+		table_ChoosedCourse.setCourse_Name(table_Course.getCourse_name());
+		table_ChoosedCourse.setMaxStudentNumber(table_Course.getCourse_MaxStudentNumber());
+		table_ChoosedCourse.setChoosedStudentNumber(table_Course.getSelected_StudentNumber());
+		table_ChoosedCourse.setCourse_Introduction(table_Course.getCourse_Introduction());
+			
+		/*
+		 * Determine whether the operation is successful.
+		 */
+		if(chooseCourse_DaoImpl.AddCourseSelectionInfo(table_ChoosedCourse))
 		{
 			JOptionPane.showMessageDialog(this, "Success to add new course !");
 			Initialize_ChoosedCourseInfoTable(new Table_ChoosedCourse());
@@ -343,7 +354,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		{
 			Vector<Object> vector = new Vector<Object>();
 			
-			vector.add(table_SelectCourse_.getSelectCourse_ID());
+			vector.add(table_SelectCourse_.getChoosedCourse_ID());
 			vector.add(table_SelectCourse_.getStudent_ID());
 			vector.add(table_SelectCourse_.getStudent_Name());
 			vector.add(table_SelectCourse_.getTeacher_ID());

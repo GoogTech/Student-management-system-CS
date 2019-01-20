@@ -38,7 +38,7 @@ public class ChooseCourse_DaoImpl extends BasicDao implements ChooseCourse_Dao
 			while (resultSet.next())
 			{
 				Table_ChoosedCourse table_ChooseCourse = new Table_ChoosedCourse();
-				table_ChooseCourse.setSelectCourse_ID(resultSet.getInt("ChoosedCourse_ID"));
+				table_ChooseCourse.setChoosedCourse_ID(resultSet.getInt("ChoosedCourse_ID"));
 				table_ChooseCourse.setStudent_ID(resultSet.getString("Student_ID"));
 				table_ChooseCourse.setStudent_Name(resultSet.getString("Student_Name"));
 				table_ChooseCourse.setTeacher_ID(resultSet.getString("Teacher_ID"));
@@ -91,7 +91,11 @@ public class ChooseCourse_DaoImpl extends BasicDao implements ChooseCourse_Dao
 			System.err.println("ERROR : FAIL TO GET THE STUDENT ID FROM THE DATABASE !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		
+		/*
+		 * Not release the resource : java.sql.SQLNonTransientConnectionException: No operations allowed after connection closed.
+		 */
+		//JDBCUtil.freeResource(resultSet, preparedStatement, connection);
 		return studentID;
 	}
 
@@ -106,25 +110,17 @@ public class ChooseCourse_DaoImpl extends BasicDao implements ChooseCourse_Dao
 	 * @date Jan 18, 2019-8:34:05 PM
 	 *
 	 */
-	public boolean AddCourseSelectionInfo(Table_Course table_Course, Table_ChoosedCourse table_ChoosedCourse)
+	public boolean AddCourseSelectionInfo(Table_ChoosedCourse table_ChoosedCourse)
 	{
-		/*
-		 * Get the information about the course (The method is so embarrassed ..)
-		 */
-		table_ChoosedCourse.setTeacher_ID(table_Course.getTeacher_ID());
-		table_ChoosedCourse.setTeacher_Name(table_Course.getTeacher_name());
-		table_ChoosedCourse.setCourse_ID(table_Course.getCourse_ID());
-		table_ChoosedCourse.setCourse_Name(table_Course.getCourse_name());
-		table_ChoosedCourse.setMaxStudentNumber(table_Course.getCourse_MaxStudentNumber());
-		table_ChoosedCourse.setChoosedStudentNumber(table_Course.getSelected_StudentNumber());
-		table_ChoosedCourse.setCourse_Introduction(table_Course.getCourse_Introduction());
-		
 		PreparedStatement preparedStatement = null;
 		String SQL_addCourseInfo = "INSERT INTO TABLE_CHOOSEDCOURSE "
-				+ "(Student_ID,Student_name,Teacher_ID,Teacher_name,Course_ID,Course_name MaxStudentNumber,ChoosedStudentNumber,Course_Introduce) "
+				+ "(Student_ID,Student_name,Teacher_ID,Teacher_name,Course_ID,Course_name,MaxStudentNumber,ChoosedStudentNumber,Course_Introduction)"
 				+ "VALUES (?,?,?,?,?,?,?,?,?)";
 		try
 		{
+			/*
+			 * ERROR : java.sql.SQLNonTransientConnectionException: No operations allowed after connection closed.
+			 */
 			preparedStatement = connection.prepareStatement(SQL_addCourseInfo);
 			
 			preparedStatement.setString(1, table_ChoosedCourse.getStudent_ID());

@@ -247,7 +247,7 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 	/**
 	 * 
 	 * @Title Select
-	 * @Description Get all of course information.
+	 * @Description Get all of course information by the courser name.
 	 * @param Table_Course
 	 * @return Table_Course
 	 * @date Jan 18, 2019-9:08:49 PM
