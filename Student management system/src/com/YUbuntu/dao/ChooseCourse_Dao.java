@@ -18,6 +18,17 @@ public interface ChooseCourse_Dao
 	
 	/**
 	 * 
+	 * @Title Delete
+	 * @Description Delete the specified course.
+	 * @param ChoosedCourse_ID
+	 * @return boolean
+	 * @date Jan 21, 2019-4:26:08 PM
+	 *
+	 */
+	boolean Exit_Course(String ChoosedCourse_ID);
+	
+	/**
+	 * 
 	 * @Title Insert
 	 * @Description Add the information of course selection.
 	 * @param table_ChoosedCourse.

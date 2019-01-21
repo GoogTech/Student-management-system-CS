@@ -44,12 +44,12 @@ import com.YUbuntu.view.function.CourseList_JInternalFrame_function;
 public class CourseList_JInternalFrame extends JInternalFrame implements CourseList_JInternalFrame_function
 {
 	private JTextField CourseName_TextField;
-	private JComboBox TeacherName_JComboBox;
+	private JComboBox<Table_Teacher> TeacherName_JComboBox;
 	private JButton Select_JButton;
 	private JTable CourseList_JTable;
 	private JTextField ModifyCourseName_TextField;
 	private JTextField ModifyMaxNumber_TextField;
-	private JComboBox ModifyTeacherName_JComboBox;
+	private JComboBox<Table_Teacher> ModifyTeacherName_JComboBox;
 	private JTextArea ModifyCourseIntroduce_JTextArea;
 
 	/**
@@ -96,7 +96,7 @@ public class CourseList_JInternalFrame extends JInternalFrame implements CourseL
 		JLabel lblTeacherName = new JLabel("Teacher name");
 		lblTeacherName.setFont(new Font("Consolas", Font.PLAIN, 14));
 		
-		TeacherName_JComboBox = new JComboBox();
+		TeacherName_JComboBox = new JComboBox<Table_Teacher>();
 		
 		Select_JButton = new JButton("Select");
 		Select_JButton.addActionListener(new ActionListener() 
@@ -189,7 +189,7 @@ public class CourseList_JInternalFrame extends JInternalFrame implements CourseL
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		
-		ModifyTeacherName_JComboBox = new JComboBox();
+		ModifyTeacherName_JComboBox = new JComboBox<Table_Teacher>();
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)

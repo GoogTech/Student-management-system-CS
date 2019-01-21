@@ -27,11 +27,15 @@ import com.YUbuntu.dao.impl.ChooseCourse_DaoImpl;
 import com.YUbuntu.dao.impl.Class_DaoImpl;
 import com.YUbuntu.dao.impl.Course_DaoImpl;
 import com.YUbuntu.dao.impl.Student_DaoImpl;
+import com.YUbuntu.dao.impl.Teacher_DaoImpl;
 import com.YUbuntu.model.Table_ChoosedCourse;
 import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Course;
 import com.YUbuntu.model.Table_Student;
+import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.view.function.ChooseCourse_JF_function;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 /**
@@ -45,12 +49,13 @@ import com.YUbuntu.view.function.ChooseCourse_JF_function;
  */
 public class ChooseCourse_JInternalFrame extends JInternalFrame implements ChooseCourse_JF_function
 {
-	private JComboBox ClassName_JComboBox;
+	private JComboBox<Table_Class> ClassName_JComboBox;
 	private JComboBox<Table_Student> StudentName_JComboBox;
-	private JComboBox CourseName_JComboBox ;
+	private JComboBox<Table_Course> CourseName_JComboBox ;
 	private JTable CourseInformation_JTable;
+	private JComboBox<Table_Teacher> ModifyTeacherName_JComboBox;
 	private JComboBox<Table_Student> ModifyStudentName_JComboBox;
-	private JComboBox ModifyCourseName_JComboBox;
+	private JComboBox<Table_Course> ModifyCourseName_JComboBox;
 	
 
 	/**
@@ -91,12 +96,12 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		JLabel lblStudentName = new JLabel("Student name");
 		lblStudentName.setFont(new Font("Consolas", Font.PLAIN, 13));
 		
-		StudentName_JComboBox = new JComboBox();
+		StudentName_JComboBox = new JComboBox<Table_Student>();
 		
 		JLabel lblCourseName = new JLabel("Course name");
 		lblCourseName.setFont(new Font("Consolas", Font.PLAIN, 13));
 		
-		CourseName_JComboBox = new JComboBox();
+		CourseName_JComboBox = new JComboBox<Table_Course>();
 		
 		JButton ConfirmChooseCourse_JButton = new JButton("Confirm choose");
 		ConfirmChooseCourse_JButton.addActionListener(new ActionListener() 
@@ -116,7 +121,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		JLabel lblNewLabel = new JLabel("Class name");
 		lblNewLabel.setFont(new Font("Consolas", Font.PLAIN, 13));
 		
-		ClassName_JComboBox = new JComboBox();
+		ClassName_JComboBox = new JComboBox<Table_Class>();
 		
 		/*
 		 * Test the JComboBox of item event !
@@ -176,33 +181,54 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		JLabel lblStudentName_1 = new JLabel("Student name");
 		lblStudentName_1.setFont(new Font("Consolas", Font.PLAIN, 14));
 		
-		ModifyStudentName_JComboBox = new JComboBox();
+		ModifyStudentName_JComboBox = new JComboBox<Table_Student>();
 		
 		JLabel lblCourseName_1 = new JLabel("Course name");
 		lblCourseName_1.setFont(new Font("Consolas", Font.PLAIN, 14));
 		
-		ModifyCourseName_JComboBox = new JComboBox();
+		ModifyCourseName_JComboBox = new JComboBox<Table_Course>();
 		
 		JButton ConfirmModifyCourse_JButton = new JButton("Confirm modify");
+		ConfirmModifyCourse_JButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				Function_ModifyCourseSelectionInfo(e);
+			}
+		});
 		ConfirmModifyCourse_JButton.setFont(new Font("Consolas", Font.PLAIN, 12));
 		
 		JButton ConfirmExitCourse_JButton = new JButton("Exit course");
+		ConfirmExitCourse_JButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				Function_ExitCourse(e);
+			}
+		});
 		ConfirmExitCourse_JButton.setFont(new Font("Consolas", Font.PLAIN, 12));
+		
+		JLabel lblClassName = new JLabel("Teacher name");
+		lblClassName.setFont(new Font("Consolas", Font.PLAIN, 14));
+		
+		ModifyTeacherName_JComboBox = new JComboBox<Table_Teacher>();
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblStudentName_1)
-							.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-							.addComponent(ModifyStudentName_JComboBox, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblCourseName_1)
-							.addGap(38)
-							.addComponent(ModifyCourseName_JComboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-					.addPreferredGap(ComponentPlacement.RELATED, 495, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblStudentName_1)
+						.addComponent(lblClassName))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(ModifyTeacherName_JComboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(ModifyStudentName_JComboBox, 0, 201, Short.MAX_VALUE))
+					.addGap(48)
+					.addComponent(lblCourseName_1)
+					.addGap(27)
+					.addComponent(ModifyCourseName_JComboBox, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(ConfirmExitCourse_JButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(ConfirmModifyCourse_JButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -213,19 +239,29 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(21)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblStudentName_1)
 						.addComponent(ConfirmModifyCourse_JButton)
-						.addComponent(ModifyStudentName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblClassName)
+						.addComponent(ModifyTeacherName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblCourseName_1)
+						.addComponent(ModifyCourseName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(27)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCourseName_1)
 						.addComponent(ConfirmExitCourse_JButton)
-						.addComponent(ModifyCourseName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblStudentName_1)
+						.addComponent(ModifyStudentName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(19, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		
 		CourseInformation_JTable = new JTable();
+		CourseInformation_JTable.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				Initialize_ClickCourseTableRow(e);
+			}
+		});
 		CourseInformation_JTable.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
@@ -253,12 +289,22 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		getContentPane().setLayout(groupLayout);
 		
 		/*
-		 * Initializes the class name and displays it in the specified place.
+		 * Initialize the class name in the JComboBox.
 		 */
 		Initialize_InitializeClassName();
+		
+		/*
+		 * Initialize the teacher name in the JComboBox.
+		 */
+		Initialize_InitializeTeacherName();
+		
+		/*
+		 * Initialize the student name in the JComboBox.
+		 */
+		Initialize_InitializeStudentName();
 
 		/*
-		 * Initializes the course name and displays it in the specified place.
+		 * Initialize the course name in the JComboBox.
 		 */
 		Initialize_InitializeCourseName();
 		
@@ -270,6 +316,141 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 	
 	
 	/**
+	 * @Title Initialize
+	 * @Description Get the data which click the specified row in the table.
+	 * @param MouseEvent e
+	 * @return void
+	 * @date Jan 21, 2019-5:47:33 PM
+	 *
+	 */
+	public void Initialize_ClickCourseTableRow(MouseEvent e)
+	{
+		/*
+		 * Get the model object for the table.
+		 */
+		DefaultTableModel defaultTableModel = (DefaultTableModel) CourseInformation_JTable.getModel();
+															
+		/*
+		 * Initialize the class,student and teacher name in the JComboBox.
+		 */
+		String studentName = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 2);
+		String teacherName = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 4);
+		String courseName = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 6);
+		for(int i=0;i<ModifyStudentName_JComboBox.getItemCount();i++)
+		{
+			Table_Student table_Student = (Table_Student)ModifyStudentName_JComboBox.getItemAt(i);
+			if(table_Student.getStudent_name().equals(studentName))
+			{
+				ModifyStudentName_JComboBox.setSelectedIndex(i);
+			}
+		}	
+		for(int i=0;i<ModifyTeacherName_JComboBox.getItemCount();i++)
+		{
+			Table_Teacher table_Teacher = (Table_Teacher)ModifyTeacherName_JComboBox.getItemAt(i);
+			if(table_Teacher.getTeacher_name().equals(teacherName))
+			{
+				ModifyTeacherName_JComboBox.setSelectedIndex(i);
+			}
+		}	
+		for(int i=0;i<ModifyCourseName_JComboBox.getItemCount();i++)
+		{
+			Table_Course table_Course = (Table_Course)ModifyCourseName_JComboBox.getItemAt(i);
+			if(table_Course.getCourse_name().equals(courseName))
+			{
+				ModifyCourseName_JComboBox.setSelectedIndex(i);
+			}
+		}	
+	}
+	
+	
+
+	/**
+	 * @Title Function
+	 * @Description Exit the specified the course.
+	 * @param ActionEvent e
+	 * @return void
+	 * @date Jan 21, 2019-4:02:29 PM
+	 *
+	 */
+	public void Function_ExitCourse(ActionEvent e)
+	{
+		/*
+		 * First step : GetSelectRow : Returns the index of the first selected row, -1 if no row is selected.
+		 */
+		int Row_index = CourseInformation_JTable.getSelectedRow();
+		if(Row_index==-1)
+		{
+			JOptionPane.showMessageDialog(this, "Please click on the specified course which you want to exit !", "Warning",JOptionPane.WARNING_MESSAGE);
+			return;
+		}	
+
+		/*
+		 * Second step : Prompt the user to exit course information whether the operation is successful.
+		 */
+		if(JOptionPane.showConfirmDialog(this, "Are you sure to exit this course ?")==JOptionPane.YES_OPTION)//Sensitive operation prompt.
+		{
+			ChooseCourse_DaoImpl chooseCourse_DaoImpl = new ChooseCourse_DaoImpl();
+			if(chooseCourse_DaoImpl.Exit_Course(CourseInformation_JTable.getValueAt(Row_index, 0).toString()))
+			{
+				JOptionPane.showMessageDialog(this, "Exit the course successfully !");
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(this, "Fail to exit the course !");
+				return;
+			}
+		}
+		else
+		{
+			return;
+		}
+		/*
+		 * The third step : Refresh the data in the information of course selection.
+		 */
+		Initialize_ChoosedCourseInfoTable(new Table_ChoosedCourse());
+						
+		/*
+		 * The last step : Clears the data in the specified location.
+		 */
+		Function_ClearData();
+	}
+	
+	
+	
+	/**
+	 * @Title Initialize
+	 * @Description Initialize the data in the specified position.
+	 * @param empty
+	 * @return void
+	 * @date Jan 21, 2019-4:16:37 PM
+	 *
+	 */
+	public void Function_ClearData()
+	{
+		ClassName_JComboBox.setSelectedIndex(0);
+		CourseName_JComboBox.setSelectedIndex(0);
+		ModifyTeacherName_JComboBox.setSelectedIndex(0);
+		ModifyStudentName_JComboBox.setSelectedIndex(0);
+		ModifyCourseName_JComboBox.setSelectedIndex(0);	
+	}
+	
+
+	/**
+	 * @Title Function
+	 * @Description Modify the information about course selection.
+	 * @param ActionEvent e
+	 * @return void
+	 * @date Jan 21, 2019-3:59:52 PM
+	 *
+	 */
+	public void Function_ModifyCourseSelectionInfo(ActionEvent e)
+	{
+		
+	}
+	
+	
+
+	/**
 	 * @Title Function
 	 * @Description The function of course selection.
 	 * @param ActionEvent e
@@ -277,7 +458,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 	 * @date Jan 18, 2019-8:02:12 PM
 	 *
 	 */
-	protected void Function_ChooseCourse(ActionEvent e)
+	public void Function_ChooseCourse(ActionEvent e)
 	{
 		ChooseCourse_DaoImpl chooseCourse_DaoImpl = new ChooseCourse_DaoImpl();
 		Table_ChoosedCourse table_ChoosedCourse = new Table_ChoosedCourse();
@@ -361,13 +542,14 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 			vector.add(table_SelectCourse_.getTeacher_Name());
 			vector.add(table_SelectCourse_.getCourse_ID());
 			vector.add(table_SelectCourse_.getCourse_Name());
-			vector.add(table_SelectCourse.getMaxStudentNumber());
-			vector.add(table_SelectCourse.getChoosedStudentNumber());
+			vector.add(table_SelectCourse_.getMaxStudentNumber());
+			vector.add(table_SelectCourse_.getChoosedStudentNumber());
 			vector.add(table_SelectCourse_.getCourse_Introduction());
-			
+		
 			defaultTableModel.addRow(vector);
 		}
 	}
+	
 	
 	
 	/**
@@ -407,7 +589,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 	
 	/**
 	 * @Title Initialize
-	 * @Description Initialize the class name.
+	 * @Description Initialize the class name in the JComboBox.
 	 * @param empty
 	 * @return void
 	 * @date Jan 18, 2019-5:15:59 PM
@@ -425,10 +607,9 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 	}
 	
 	
-	
 	/**
 	 * @Title Initialize
-	 * @Description Initialize the course name.
+	 * @Description Initialize the course name in the JComboBox.
 	 * @param empty
 	 * @return void
 	 * @date Jan 17, 2019-3:50:06 PM
@@ -447,6 +628,46 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 			CourseName_JComboBox.addItem(table_Course);
 			ModifyCourseName_JComboBox.addItem(table_Course);
 			
+		}
+	}
+	
+	
+	/**
+	 * @Title Initialize
+	 * @Description Initialize the student name in the JComboBox.
+	 * @param empty
+	 * @return void
+	 * @date Jan 21, 2019-6:08:45 PM
+	 *
+	 */
+	public void Initialize_InitializeStudentName()
+	{
+		Student_DaoImpl student_DaoImpl = new Student_DaoImpl();
+		List<Table_Student> list = student_DaoImpl.getStudentList(new Table_Student());
+				
+		for (Table_Student table_Student : list)
+		{
+			StudentName_JComboBox.addItem(table_Student);
+			ModifyStudentName_JComboBox.addItem(table_Student);
+		}
+	}
+	
+	/**
+	 * @Title Initialize
+	 * @Description Initialize the teacher name in the JComboBox.
+	 * @param Empty
+	 * @return void
+	 * @date Jan 21, 2019-6:32:26 PM
+	 *
+	 */
+	public void Initialize_InitializeTeacherName()
+	{
+		Teacher_DaoImpl teacher_DaoImpl = new Teacher_DaoImpl();
+		List<Table_Teacher> list = teacher_DaoImpl.getTeacherList(new Table_Teacher());
+				
+		for (Table_Teacher table_Teacher : list)
+		{
+			ModifyTeacherName_JComboBox.addItem(table_Teacher);
 		}
 	}
 }

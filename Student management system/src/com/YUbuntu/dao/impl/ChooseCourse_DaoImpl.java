@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.YUbuntu.basicDao.BasicDao;
@@ -45,8 +46,8 @@ public class ChooseCourse_DaoImpl extends BasicDao implements ChooseCourse_Dao
 				table_ChooseCourse.setTeacher_Name(resultSet.getString("Teacher_Name"));
 				table_ChooseCourse.setCourse_ID(resultSet.getString("Course_ID"));
 				table_ChooseCourse.setCourse_Name(resultSet.getString("Course_Name"));
-				table_ChooseCourse.setMaxStudentNumber(resultSet.getInt("MaxStudentNumber"));
-				table_ChooseCourse.setChoosedStudentNumber(resultSet.getInt("ChoosedStudentNumber"));
+				table_ChooseCourse.setMaxStudentNumber(resultSet.getInt("MaxStudentNumber"));	
+				table_ChooseCourse.setChoosedStudentNumber(resultSet.getInt("ChoosedStudentNumber"));				
 				table_ChooseCourse.setCourse_Introduction(resultSet.getString("Course_Introduction"));
 
 				list.add(table_ChooseCourse);
@@ -58,8 +59,8 @@ public class ChooseCourse_DaoImpl extends BasicDao implements ChooseCourse_Dao
 		}
 		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
 		return list;
-
 	}
+	
 
 	/**
 	 * 
@@ -141,6 +142,39 @@ public class ChooseCourse_DaoImpl extends BasicDao implements ChooseCourse_Dao
 		} catch (SQLException e)
 		{
 			System.err.println("ERROR : FAIL TO ADD THE NEW COURSE INFORMATION INTO THE DATABASE !\n");
+			e.printStackTrace();
+		}
+		JDBCUtil.freeResource(null, preparedStatement, connection);
+		return false;
+	}
+
+	
+	/**
+	 * 
+	 * @Title Delete 
+	 * @Description Delete the specified course information.
+	 * @param ChoosedCourse_ID
+	 * @return boolean
+	 * @date Jan 21, 2019-4:18:13 PM
+	 *
+	 */
+	public boolean Exit_Course(String ChoosedCourse_ID)
+	{
+		PreparedStatement preparedStatement = null;
+		String SQL_ExitCourse = "DELETE FROM TABLE_CHOOSEDCOURSE WHERE CHOOSEDCOURSE_ID = ?";
+		try
+		{
+			preparedStatement = connection.prepareStatement(SQL_ExitCourse);
+			preparedStatement.setString(1, ChoosedCourse_ID);
+
+			if (preparedStatement.executeUpdate() > 0)
+			{
+				JDBCUtil.freeResource(null, preparedStatement, connection);
+				return true;
+			}
+		} catch (SQLException e)
+		{
+			System.err.println("ERROR :FAIL TO DELETE THE SPECIFIED COURSE WITH THE CHOOSEDCOURSE_ID !\n");
 			e.printStackTrace();
 		}
 		JDBCUtil.freeResource(null, preparedStatement, connection);
