@@ -13,14 +13,17 @@ public class Table_ChoosedCourse
 {
 	private int ChoosedCourse_ID;
 	
+	private String Class_ID;
+	private String Class_name;
+	
 	private String Student_ID;
-	private String Student_Name;
+	private String Student_name;
 	
 	private String Teacher_ID;
-	private String Teacher_Name;
+	private String Teacher_name;
 	
 	private String Course_ID;
-	private String Course_Name;
+	private String Course_name;
 	
 	private int MaxStudentNumber;
 	private int ChoosedStudentNumber;
@@ -38,6 +41,26 @@ public class Table_ChoosedCourse
 		ChoosedCourse_ID = choosedCourse_ID;
 	}
 
+	public String getClass_ID()
+	{
+		return Class_ID;
+	}
+
+	public void setClass_ID(String class_ID)
+	{
+		Class_ID = class_ID;
+	}
+
+	public String getClass_name()
+	{
+		return Class_name;
+	}
+
+	public void setClass_name(String class_name)
+	{
+		Class_name = class_name;
+	}
+
 	public String getStudent_ID()
 	{
 		return Student_ID;
@@ -48,14 +71,14 @@ public class Table_ChoosedCourse
 		Student_ID = student_ID;
 	}
 
-	public String getStudent_Name()
+	public String getStudent_name()
 	{
-		return Student_Name;
+		return Student_name;
 	}
 
-	public void setStudent_Name(String student_Name)
+	public void setStudent_name(String student_name)
 	{
-		Student_Name = student_Name;
+		Student_name = student_name;
 	}
 
 	public String getTeacher_ID()
@@ -68,14 +91,14 @@ public class Table_ChoosedCourse
 		Teacher_ID = teacher_ID;
 	}
 
-	public String getTeacher_Name()
+	public String getTeacher_name()
 	{
-		return Teacher_Name;
+		return Teacher_name;
 	}
 
-	public void setTeacher_Name(String teacher_Name)
+	public void setTeacher_name(String teacher_name)
 	{
-		Teacher_Name = teacher_Name;
+		Teacher_name = teacher_name;
 	}
 
 	public String getCourse_ID()
@@ -88,14 +111,14 @@ public class Table_ChoosedCourse
 		Course_ID = course_ID;
 	}
 
-	public String getCourse_Name()
+	public String getCourse_name()
 	{
-		return Course_Name;
+		return Course_name;
 	}
 
-	public void setCourse_Name(String course_Name)
+	public void setCourse_name(String course_name)
 	{
-		Course_Name = course_Name;
+		Course_name = course_name;
 	}
 
 	public int getMaxStudentNumber()
@@ -126,6 +149,5 @@ public class Table_ChoosedCourse
 	public void setCourse_Introduction(String course_Introduction)
 	{
 		Course_Introduction = course_Introduction;
-	}
-	
+	}	
 }

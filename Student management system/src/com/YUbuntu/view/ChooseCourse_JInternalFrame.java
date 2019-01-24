@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Vector;
 
@@ -34,8 +36,6 @@ import com.YUbuntu.model.Table_Course;
 import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.view.function.ChooseCourse_JF_function;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 
 /**
@@ -53,6 +53,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 	private JComboBox<Table_Student> StudentName_JComboBox;
 	private JComboBox<Table_Course> CourseName_JComboBox ;
 	private JTable CourseInformation_JTable;
+	private JComboBox<Table_Class> ModifyClassName_JComboBox;
 	private JComboBox<Table_Teacher> ModifyTeacherName_JComboBox;
 	private JComboBox<Table_Student> ModifyStudentName_JComboBox;
 	private JComboBox<Table_Course> ModifyCourseName_JComboBox;
@@ -124,7 +125,9 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		ClassName_JComboBox = new JComboBox<Table_Class>();
 		
 		/*
-		 * Test the JComboBox of item event !
+		 * Attention : 
+		 * Invoked when an item has been selected or deselected by the user.
+		 * The code written for this method performs the operationsthat need to occur when an item is selected (or deselected).
 		 */
 		ClassName_JComboBox.addItemListener(new ItemListener() 
 		{
@@ -212,6 +215,11 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		lblClassName.setFont(new Font("Consolas", Font.PLAIN, 14));
 		
 		ModifyTeacherName_JComboBox = new JComboBox<Table_Teacher>();
+		
+		JLabel lblClassName_1 = new JLabel("Class name");
+		lblClassName_1.setFont(new Font("Consolas", Font.PLAIN, 14));
+		
+		ModifyClassName_JComboBox = new JComboBox<Table_Class>();
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -225,9 +233,13 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 						.addComponent(ModifyTeacherName_JComboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(ModifyStudentName_JComboBox, 0, 201, Short.MAX_VALUE))
 					.addGap(48)
-					.addComponent(lblCourseName_1)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblCourseName_1)
+						.addComponent(lblClassName_1))
 					.addGap(27)
-					.addComponent(ModifyCourseName_JComboBox, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(ModifyClassName_JComboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(ModifyCourseName_JComboBox, 0, 180, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(ConfirmExitCourse_JButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -248,7 +260,9 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(ConfirmExitCourse_JButton)
 						.addComponent(lblStudentName_1)
-						.addComponent(ModifyStudentName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(ModifyStudentName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblClassName_1)
+						.addComponent(ModifyClassName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(19, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
@@ -266,46 +280,35 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 			new Object[][] {
 			},
 			new String[] {
-				"Serial number", "Student ID", "Student name", "Teacher ID", "Teacher name", "Course ID", "Course name", "Head count", "Remaining", "Course introduce"
+				"Serial number", "Class name", "Student ID", "Student name", "Teacher ID", "Teacher name", "Course ID", "Course name", "Head count", "Remaining", "Course introduce"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false, false, false, false, false
+				false, false, false, false, false, false, false, false, false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		});
-		CourseInformation_JTable.getColumnModel().getColumn(0).setPreferredWidth(91);
-		CourseInformation_JTable.getColumnModel().getColumn(1).setPreferredWidth(71);
-		CourseInformation_JTable.getColumnModel().getColumn(2).setPreferredWidth(87);
-		CourseInformation_JTable.getColumnModel().getColumn(4).setPreferredWidth(90);
-		CourseInformation_JTable.getColumnModel().getColumn(5).setPreferredWidth(67);
-		CourseInformation_JTable.getColumnModel().getColumn(6).setPreferredWidth(122);
-		CourseInformation_JTable.getColumnModel().getColumn(7).setPreferredWidth(71);
-		CourseInformation_JTable.getColumnModel().getColumn(8).setPreferredWidth(65);
-		CourseInformation_JTable.getColumnModel().getColumn(9).setPreferredWidth(221);
+		CourseInformation_JTable.getColumnModel().getColumn(0).setPreferredWidth(109);
+		CourseInformation_JTable.getColumnModel().getColumn(1).setPreferredWidth(90);
+		CourseInformation_JTable.getColumnModel().getColumn(2).setPreferredWidth(84);
+		CourseInformation_JTable.getColumnModel().getColumn(3).setPreferredWidth(101);
+		CourseInformation_JTable.getColumnModel().getColumn(4).setPreferredWidth(89);
+		CourseInformation_JTable.getColumnModel().getColumn(5).setPreferredWidth(104);
+		CourseInformation_JTable.getColumnModel().getColumn(6).setPreferredWidth(82);
+		CourseInformation_JTable.getColumnModel().getColumn(7).setPreferredWidth(107);
+		CourseInformation_JTable.getColumnModel().getColumn(8).setPreferredWidth(78);
+		CourseInformation_JTable.getColumnModel().getColumn(10).setPreferredWidth(158);
 		scrollPane.setViewportView(CourseInformation_JTable);
 		getContentPane().setLayout(groupLayout);
 		
 		/*
-		 * Initialize the class name in the JComboBox.
+		 * Initialize the class,teacher,student and course name in the JComboBox.
 		 */
 		Initialize_InitializeClassName();
-		
-		/*
-		 * Initialize the teacher name in the JComboBox.
-		 */
 		Initialize_InitializeTeacherName();
-		
-		/*
-		 * Initialize the student name in the JComboBox.
-		 */
 		Initialize_InitializeStudentName();
-
-		/*
-		 * Initialize the course name in the JComboBox.
-		 */
 		Initialize_InitializeCourseName();
 		
 		/*
@@ -331,35 +334,48 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		DefaultTableModel defaultTableModel = (DefaultTableModel) CourseInformation_JTable.getModel();
 															
 		/*
-		 * Initialize the class,student and teacher name in the JComboBox.
+		 * Initialize the class,student,teacher and course name in the JComboBox.
 		 */
-		String studentName = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 2);
-		String teacherName = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 4);
-		String courseName = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 6);
-		for(int i=0;i<ModifyStudentName_JComboBox.getItemCount();i++)
+		String className = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 1);
+		String studentName = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 3);
+		String teacherName = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 5);
+		String courseName = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 7);
+		for (int i = 0; i < ModifyClassName_JComboBox.getItemCount(); i++)
 		{
-			Table_Student table_Student = (Table_Student)ModifyStudentName_JComboBox.getItemAt(i);
-			if(table_Student.getStudent_name().equals(studentName))
+			Table_Class table_Class = (Table_Class) ModifyClassName_JComboBox.getItemAt(i);
+			if (table_Class.get_CLASS_NAME().equals(className))
+			{
+				ModifyClassName_JComboBox.setSelectedItem(i);
+				break;
+			}
+		}
+		for (int i = 0; i < ModifyStudentName_JComboBox.getItemCount(); i++)
+		{
+			Table_Student table_Student = (Table_Student) ModifyStudentName_JComboBox.getItemAt(i);
+			if (table_Student.getStudent_name().equals(studentName))
 			{
 				ModifyStudentName_JComboBox.setSelectedIndex(i);
+				break;
 			}
-		}	
-		for(int i=0;i<ModifyTeacherName_JComboBox.getItemCount();i++)
+		}
+		for (int i = 0; i < ModifyTeacherName_JComboBox.getItemCount(); i++)
 		{
-			Table_Teacher table_Teacher = (Table_Teacher)ModifyTeacherName_JComboBox.getItemAt(i);
-			if(table_Teacher.getTeacher_name().equals(teacherName))
+			Table_Teacher table_Teacher = (Table_Teacher) ModifyTeacherName_JComboBox.getItemAt(i);
+			if (table_Teacher.getTeacher_name().equals(teacherName))
 			{
 				ModifyTeacherName_JComboBox.setSelectedIndex(i);
+				break;
 			}
-		}	
-		for(int i=0;i<ModifyCourseName_JComboBox.getItemCount();i++)
+		}
+		for (int i = 0; i < ModifyCourseName_JComboBox.getItemCount(); i++)
 		{
-			Table_Course table_Course = (Table_Course)ModifyCourseName_JComboBox.getItemAt(i);
-			if(table_Course.getCourse_name().equals(courseName))
+			Table_Course table_Course = (Table_Course) ModifyCourseName_JComboBox.getItemAt(i);
+			if (table_Course.getCourse_name().equals(courseName))
 			{
 				ModifyCourseName_JComboBox.setSelectedIndex(i);
+				break;
 			}
-		}	
+		}
 	}
 	
 	
@@ -392,7 +408,17 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 			ChooseCourse_DaoImpl chooseCourse_DaoImpl = new ChooseCourse_DaoImpl();
 			if(chooseCourse_DaoImpl.Exit_Course(CourseInformation_JTable.getValueAt(Row_index, 0).toString()))
 			{
-				JOptionPane.showMessageDialog(this, "Exit the course successfully !");
+				/*
+				 * The last step : Update the number of student in the specified course.
+				 */
+				boolean increase = false;
+				//Get the course ID by the specified course name.
+				String courseName = CourseInformation_JTable.getValueAt(Row_index, 1).toString();
+				String courseID = chooseCourse_DaoImpl.getCourseID(courseName);
+				if(chooseCourse_DaoImpl.updateCourseStudentNumber(courseID, increase))
+				{
+					JOptionPane.showMessageDialog(this, "Exit the course successfully !");		
+				}
 			}
 			else
 			{
@@ -464,49 +490,78 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		Table_ChoosedCourse table_ChoosedCourse = new Table_ChoosedCourse();
 		
 		/*
+		 * Get the specified class information by the class name.
+		 */
+		String className = ClassName_JComboBox.getSelectedItem().toString();
+		String classID = chooseCourse_DaoImpl.getClassID(className);
+
+		/*
 		 * Get the specified student information by the student name.
 		 */
 		String studentName = StudentName_JComboBox.getSelectedItem().toString();
 		String studentID = chooseCourse_DaoImpl.getStudentID(studentName);
-		 
-		
+
 		/*
 		 * Get the all of course information by the course name.
 		 */
-		String courseName = CourseName_JComboBox.getSelectedItem().toString();	
+		String courseName = CourseName_JComboBox.getSelectedItem().toString();
 		Course_DaoImpl course_DaoImpl = new Course_DaoImpl();
 		Table_Course table_Course = course_DaoImpl.getCourseInfo(courseName);
 		
 		/*
-		 * Store the information about the course selection.
+		 * Determine whether the number student is max or the course had been choosed.
 		 */
-		table_ChoosedCourse.setStudent_ID(studentID);
-		table_ChoosedCourse.setStudent_Name(studentName);
+		String courseID = table_Course.getCourse_ID();
+		if (chooseCourse_DaoImpl.isCourseNumberMax(courseID))
+		{
+			if (chooseCourse_DaoImpl.isChoosedCourse(courseID, studentID))
+			{
+				/*
+				 * Store the information about the course selection.
+				 */
+				table_ChoosedCourse.setClass_ID(classID);
+				table_ChoosedCourse.setClass_name(className);
+				table_ChoosedCourse.setStudent_ID(studentID);
+				table_ChoosedCourse.setStudent_name(studentName);
 
-		table_ChoosedCourse.setTeacher_ID(table_Course.getTeacher_ID());
-		table_ChoosedCourse.setTeacher_Name(table_Course.getTeacher_name());
-		table_ChoosedCourse.setCourse_ID(table_Course.getCourse_ID());
-		table_ChoosedCourse.setCourse_Name(table_Course.getCourse_name());
-		table_ChoosedCourse.setMaxStudentNumber(table_Course.getCourse_MaxStudentNumber());
-		table_ChoosedCourse.setChoosedStudentNumber(table_Course.getSelected_StudentNumber());
-		table_ChoosedCourse.setCourse_Introduction(table_Course.getCourse_Introduction());
-			
-		/*
-		 * Determine whether the operation is successful.
-		 */
-		if(chooseCourse_DaoImpl.AddCourseSelectionInfo(table_ChoosedCourse))
+				table_ChoosedCourse.setTeacher_ID(table_Course.getTeacher_ID());
+				table_ChoosedCourse.setTeacher_name(table_Course.getTeacher_name());
+				table_ChoosedCourse.setCourse_ID(table_Course.getCourse_ID());
+				table_ChoosedCourse.setCourse_name(table_Course.getCourse_name());
+				table_ChoosedCourse.setMaxStudentNumber(table_Course.getCourse_MaxStudentNumber());
+				table_ChoosedCourse.setChoosedStudentNumber(table_Course.getSelected_StudentNumber());
+				table_ChoosedCourse.setCourse_Introduction(table_Course.getCourse_Introduction());
+
+				/*
+				 * Determine whether the operation is successful.
+				 */
+				if (chooseCourse_DaoImpl.AddCourseSelectionInfo(table_ChoosedCourse))
+				{
+					//Update the number of student in the specified course.
+					boolean increase = true;
+					if(chooseCourse_DaoImpl.updateCourseStudentNumber(courseID,increase))
+					{
+						JOptionPane.showMessageDialog(this, "Success to add new course !");
+						Initialize_ChoosedCourseInfoTable(new Table_ChoosedCourse());
+					}
+				} else
+				{
+					JOptionPane.showMessageDialog(this, "Sorry ! Fail to add new course !", "Error",JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+			} else
+			{
+				JOptionPane.showMessageDialog(this, "Sorry,The course you have been choosed !", "Warning", JOptionPane.WARNING_MESSAGE);
+				return;
+			}
+
+		} else
 		{
-			JOptionPane.showMessageDialog(this, "Success to add new course !");
-			Initialize_ChoosedCourseInfoTable(new Table_ChoosedCourse());
-		}
-		else
-		{
-			JOptionPane.showMessageDialog(this, "Sorry ! Fail to add new course !", "Error", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Sorry,The number of student is Max !", "Warning", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
-	}
-	
 
+	}
 	
 	
 	/**
@@ -520,68 +575,75 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 	public void Initialize_ChoosedCourseInfoTable(Table_ChoosedCourse table_SelectCourse)
 	{
 		
-		//Gets the model object for the table.
+		/*
+		 * Gets the model object for the table and clear the list of table.
+		 */
 		DefaultTableModel defaultTableModel = (DefaultTableModel) CourseInformation_JTable.getModel();
-		//Clear the list of tables.
 		defaultTableModel.setRowCount(0);
 		
-		//Obtain teacher information.
+		/*
+		 * Get the information of course selection.
+		 */
 		ChooseCourse_DaoImpl chooseCourse_DaoImpl = new ChooseCourse_DaoImpl();
-	
 		List<Table_ChoosedCourse> list = chooseCourse_DaoImpl.getChoosedCourseList(table_SelectCourse);
 		
-		//Write the obtained course information into the table of course selection.
-		for (Table_ChoosedCourse table_SelectCourse_ : list)
+		/*
+		 * Write the obtained course information into the table of course selection.
+		 */
+		for (Table_ChoosedCourse table_ChoosedCourse : list)
 		{
 			Vector<Object> vector = new Vector<Object>();
 			
-			vector.add(table_SelectCourse_.getChoosedCourse_ID());
-			vector.add(table_SelectCourse_.getStudent_ID());
-			vector.add(table_SelectCourse_.getStudent_Name());
-			vector.add(table_SelectCourse_.getTeacher_ID());
-			vector.add(table_SelectCourse_.getTeacher_Name());
-			vector.add(table_SelectCourse_.getCourse_ID());
-			vector.add(table_SelectCourse_.getCourse_Name());
-			vector.add(table_SelectCourse_.getMaxStudentNumber());
-			vector.add(table_SelectCourse_.getChoosedStudentNumber());
-			vector.add(table_SelectCourse_.getCourse_Introduction());
+			vector.add(table_ChoosedCourse.getChoosedCourse_ID());
+			vector.add(table_ChoosedCourse.getClass_name());
+			vector.add(table_ChoosedCourse.getStudent_ID());
+			vector.add(table_ChoosedCourse.getStudent_name());
+			vector.add(table_ChoosedCourse.getTeacher_ID());
+			vector.add(table_ChoosedCourse.getTeacher_name());
+			vector.add(table_ChoosedCourse.getCourse_ID());
+			vector.add(table_ChoosedCourse.getCourse_name());
+			vector.add(table_ChoosedCourse.getMaxStudentNumber());
+			vector.add(table_ChoosedCourse.getChoosedStudentNumber());
+			vector.add(table_ChoosedCourse.getCourse_Introduction());
 		
 			defaultTableModel.addRow(vector);
 		}
 	}
 	
 	
-	
 	/**
 	 * @Title Initialize the student name by the class name.
 	 * @Description Display the student name by the class name.
-	 * @param empty
+	 * @param ItemEvent e
 	 * @return void
 	 * @date Jan 18, 2019-6:40:51 PM
 	 *
 	 */
-	protected void Initialize_DisplayStudentName(ItemEvent e)
+	public void Initialize_DisplayStudentName(ItemEvent e)
 	{	
-		/*
-		 * Clear the student item.
-		 */
-		StudentName_JComboBox.setSelectedIndex(-1);
 		
-		/*
-		 * Get the class name.
+		/* clear the selection
+		 * Attention : 
+		 * Invoked when an item has been selected or deselected by the user.
+		 * The code written for this method performs the operationsthat need to occur when an item is selected (or deselected).
 		 */
-		String className = ClassName_JComboBox.getSelectedItem().toString();		
-		
-		/*
-		 * Get the student name by the class name.
-		 */
-		Student_DaoImpl student_DaoImpl = new Student_DaoImpl();
-		List<Table_Student> list_studentName = student_DaoImpl.getStudentName(className);
-	
-		for (Table_Student table_Student : list_studentName)
+		if (e.getStateChange() == ItemEvent.SELECTED)
 		{
-			StudentName_JComboBox.addItem(table_Student);
-			ModifyStudentName_JComboBox.addItem(table_Student);
+			//Clear the student item.
+			StudentName_JComboBox.setSelectedItem(null);
+
+			//Get the class name.
+			String className = ClassName_JComboBox.getSelectedItem().toString();
+
+			//Get the student name by the class name.
+			Student_DaoImpl student_DaoImpl = new Student_DaoImpl();
+			List<Table_Student> list_studentName = student_DaoImpl.getStudentName(className);
+
+			for (Table_Student table_Student : list_studentName)
+			{
+				StudentName_JComboBox.addItem(table_Student);
+				ModifyStudentName_JComboBox.addItem(table_Student);
+			}
 		}
 	}
 	
@@ -603,6 +665,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		for (Table_Class table_Class : list)
 		{
 			ClassName_JComboBox.addItem(table_Class);
+			ModifyClassName_JComboBox.addItem(table_Class);
 		}
 	}
 	
@@ -647,10 +710,11 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 				
 		for (Table_Student table_Student : list)
 		{
-			StudentName_JComboBox.addItem(table_Student);
+			//StudentName_JComboBox.addItem(table_Student);
 			ModifyStudentName_JComboBox.addItem(table_Student);
 		}
 	}
+	
 	
 	/**
 	 * @Title Initialize

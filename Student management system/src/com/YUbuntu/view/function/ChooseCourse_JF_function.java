@@ -1,6 +1,7 @@
 package com.YUbuntu.view.function;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
 import java.awt.event.MouseEvent;
 
 import com.YUbuntu.model.Table_ChoosedCourse;
@@ -16,6 +17,19 @@ import com.YUbuntu.model.Table_ChoosedCourse;
  */
 public interface ChooseCourse_JF_function
 {
+	
+	/**
+	 * 
+	 * @Title Initialize
+	 * @Description Display the student name by the class name in the JComboBox.
+	 * @param ItemEvent e
+	 * @return void
+	 * @date Jan 24, 2019-8:54:57 PM
+	 *
+	 */
+	void Initialize_DisplayStudentName(ItemEvent e);
+	
+	
 	/**
 	 * 
 	 * @Title Initialize

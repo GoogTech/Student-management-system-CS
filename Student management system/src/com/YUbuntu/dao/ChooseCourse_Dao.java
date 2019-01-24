@@ -18,6 +18,41 @@ public interface ChooseCourse_Dao
 	
 	/**
 	 * 
+	 * @Title Update 
+	 * @Description Update the number of student in the specified course.
+	 * @param Course ID and boolean(Increase or reduce).
+	 * @return boolean
+	 * @date Jan 24, 2019-7:52:37 PM
+	 *
+	 */
+	boolean updateCourseStudentNumber(String courseID,boolean increaseNumber);
+	
+	/**
+	 * 
+	 * @Title Select
+	 * @Description Determine whether the specified course had been choosed. 
+	 * @param Course ID and Student ID.
+	 * @return boolean
+	 * @date Jan 24, 2019-6:52:52 PM
+	 *
+	 */
+	boolean isChoosedCourse(String courseID, String studentID);
+	
+	
+	/**
+	 * 
+	 * @Title Select 
+	 * @Description Determine whether the number of student is max.
+	 * @param Course ID
+	 * @return 
+	 * @return void
+	 * @date Jan 24, 2019-6:51:22 PM
+	 *
+	 */
+	boolean isCourseNumberMax(String courseID);
+	
+	/**
+	 * 
 	 * @Title Delete
 	 * @Description Delete the specified course.
 	 * @param ChoosedCourse_ID
@@ -37,6 +72,17 @@ public interface ChooseCourse_Dao
 	 *
 	 */
 	boolean AddCourseSelectionInfo(Table_ChoosedCourse table_ChoosedCourse);
+	
+	/**
+	 * 
+	 * @Title Select
+	 * @Description Get the specified course ID by the course name.
+	 * @param Course name
+	 * @return String
+	 * @date Jan 24, 2019-8:23:31 PM
+	 *
+	 */
+	String getCourseID(String courseName);
 	
 	/**
 	 * 

@@ -96,9 +96,10 @@ public class Login_JFrame extends JFrame implements Login_JFrame_function
 			}
 		});
 	}
+	
 
 	/**
-	 * Create the frame.s
+	 * Create the frame.
 	 */
 	public Login_JFrame()
 	{
