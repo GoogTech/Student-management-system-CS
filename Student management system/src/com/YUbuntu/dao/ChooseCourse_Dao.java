@@ -62,6 +62,19 @@ public interface ChooseCourse_Dao
 	 */
 	boolean Exit_Course(String ChoosedCourse_ID);
 	
+	
+	/**
+	 * 
+	 * @Title Update
+	 * @Description Modify the information about course selection.
+	 * @param Table_ChoosedCourse
+	 * @return boolean
+	 * @date Jan 26, 2019-6:45:30 PM
+	 *
+	 */
+	boolean Update_ChoosedCourseInfo(Table_ChoosedCourse table_ChoosedCourse);
+	
+	
 	/**
 	 * 
 	 * @Title Insert
@@ -72,6 +85,18 @@ public interface ChooseCourse_Dao
 	 *
 	 */
 	boolean AddCourseSelectionInfo(Table_ChoosedCourse table_ChoosedCourse);
+	
+	
+	/**
+	 * 
+	 * @Title Select
+	 * @Description Get the specified ID by the teacher name.
+	 * @param Teacher name
+	 * @return Teacher ID
+	 * @date Jan 26, 2019-6:38:17 PM
+	 *
+	 */
+	String getTeacherID(String teacher_name);
 	
 	/**
 	 * 

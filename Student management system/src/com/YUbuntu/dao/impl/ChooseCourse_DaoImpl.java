@@ -176,6 +176,44 @@ public class ChooseCourse_DaoImpl extends BasicDao implements ChooseCourse_Dao
 		return courseID;
 	}
 	
+	/**
+	 * @Title Select
+	 * @Description Get the specified ID by the teacher name.
+	 * @param Empty
+	 * @return Teacher ID
+	 * @date Jan 26, 2019-6:33:25 PM
+	 *
+	 */
+	public String getTeacherID(String teacher_name)
+	{
+		String teacher_ID = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try
+		{
+			preparedStatement = connection.prepareStatement("SELECT TEACHER_ID FROM TABLE_CHOOSEDCOURSE WHERE TEACHER_NAME = ?");
+			preparedStatement.setString(1, teacher_name);
+
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next())
+			{
+				teacher_ID = resultSet.getString("TEACHER_ID");
+			}
+		} catch (SQLException e)
+		{
+			System.err.println("ERROR : FAIL TO GET THE TEACHER ID FROM THE DATABASE !\n");
+			e.printStackTrace();
+		}
+
+		/*
+		 * Not release the resource : java.sql.SQLNonTransientConnectionException: No operations allowed after connection closed.
+		 */
+		// JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		return teacher_ID;
+	}
+	
+	
 	
 	
 	/**
@@ -371,6 +409,42 @@ public class ChooseCourse_DaoImpl extends BasicDao implements ChooseCourse_Dao
 				System.err.println("ERROR : FAIL TO UPDATE THE STUDENT NUMBER IN THE DATABASE !\n");
 			}
 		}
+		return false;
+	}
+
+	
+	/**
+	 * @Title Update
+	 * @Description Modify the information about course selection.
+	 * @param Table_ChoosedCourse
+	 * @return boolean
+	 * @date Jan 26, 2019-6:43:48 PM
+	 *
+	 */
+	public boolean Update_ChoosedCourseInfo(Table_ChoosedCourse table_ChoosedCourse)
+	{
+		PreparedStatement preparedStatement = null;
+		String SQL_Update_TeacherInformation = "UPDATE TABLE_COURSE SET "
+				+ "CLASS_NAME = ? , TEACHER_NAME = ? , STUDENT_NAME = ? ,COURSE_NAME = ? WHERE CHOOSEDCOURSE_ID = ?";
+		try
+		{
+			preparedStatement = connection.prepareStatement(SQL_Update_TeacherInformation);
+			preparedStatement.setString(1, table_ChoosedCourse.getClass_name());
+			preparedStatement.setString(2, table_ChoosedCourse.getTeacher_name());
+			preparedStatement.setString(3, table_ChoosedCourse.getStudent_name());
+			preparedStatement.setString(4, table_ChoosedCourse.getCourse_name());
+			preparedStatement.setInt(5, table_ChoosedCourse.getChoosedCourse_ID());
+			if (preparedStatement.executeUpdate() > 0)
+			{
+				JDBCUtil.freeResource(null, preparedStatement, connection);
+				return true;
+			}
+		} catch (SQLException e)
+		{
+			System.err.println("ERROR : FAIL TO UPDATE INFORMATION ABOUT COURSE SELECTION !\n");
+			e.printStackTrace();
+		}
+		JDBCUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 }

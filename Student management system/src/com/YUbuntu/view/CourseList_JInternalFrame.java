@@ -350,7 +350,7 @@ public class CourseList_JInternalFrame extends JInternalFrame implements CourseL
 	 */
 	public void Function_ModifyCourseInfo(ActionEvent e)
 	{
-		//Determine whether the user has clicked on the course information they want to delete.
+		//Determine whether the user has clicked on the course information they want to modify.
 		int Row_index = CourseList_JTable.getSelectedRow();
 		if(Row_index==-1)
 		{
@@ -406,7 +406,7 @@ public class CourseList_JInternalFrame extends JInternalFrame implements CourseL
 			}
 			else 
 			{
-				JOptionPane.showMessageDialog(this, "Fail to update the teacher information !");
+				JOptionPane.showMessageDialog(this, "Fail to update the course information !");
 				return;
 			}
 		}

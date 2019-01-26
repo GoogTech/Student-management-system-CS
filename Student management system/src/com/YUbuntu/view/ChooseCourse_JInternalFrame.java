@@ -35,6 +35,7 @@ import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Course;
 import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.model.Table_Teacher;
+import com.YUbuntu.util.StringUtil;
 import com.YUbuntu.view.function.ChooseCourse_JF_function;
 
 
@@ -345,7 +346,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 			Table_Class table_Class = (Table_Class) ModifyClassName_JComboBox.getItemAt(i);
 			if (table_Class.get_CLASS_NAME().equals(className))
 			{
-				ModifyClassName_JComboBox.setSelectedItem(i);
+				ModifyClassName_JComboBox.setSelectedIndex(i);
 				break;
 			}
 		}
@@ -471,8 +472,79 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 	 */
 	public void Function_ModifyCourseSelectionInfo(ActionEvent e)
 	{
+		/*
+		 * Determine whether the user has clicked on the course informationthey  want to modify.
+		 */
+		int Row_index = CourseInformation_JTable.getSelectedRow();
+		if(Row_index==-1)
+		{
+			JOptionPane.showMessageDialog(this, "Please click on the course information you want to update !", "Warning",JOptionPane.WARNING_MESSAGE);
+			return;
+		}
 		
+		/*
+		 * Get the model object for the table
+		 */
+		DefaultTableModel defaultTableModel = (DefaultTableModel) CourseInformation_JTable.getModel();
+		defaultTableModel.setRowCount(0);
+								
+		/*
+		 * Prompt the user to update course information whether the operation is successful.
+		 */
+		if(JOptionPane.showConfirmDialog(this, "Are you sure to update it ?")==JOptionPane.YES_OPTION)//Sensitive operation prompt.
+		{					
+			/*
+			 * Store the information about modifing.
+			 */
+			ChooseCourse_DaoImpl chooseCourse_DaoImpl = new ChooseCourse_DaoImpl();
+			Table_ChoosedCourse table_ChoosedCourse = new Table_ChoosedCourse();
+			//Get the ID of the selected course.
+			int selectedCourse_ID = (int) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 0);//ERROR : at java.desktop/javax.swing.table.DefaultTableModel.getValueAt(Unknown Source)
+			table_ChoosedCourse.setChoosedCourse_ID(selectedCourse_ID);
+			//Teacher information.
+			Table_Teacher table_Teacher = (Table_Teacher) ModifyTeacherName_JComboBox.getSelectedItem();
+			table_ChoosedCourse.setTeacher_name(table_Teacher.getTeacher_name());
+			String teacher_ID = chooseCourse_DaoImpl.getTeacherID(table_Teacher.getTeacher_name());//Get teacher ID by name.
+			table_ChoosedCourse.setTeacher_ID(teacher_ID);
+			//Student information.
+			Table_Student table_Student = (Table_Student) ModifyStudentName_JComboBox.getSelectedItem();
+			table_ChoosedCourse.setStudent_name(table_Student.getStudent_name());
+			String student_ID = chooseCourse_DaoImpl.getStudentID(table_Student.getStudent_name());//Get student ID by name.
+			table_ChoosedCourse.setStudent_ID(student_ID);
+			//Course information.
+			Table_Course table_Course = (Table_Course) ModifyCourseName_JComboBox.getSelectedItem();
+			table_ChoosedCourse.setCourse_name(table_Course.getCourse_name());
+			String course_ID = chooseCourse_DaoImpl.getCourseID(table_Course.getCourse_name());//Get the course ID by name.
+			table_ChoosedCourse.setCourse_ID(course_ID);
+			//Class information.
+			Table_Class table_Class = (Table_Class) ModifyClassName_JComboBox.getSelectedItem();
+			table_ChoosedCourse.setClass_name(table_Class.get_CLASS_NAME());
+			String class_ID = chooseCourse_DaoImpl.getClassID(table_Class.get_CLASS_NAME());//Get the class ID by name.
+			table_ChoosedCourse.setClass_ID(class_ID);
+			
+			/*
+			 * Prompt the user: whether the course information has been modified successfully.
+			 */
+			if (chooseCourse_DaoImpl.Update_ChoosedCourseInfo(table_ChoosedCourse))
+			{
+				JOptionPane.showMessageDialog(this, "Update the information successfully !");
+			} else
+			{
+				JOptionPane.showMessageDialog(this, "Fail to update the information !");
+				return;
+			}
+		} else
+		{
+			return;
+		}
+
+		/*
+		 * Refush the information.
+		 */
+		Initialize_ChoosedCourseInfoTable(new Table_ChoosedCourse());
+		Function_ClearData();
 	}
+	
 	
 	
 
@@ -579,7 +651,6 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		 * Gets the model object for the table and clear the list of table.
 		 */
 		DefaultTableModel defaultTableModel = (DefaultTableModel) CourseInformation_JTable.getModel();
-		defaultTableModel.setRowCount(0);
 		
 		/*
 		 * Get the information of course selection.
