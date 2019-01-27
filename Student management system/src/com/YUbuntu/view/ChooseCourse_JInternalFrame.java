@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +36,6 @@ import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Course;
 import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.model.Table_Teacher;
-import com.YUbuntu.util.StringUtil;
 import com.YUbuntu.view.function.ChooseCourse_JF_function;
 
 
@@ -58,6 +58,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 	private JComboBox<Table_Teacher> ModifyTeacherName_JComboBox;
 	private JComboBox<Table_Student> ModifyStudentName_JComboBox;
 	private JComboBox<Table_Course> ModifyCourseName_JComboBox;
+	private JTextField ModifySerialNumber_JTextField;
 	
 
 	/**
@@ -93,7 +94,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		setIconifiable(true);
 		
 		setTitle("Choose course interface");
-		setBounds(100, 100, 1020, 558);
+		setBounds(100, 100, 1032, 558);
 		
 		JLabel lblStudentName = new JLabel("Student name");
 		lblStudentName.setFont(new Font("Consolas", Font.PLAIN, 13));
@@ -142,39 +143,39 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 					.addGap(27)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 951, Short.MAX_VALUE)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 961, Short.MAX_VALUE)
+						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 961, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblNewLabel)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(ClassName_JComboBox, 0, 143, Short.MAX_VALUE)
+							.addComponent(ClassName_JComboBox, 0, 172, Short.MAX_VALUE)
 							.addGap(28)
 							.addComponent(lblStudentName)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(StudentName_JComboBox, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
 							.addGap(26)
 							.addComponent(lblCourseName)
-							.addGap(29)
+							.addGap(18)
 							.addComponent(CourseName_JComboBox, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
-							.addGap(32)
-							.addComponent(ConfirmChooseCourse_JButton))
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 951, Short.MAX_VALUE))
-					.addContainerGap(32, GroupLayout.PREFERRED_SIZE))
+							.addGap(29)
+							.addComponent(ConfirmChooseCourse_JButton)))
+					.addGap(34))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(43)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(ConfirmChooseCourse_JButton)
-						.addComponent(CourseName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel)
 						.addComponent(ClassName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCourseName)
 						.addComponent(StudentName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblStudentName))
+						.addComponent(lblStudentName)
+						.addComponent(ConfirmChooseCourse_JButton)
+						.addComponent(CourseName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(47)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
@@ -200,7 +201,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 				Function_ModifyCourseSelectionInfo(e);
 			}
 		});
-		ConfirmModifyCourse_JButton.setFont(new Font("Consolas", Font.PLAIN, 12));
+		ConfirmModifyCourse_JButton.setFont(new Font("Consolas", Font.PLAIN, 11));
 		
 		JButton ConfirmExitCourse_JButton = new JButton("Exit course");
 		ConfirmExitCourse_JButton.addActionListener(new ActionListener() 
@@ -210,7 +211,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 				Function_ExitCourse(e);
 			}
 		});
-		ConfirmExitCourse_JButton.setFont(new Font("Consolas", Font.PLAIN, 12));
+		ConfirmExitCourse_JButton.setFont(new Font("Consolas", Font.PLAIN, 11));
 		
 		JLabel lblClassName = new JLabel("Teacher name");
 		lblClassName.setFont(new Font("Consolas", Font.PLAIN, 14));
@@ -221,6 +222,14 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		lblClassName_1.setFont(new Font("Consolas", Font.PLAIN, 14));
 		
 		ModifyClassName_JComboBox = new JComboBox<Table_Class>();
+		
+		JLabel lblId = new JLabel("Serial number");
+		lblId.setFont(new Font("Consolas", Font.PLAIN, 14));
+		
+		ModifySerialNumber_JTextField = new JTextField();
+		ModifySerialNumber_JTextField.setEnabled(false);
+		ModifySerialNumber_JTextField.setEditable(false);
+		ModifySerialNumber_JTextField.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -231,40 +240,46 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 						.addComponent(lblClassName))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(ModifyTeacherName_JComboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(ModifyStudentName_JComboBox, 0, 201, Short.MAX_VALUE))
-					.addGap(48)
+						.addComponent(ModifyStudentName_JComboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(ModifyTeacherName_JComboBox, 0, 186, Short.MAX_VALUE))
+					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblCourseName_1)
 						.addComponent(lblClassName_1))
-					.addGap(27)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(ModifyClassName_JComboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(ModifyCourseName_JComboBox, 0, 180, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(ConfirmExitCourse_JButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(ConfirmModifyCourse_JButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(22))
+						.addComponent(ModifyCourseName_JComboBox, 0, 182, Short.MAX_VALUE))
+					.addGap(48)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblId)
+						.addComponent(ConfirmModifyCourse_JButton))
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(ConfirmExitCourse_JButton)
+						.addComponent(ModifySerialNumber_JTextField, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(21)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(ConfirmModifyCourse_JButton)
 						.addComponent(lblClassName)
 						.addComponent(ModifyTeacherName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCourseName_1)
-						.addComponent(ModifyCourseName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(ModifyCourseName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(ModifySerialNumber_JTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblId))
 					.addGap(27)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(ConfirmExitCourse_JButton)
 						.addComponent(lblStudentName_1)
 						.addComponent(ModifyStudentName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblClassName_1)
-						.addComponent(ModifyClassName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(19, Short.MAX_VALUE))
+						.addComponent(ModifyClassName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(ConfirmExitCourse_JButton)
+						.addComponent(ConfirmModifyCourse_JButton))
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		
@@ -337,10 +352,12 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		/*
 		 * Initialize the class,student,teacher and course name in the JComboBox.
 		 */
+		int serialNumber = (int) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 0);
 		String className = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 1);
 		String studentName = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 3);
 		String teacherName = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 5);
 		String courseName = (String) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 7);
+		ModifySerialNumber_JTextField.setText(String.valueOf(serialNumber));
 		for (int i = 0; i < ModifyClassName_JComboBox.getItemCount(); i++)
 		{
 			Table_Class table_Class = (Table_Class) ModifyClassName_JComboBox.getItemAt(i);
@@ -487,7 +504,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		 */
 		DefaultTableModel defaultTableModel = (DefaultTableModel) CourseInformation_JTable.getModel();
 		defaultTableModel.setRowCount(0);
-								
+		
 		/*
 		 * Prompt the user to update course information whether the operation is successful.
 		 */
@@ -498,8 +515,8 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 			 */
 			ChooseCourse_DaoImpl chooseCourse_DaoImpl = new ChooseCourse_DaoImpl();
 			Table_ChoosedCourse table_ChoosedCourse = new Table_ChoosedCourse();
-			//Get the ID of the selected course.
-			int selectedCourse_ID = (int) defaultTableModel.getValueAt(CourseInformation_JTable.getSelectedRow(), 0);//ERROR : at java.desktop/javax.swing.table.DefaultTableModel.getValueAt(Unknown Source)
+			//Get the serial number.
+			int selectedCourse_ID = Integer.parseInt(ModifySerialNumber_JTextField.getText());
 			table_ChoosedCourse.setChoosedCourse_ID(selectedCourse_ID);
 			//Teacher information.
 			Table_Teacher table_Teacher = (Table_Teacher) ModifyTeacherName_JComboBox.getSelectedItem();
@@ -547,7 +564,6 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 	
 	
 	
-
 	/**
 	 * @Title Function
 	 * @Description The function of course selection.
@@ -693,23 +709,28 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 	public void Initialize_DisplayStudentName(ItemEvent e)
 	{	
 		
-		/* clear the selection
-		 * Attention : 
+		/* Attention : 
 		 * Invoked when an item has been selected or deselected by the user.
 		 * The code written for this method performs the operationsthat need to occur when an item is selected (or deselected).
 		 */
 		if (e.getStateChange() == ItemEvent.SELECTED)
 		{
-			//Clear the student item.
+			/*
+			 * Clear the Item.
+			 */
 			StudentName_JComboBox.setSelectedItem(null);
+			StudentName_JComboBox.removeAllItems();
 
-			//Get the class name.
+			/*
+			 * Get the student name by the specified class name.
+			 */
 			String className = ClassName_JComboBox.getSelectedItem().toString();
-
-			//Get the student name by the class name.
 			Student_DaoImpl student_DaoImpl = new Student_DaoImpl();
 			List<Table_Student> list_studentName = student_DaoImpl.getStudentName(className);
 
+			/*
+			 * Display the student name into the JComboBox.
+			 */
 			for (Table_Student table_Student : list_studentName)
 			{
 				StudentName_JComboBox.addItem(table_Student);

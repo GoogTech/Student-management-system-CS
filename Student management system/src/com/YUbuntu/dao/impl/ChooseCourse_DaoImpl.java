@@ -424,7 +424,7 @@ public class ChooseCourse_DaoImpl extends BasicDao implements ChooseCourse_Dao
 	public boolean Update_ChoosedCourseInfo(Table_ChoosedCourse table_ChoosedCourse)
 	{
 		PreparedStatement preparedStatement = null;
-		String SQL_Update_TeacherInformation = "UPDATE TABLE_COURSE SET "
+		String SQL_Update_TeacherInformation = "UPDATE TABLE_CHOOSEDCOURSE SET "
 				+ "CLASS_NAME = ? , TEACHER_NAME = ? , STUDENT_NAME = ? ,COURSE_NAME = ? WHERE CHOOSEDCOURSE_ID = ?";
 		try
 		{
