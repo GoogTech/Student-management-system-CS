@@ -16,8 +16,7 @@ import com.YUbuntu.model.Table_ChoosedCourse;
  * @version 2.0
  */
 public interface ChooseCourse_JF_function
-{
-	
+{		
 	/**
 	 * 
 	 * @Title Initialize
@@ -100,6 +99,17 @@ public interface ChooseCourse_JF_function
 	 *
 	 */
 	void Initialize_ChoosedCourseInfoTable(Table_ChoosedCourse table_SelectCourse);
+	
+	
+	/**
+	 * @Title Initialize
+	 * @Description Display the course selection information of specified student into JTable.
+	 * @param ItemEvent e
+	 * @return void
+	 * @date Jan 28, 2019-3:58:18 PM
+	 *
+	 */
+	void Initialize_ChoosedCourseInfoTable(ItemEvent e);
 	
 	
 	/**

@@ -38,7 +38,6 @@ import com.YUbuntu.model.Table_Student;
 import com.YUbuntu.model.Table_Teacher;
 import com.YUbuntu.view.function.ChooseCourse_JF_function;
 
-
 /**
  *
  * @Project Student management system
@@ -93,13 +92,27 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		setClosable(true);
 		setIconifiable(true);
 		
-		setTitle("Choose course interface");
-		setBounds(100, 100, 1032, 558);
+		setTitle("Course selection interface");
+		setBounds(100, 100, 1024, 543);
 		
 		JLabel lblStudentName = new JLabel("Student name");
 		lblStudentName.setFont(new Font("Consolas", Font.PLAIN, 13));
 		
 		StudentName_JComboBox = new JComboBox<Table_Student>();
+		
+		/*
+		 * Attention : 
+		 * Invoked when an item has been selected or deselected by the user.
+		 * The code written for this method performs the operations that need to occur when an item is selected (or deselected).
+		 */
+		StudentName_JComboBox.addItemListener(new ItemListener() 
+		{
+			public void itemStateChanged(ItemEvent e) 
+			{
+				
+				Initialize_ChoosedCourseInfoTable(e);
+			}
+		});
 		
 		JLabel lblCourseName = new JLabel("Course name");
 		lblCourseName.setFont(new Font("Consolas", Font.PLAIN, 13));
@@ -129,7 +142,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		/*
 		 * Attention : 
 		 * Invoked when an item has been selected or deselected by the user.
-		 * The code written for this method performs the operationsthat need to occur when an item is selected (or deselected).
+		 * The code written for this method performs the operations that need to occur when an item is selected (or deselected).
 		 */
 		ClassName_JComboBox.addItemListener(new ItemListener() 
 		{
@@ -142,16 +155,16 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(27)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 961, Short.MAX_VALUE)
-						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 961, Short.MAX_VALUE)
+						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 953, Short.MAX_VALUE)
+						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 953, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblNewLabel)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(ClassName_JComboBox, 0, 172, Short.MAX_VALUE)
+							.addComponent(ClassName_JComboBox, 0, 164, Short.MAX_VALUE)
 							.addGap(28)
 							.addComponent(lblStudentName)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -179,8 +192,8 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 					.addGap(47)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(13, Short.MAX_VALUE))
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(167, Short.MAX_VALUE))
 		);
 		
 		JLabel lblStudentName_1 = new JLabel("Student name");
@@ -236,50 +249,50 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblStudentName_1)
-						.addComponent(lblClassName))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(lblClassName)
+						.addComponent(lblClassName_1))
+					.addGap(12)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(ModifyStudentName_JComboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(ModifyTeacherName_JComboBox, 0, 186, Short.MAX_VALUE))
-					.addGap(18)
+						.addComponent(ModifyTeacherName_JComboBox, Alignment.TRAILING, 0, 186, Short.MAX_VALUE)
+						.addComponent(ModifyClassName_JComboBox, Alignment.TRAILING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(31)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblCourseName_1)
-						.addComponent(lblClassName_1))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(lblStudentName_1))
+					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(ModifyClassName_JComboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(ModifyCourseName_JComboBox, 0, 182, Short.MAX_VALUE))
-					.addGap(48)
+						.addComponent(ModifyStudentName_JComboBox, Alignment.TRAILING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(ModifyCourseName_JComboBox, Alignment.TRAILING, 0, 182, Short.MAX_VALUE))
+					.addGap(31)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblId)
-						.addComponent(ConfirmModifyCourse_JButton))
+						.addComponent(ConfirmModifyCourse_JButton)
+						.addComponent(lblId))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(ConfirmExitCourse_JButton)
-						.addComponent(ModifySerialNumber_JTextField, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(21, Short.MAX_VALUE))
+						.addComponent(ModifySerialNumber_JTextField, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+						.addComponent(ConfirmExitCourse_JButton))
+					.addContainerGap(36, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(21)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblClassName)
-						.addComponent(ModifyTeacherName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCourseName_1)
-						.addComponent(ModifyCourseName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblClassName_1)
+						.addComponent(ModifyClassName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblStudentName_1)
+						.addComponent(ModifyStudentName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(ModifySerialNumber_JTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblId))
 					.addGap(27)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblStudentName_1)
-						.addComponent(ModifyStudentName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblClassName_1)
-						.addComponent(ModifyClassName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(ConfirmExitCourse_JButton)
-						.addComponent(ConfirmModifyCourse_JButton))
-					.addContainerGap(21, Short.MAX_VALUE))
+						.addComponent(lblClassName)
+						.addComponent(ModifyTeacherName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(ModifyCourseName_JComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblCourseName_1)
+						.addComponent(ConfirmModifyCourse_JButton)
+						.addComponent(ConfirmExitCourse_JButton))
+					.addGap(101))
 		);
 		panel.setLayout(gl_panel);
 		
@@ -334,6 +347,8 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 	}
 	
 	
+	
+
 	/**
 	 * @Title Initialize
 	 * @Description Get the data which click the specified row in the table.
@@ -500,7 +515,7 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 		}
 		
 		/*
-		 * Get the model object for the table
+		 * Get the model object for the table.
 		 */
 		DefaultTableModel defaultTableModel = (DefaultTableModel) CourseInformation_JTable.getModel();
 		defaultTableModel.setRowCount(0);
@@ -648,7 +663,6 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 			JOptionPane.showMessageDialog(this, "Sorry,The number of student is Max !", "Warning", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
-
 	}
 	
 	
@@ -662,7 +676,6 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 	 */
 	public void Initialize_ChoosedCourseInfoTable(Table_ChoosedCourse table_SelectCourse)
 	{
-		
 		/*
 		 * Gets the model object for the table and clear the list of table.
 		 */
@@ -696,6 +709,57 @@ public class ChooseCourse_JInternalFrame extends JInternalFrame implements Choos
 			defaultTableModel.addRow(vector);
 		}
 	}
+	
+	
+	
+	/**
+	 * @Title Initialize
+	 * @Description Display the course selection information of specified student into JTable.
+	 * @param ItemEvent e
+	 * @return void
+	 * @date Jan 28, 2019-3:58:18 PM
+	 *
+	 */
+	public void Initialize_ChoosedCourseInfoTable(ItemEvent e)
+	{
+		/* Invoked when an item has been selected or deselected by the user.
+		 * The code written for this method performs the operationsthat need to occur when an item is selected (or deselected).
+		 */
+		if (e.getStateChange() == ItemEvent.SELECTED)
+		{
+			// Get the current student name.
+			String student_name = StudentName_JComboBox.getSelectedItem().toString();
+
+			// Gets the model object for the table.
+			DefaultTableModel defaultTableModel = (DefaultTableModel) CourseInformation_JTable.getModel();
+			defaultTableModel.setRowCount(0);
+
+			// Get the information of course selection.
+			ChooseCourse_DaoImpl chooseCourse_DaoImpl = new ChooseCourse_DaoImpl();
+			List<Table_ChoosedCourse> list = chooseCourse_DaoImpl.getChoosedCourseList(student_name);
+
+			// Write the obtained course information into the table of course selection.
+			for (Table_ChoosedCourse table_ChoosedCourse : list)
+			{
+				Vector<Object> vector = new Vector<Object>();
+
+				vector.add(table_ChoosedCourse.getChoosedCourse_ID());
+				vector.add(table_ChoosedCourse.getClass_name());
+				vector.add(table_ChoosedCourse.getStudent_ID());
+				vector.add(table_ChoosedCourse.getStudent_name());
+				vector.add(table_ChoosedCourse.getTeacher_ID());
+				vector.add(table_ChoosedCourse.getTeacher_name());
+				vector.add(table_ChoosedCourse.getCourse_ID());
+				vector.add(table_ChoosedCourse.getCourse_name());
+				vector.add(table_ChoosedCourse.getMaxStudentNumber());
+				vector.add(table_ChoosedCourse.getChoosedStudentNumber());
+				vector.add(table_ChoosedCourse.getCourse_Introduction());
+
+				defaultTableModel.addRow(vector);
+			}
+		}
+	}
+	
 	
 	
 	/**

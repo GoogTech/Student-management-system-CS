@@ -61,6 +61,52 @@ public class ChooseCourse_DaoImpl extends BasicDao implements ChooseCourse_Dao
 	}
 	
 	
+	/**
+	 * @Title Select
+	 * @Description Get the course selection information of the specified student.
+	 * @param Student name
+	 * @return List<Table_ChoosedCourse>
+	 * @date Jan 28, 2019-4:17:31 PM
+	 *
+	 */
+	public List<Table_ChoosedCourse> getChoosedCourseList(String student_name)
+	{
+		List<Table_ChoosedCourse> list = new ArrayList<Table_ChoosedCourse>();
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try
+		{
+			preparedStatement = connection.prepareStatement("SELECT * FROM TABLE_CHOOSEDCOURSE WHERE STUDENT_NAME = ?");
+			preparedStatement.setString(1, student_name);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next())
+			{
+				Table_ChoosedCourse table_ChooseCourse = new Table_ChoosedCourse();
+				table_ChooseCourse.setChoosedCourse_ID(resultSet.getInt("ChoosedCourse_ID"));
+				table_ChooseCourse.setClass_name(resultSet.getString("Class_name"));
+				table_ChooseCourse.setStudent_ID(resultSet.getString("Student_ID"));
+				table_ChooseCourse.setStudent_name(resultSet.getString("Student_name"));
+				table_ChooseCourse.setTeacher_ID(resultSet.getString("Teacher_ID"));
+				table_ChooseCourse.setTeacher_name(resultSet.getString("Teacher_name"));
+				table_ChooseCourse.setCourse_ID(resultSet.getString("Course_ID"));
+				table_ChooseCourse.setCourse_name(resultSet.getString("Course_name"));
+				table_ChooseCourse.setMaxStudentNumber(resultSet.getInt("MaxStudentNumber"));	
+				table_ChooseCourse.setChoosedStudentNumber(resultSet.getInt("ChoosedStudentNumber"));				
+				table_ChooseCourse.setCourse_Introduction(resultSet.getString("Course_Introduction"));
+
+				list.add(table_ChooseCourse);
+			}
+		} catch (SQLException e)
+		{
+			System.err.println("ERROR : FAIL TO READ THE INFORMATION OF COURSE SELECTION !\n");
+			e.printStackTrace();
+		}
+		//JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		return list;
+	}
+	
+	
 	
 	/**
 	 * @Title Select
