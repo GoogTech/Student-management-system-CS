@@ -8,7 +8,7 @@ import java.sql.Statement;
 import com.YUbuntu.basicDao.BasicDao;
 import com.YUbuntu.dao.Administrator_Dao;
 import com.YUbuntu.model.Table_Administrator;
-import com.YUbuntu.util.JDBCUtil;
+import com.YUbuntu.util.JdbcUtil;
 
 /**
  * 
@@ -75,7 +75,7 @@ public class Administrator_DaoImpl extends BasicDao implements Administrator_Dao
 			e.printStackTrace();
 		}finally
 		{
-			JDBCUtil.freeResource(resultSet, preparedStatement, connection);			
+			JdbcUtil.freeResource(resultSet, preparedStatement, connection);			
 		}
 		return table_Administrator;// Returns the object of the result of the query
 	}
@@ -109,7 +109,7 @@ public class Administrator_DaoImpl extends BasicDao implements Administrator_Dao
 			if (!resultSet.next())
 			{
 				result_ChanggePasswrod = "Warning : the old passwrod is error !";
-				JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+				JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 				return result_ChanggePasswrod;
 			}
 			
@@ -131,7 +131,7 @@ public class Administrator_DaoImpl extends BasicDao implements Administrator_Dao
 			e.printStackTrace();
 		}finally
 		{
-			JDBCUtil.freeResource(resultSet, preparedStatement, connection);			
+			JdbcUtil.freeResource(resultSet, preparedStatement, connection);			
 		}
 		return result_ChanggePasswrod;
 	}

@@ -2,7 +2,7 @@ package com.YUbuntu.basicDao;
 
 import java.sql.Connection;
 
-import com.YUbuntu.util.JDBCUtil;
+import com.YUbuntu.util.JdbcUtil;
 
 /**
  * 
@@ -15,7 +15,7 @@ import com.YUbuntu.util.JDBCUtil;
  */
 public class BasicDao
 {
-	public Connection connection = new JDBCUtil().getConnection();
+	public Connection connection = new JdbcUtil().getConnection();
 
 	/*
 	 * Every object that operates on the database is used :

@@ -1,0 +1,17 @@
+------------------------------ favourite -------------------------------
+Java font : Lucida Console  
+
+------------------------------ reference -------------------------------
+	
+------------------------------ learning --------------------------------
+	1:	xxx.properties : https://www.cnblogs.com/bakari/p/3562244.html
+	
+------------------------------ bug -------------------------------------
+当程序运行后输出警告如下所示,该BUG暂时未得到解决 ！
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.jtattoo.plaf.BasePanelUI (file: xxxxxx......)
+WARNING: Please consider reporting this to the maintainers of com.jtattoo.plaf.BasePanelUI
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+
+

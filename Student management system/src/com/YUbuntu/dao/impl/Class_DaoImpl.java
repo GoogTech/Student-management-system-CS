@@ -9,7 +9,7 @@ import java.util.List;
 import com.YUbuntu.basicDao.BasicDao;
 import com.YUbuntu.dao.Class_Dao;
 import com.YUbuntu.model.Table_Class;
-import com.YUbuntu.util.JDBCUtil;
+import com.YUbuntu.util.JdbcUtil;
 import com.YUbuntu.util.StringUtil;
 
 /**
@@ -44,7 +44,7 @@ public class Class_DaoImpl extends BasicDao implements Class_Dao
 			preparedStatement.setString(3, table_Class.get_CLASS_Introduce());
 			if (preparedStatement.executeUpdate() > 0)
 			{
-				JDBCUtil.freeResource(null, preparedStatement, connection);
+				JdbcUtil.freeResource(null, preparedStatement, connection);
 				return true;
 			}
 		} catch (SQLException e)
@@ -52,7 +52,7 @@ public class Class_DaoImpl extends BasicDao implements Class_Dao
 			System.err.println("ERROR : Fail to add the new class information to MySQL database !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(null, preparedStatement, connection);
+		JdbcUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 
@@ -105,7 +105,7 @@ public class Class_DaoImpl extends BasicDao implements Class_Dao
 			System.err.println("ERROR : Failed to read class information in MySQL database!\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 		return list;
 	}
 
@@ -129,7 +129,7 @@ public class Class_DaoImpl extends BasicDao implements Class_Dao
 
 			if (preparedStatement.executeUpdate() > 0)
 			{
-				JDBCUtil.freeResource(null, preparedStatement, connection);
+				JdbcUtil.freeResource(null, preparedStatement, connection);
 				return true;
 			}
 		} catch (SQLException e)
@@ -137,7 +137,7 @@ public class Class_DaoImpl extends BasicDao implements Class_Dao
 			System.err.println("ERROR :Fail to delete class information with the specified number(Class ID) !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(null, preparedStatement, connection);
+		JdbcUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 
@@ -167,7 +167,7 @@ public class Class_DaoImpl extends BasicDao implements Class_Dao
 			preparedStatement.setString(3, table_Class.get_CLASS_ID());
 			if (preparedStatement.executeUpdate() > 0)
 			{
-				JDBCUtil.freeResource(null, preparedStatement, connection);
+				JdbcUtil.freeResource(null, preparedStatement, connection);
 				return true;
 			}
 		} catch (SQLException e)
@@ -175,7 +175,7 @@ public class Class_DaoImpl extends BasicDao implements Class_Dao
 			System.err.println("ERROR : Fail to update class information with the specified number(Class ID) !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(null, preparedStatement, connection);
+		JdbcUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 }

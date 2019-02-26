@@ -10,7 +10,7 @@ import com.YUbuntu.basicDao.BasicDao;
 import com.YUbuntu.dao.Course_Dao;
 import com.YUbuntu.model.Table_Course;
 import com.YUbuntu.model.Table_Teacher;
-import com.YUbuntu.util.JDBCUtil;
+import com.YUbuntu.util.JdbcUtil;
 import com.YUbuntu.util.StringUtil;
 
 /**
@@ -58,7 +58,7 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 			e.printStackTrace();
 		}finally
 		{			
-			JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+			JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 		}
 		return list;
 	}
@@ -95,7 +95,7 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 
 			if (preparedStatement.executeUpdate() > 0)
 			{
-				JDBCUtil.freeResource(null, preparedStatement, connection);
+				JdbcUtil.freeResource(null, preparedStatement, connection);
 				return true;
 			}
 		} catch (SQLException e)
@@ -103,7 +103,7 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 			System.err.println("ERROR : FAIL TO INSERT A NEW COURSE INTO THE DATABASE ! \n");
 			e.printStackTrace();
 		}			
-		JDBCUtil.freeResource(null, preparedStatement, connection);
+		JdbcUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 
@@ -167,7 +167,7 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 			System.err.println("ERROR : FAIL TO READ COURSE INFORMATION !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 		return list;
 
 	}
@@ -198,7 +198,7 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 			preparedStatement.setString(6,table_Course.getCourse_ID());
 			if (preparedStatement.executeUpdate() > 0)
 			{
-				JDBCUtil.freeResource(null, preparedStatement, connection);
+				JdbcUtil.freeResource(null, preparedStatement, connection);
 				return true;
 			}
 		} catch (SQLException e)
@@ -206,7 +206,7 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 			System.err.println("ERROR : FAIL TO UPDATE COURSE INFORMATION WITH THE SPECIFIED TEACHER' ID !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(null, preparedStatement, connection);
+		JdbcUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 	
@@ -231,7 +231,7 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 
 			if (preparedStatement.executeUpdate() > 0)
 			{
-				JDBCUtil.freeResource(null, preparedStatement, connection);
+				JdbcUtil.freeResource(null, preparedStatement, connection);
 				return true;
 			}
 		} catch (SQLException e)
@@ -239,7 +239,7 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 			System.err.println("ERROR :FAIL TO DELETE THE SPECIFIED COURSE WITH THE SPECIFIED COURSE' ID !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(null, preparedStatement, connection);
+		JdbcUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 
@@ -279,7 +279,7 @@ public class Course_DaoImpl extends BasicDao implements Course_Dao
 			System.err.println("ERROR : FAIL TO READ COURSE INFORMATION !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 		return table_Course_temp;
 	}
 }

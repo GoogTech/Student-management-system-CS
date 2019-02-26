@@ -9,7 +9,7 @@ import java.util.List;
 import com.YUbuntu.basicDao.BasicDao;
 import com.YUbuntu.dao.ChooseCourse_Dao;
 import com.YUbuntu.model.Table_ChoosedCourse;
-import com.YUbuntu.util.JDBCUtil;
+import com.YUbuntu.util.JdbcUtil;
 
 /**
  * 
@@ -56,7 +56,7 @@ public class ChooseCourse_DaoImpl extends BasicDao implements ChooseCourse_Dao
 			System.err.println("ERROR : FAIL TO READ THE INFORMATION OF COURSE SELECTION !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 		return list;
 	}
 	
@@ -482,7 +482,7 @@ public class ChooseCourse_DaoImpl extends BasicDao implements ChooseCourse_Dao
 			preparedStatement.setInt(5, table_ChoosedCourse.getChoosedCourse_ID());
 			if (preparedStatement.executeUpdate() > 0)
 			{
-				JDBCUtil.freeResource(null, preparedStatement, connection);
+				JdbcUtil.freeResource(null, preparedStatement, connection);
 				return true;
 			}
 		} catch (SQLException e)
@@ -490,7 +490,7 @@ public class ChooseCourse_DaoImpl extends BasicDao implements ChooseCourse_Dao
 			System.err.println("ERROR : FAIL TO UPDATE INFORMATION ABOUT COURSE SELECTION !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(null, preparedStatement, connection);
+		JdbcUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 }

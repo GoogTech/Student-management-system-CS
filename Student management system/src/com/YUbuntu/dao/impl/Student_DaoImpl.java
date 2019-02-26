@@ -8,9 +8,8 @@ import java.util.List;
 
 import com.YUbuntu.basicDao.BasicDao;
 import com.YUbuntu.dao.Student_Dao;
-import com.YUbuntu.model.Table_Class;
 import com.YUbuntu.model.Table_Student;
-import com.YUbuntu.util.JDBCUtil;
+import com.YUbuntu.util.JdbcUtil;
 import com.YUbuntu.util.StringUtil;
 
 
@@ -46,7 +45,7 @@ public class Student_DaoImpl extends BasicDao implements Student_Dao
 
 			if (preparedStatement.executeUpdate() > 0)
 			{
-				JDBCUtil.freeResource(null, preparedStatement, connection);
+				JdbcUtil.freeResource(null, preparedStatement, connection);
 				return true;
 			}
 		} catch (SQLException e)
@@ -54,7 +53,7 @@ public class Student_DaoImpl extends BasicDao implements Student_Dao
 			System.err.println("ERROR : Fail to add the new student information to MySQL database !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(null, preparedStatement, connection);
+		JdbcUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 	
@@ -117,7 +116,7 @@ public class Student_DaoImpl extends BasicDao implements Student_Dao
 			System.err.println("ERROR : Failed to read student information in MySQL database!\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 		return list;
 	}
 	
@@ -142,7 +141,7 @@ public class Student_DaoImpl extends BasicDao implements Student_Dao
 
 			if (preparedStatement.executeUpdate() > 0)
 			{
-				JDBCUtil.freeResource(null, preparedStatement, connection);
+				JdbcUtil.freeResource(null, preparedStatement, connection);
 				return true;
 			}
 		} catch (SQLException e)
@@ -150,7 +149,7 @@ public class Student_DaoImpl extends BasicDao implements Student_Dao
 			System.err.println("ERROR :Fail to delete Student information with the specified Student' ID !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(null, preparedStatement, connection);
+		JdbcUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 
@@ -180,7 +179,7 @@ public class Student_DaoImpl extends BasicDao implements Student_Dao
 			preparedStatement.setString(6, table_Student.getStudent_id());
 			if (preparedStatement.executeUpdate() > 0)
 			{
-				JDBCUtil.freeResource(null, preparedStatement, connection);
+				JdbcUtil.freeResource(null, preparedStatement, connection);
 				return true;
 			}
 		} catch (SQLException e)
@@ -188,7 +187,7 @@ public class Student_DaoImpl extends BasicDao implements Student_Dao
 			System.err.println("ERROR : Fail to update student information with the specified student ID !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(null, preparedStatement, connection);
+		JdbcUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 	
@@ -245,7 +244,7 @@ public class Student_DaoImpl extends BasicDao implements Student_Dao
 			System.err.println("ERROR : Fail to check specified information of student from the MySQL database !\n");
 			e.printStackTrace();
 		}		
-		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 		return table_Student_temp;	
 	}
 	
@@ -279,7 +278,7 @@ public class Student_DaoImpl extends BasicDao implements Student_Dao
 			if (!resultSet.next())
 			{
 				result_ChanggePasswrod = "Warning : the old passwrod is error !";
-				JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+				JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 				return result_ChanggePasswrod;
 			}
 
@@ -301,7 +300,7 @@ public class Student_DaoImpl extends BasicDao implements Student_Dao
 			System.err.println("ERROR : Fail to change the user'password !\n");
 		}
 
-		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 		return result_ChanggePasswrod;
 	}
 
@@ -339,7 +338,7 @@ public class Student_DaoImpl extends BasicDao implements Student_Dao
 			System.err.println("ERROR : FAIL TO GET THE STUDENT NAME FROM THE DATABASE !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 		return list;
 	}
 }

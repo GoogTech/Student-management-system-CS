@@ -9,7 +9,7 @@ import java.util.List;
 import com.YUbuntu.basicDao.BasicDao;
 import com.YUbuntu.dao.Teacher_Dao;
 import com.YUbuntu.model.Table_Teacher;
-import com.YUbuntu.util.JDBCUtil;
+import com.YUbuntu.util.JdbcUtil;
 import com.YUbuntu.util.StringUtil;
 
 /**
@@ -53,7 +53,7 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 			
 			if (preparedStatement.executeUpdate() > 0)
 			{
-				JDBCUtil.freeResource(null, preparedStatement, connection);
+				JdbcUtil.freeResource(null, preparedStatement, connection);
 				return true;
 			}
 		} catch (SQLException e)
@@ -61,7 +61,7 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 			System.err.println("ERROR : Fail to add the new teacher information to MySQL database !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(null, preparedStatement, connection);
+		JdbcUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 
@@ -131,7 +131,7 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 			System.err.println("ERROR : Failed to read teacher information in MySQL database !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 		return list;
 	}
 
@@ -157,7 +157,7 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 
 			if (preparedStatement.executeUpdate() > 0)
 			{
-				JDBCUtil.freeResource(null, preparedStatement, connection);
+				JdbcUtil.freeResource(null, preparedStatement, connection);
 				return true;
 			}
 		} catch (SQLException e)
@@ -165,7 +165,7 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 			System.err.println("ERROR :Fail to delete teacher information with the specified teacher' ID !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(null, preparedStatement, connection);
+		JdbcUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 
@@ -197,7 +197,7 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 			preparedStatement.setString(7, table_Teacher.getTeacher_id());
 			if (preparedStatement.executeUpdate() > 0)
 			{
-				JDBCUtil.freeResource(null, preparedStatement, connection);
+				JdbcUtil.freeResource(null, preparedStatement, connection);
 				return true;
 			}
 		} catch (SQLException e)
@@ -205,7 +205,7 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 			System.err.println("ERROR : Fail to update teacher information with the specified teacher' ID !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(null, preparedStatement, connection);
+		JdbcUtil.freeResource(null, preparedStatement, connection);
 		return false;
 	}
 
@@ -263,7 +263,7 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 			System.err.println("ERROR : Fail to check the specified information of teacher from the MySQL database ! \n");
 			e.printStackTrace();
 		}		
-		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 		return table_Teacher_temp;	
 	}
 
@@ -297,7 +297,7 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 			if (!resultSet.next())
 			{
 				result_ChanggePasswrod = "Warning : the old passwrod is error !";
-				JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+				JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 				return result_ChanggePasswrod;
 			}
 
@@ -319,7 +319,7 @@ public class Teacher_DaoImpl extends BasicDao implements Teacher_Dao
 			System.err.println("ERROR : Fail to change the user's password !\n");
 			e.printStackTrace();
 		}
-		JDBCUtil.freeResource(resultSet, preparedStatement, connection);
+		JdbcUtil.freeResource(resultSet, preparedStatement, connection);
 		return result_ChanggePasswrod;
 	}
 }
