@@ -15,11 +15,11 @@
 
 - *登录界面*
 
-![](https://raw.githubusercontent.com/YUbuntu0109/YUbuntu0109.github.io/HexoBackup/2019/03/09/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Java-swing/Login_Interface.PNG)
+![](https://googtech.github.io/blog/2019/03/09/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Java-swing/Login_Interface.PNG)
 
 - *选课界面*
 
-![](https://raw.githubusercontent.com/YUbuntu0109/YUbuntu0109.github.io/HexoBackup/2019/03/09/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Java-swing/Main_Interface.PNG)
+![](https://googtech.github.io/blog/2019/03/09/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Java-swing/Main_Interface.PNG)
 
 
 
